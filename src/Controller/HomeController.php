@@ -35,19 +35,6 @@ class HomeController extends AbstractController
     }
 
 
-    /**
-     * Undocumented function
-     *@Route("/produits", name="produits")
-     */
-    public function produits(): Response
-    {
-
-        return $this->render("home/produits.html.twig", [
-            "title" => "Nos produits",
-            "message" => "Nos nouveautés"
-        ]);
-    }
-
 
     /**
      * Undocumented function
