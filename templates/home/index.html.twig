@@ -1,0 +1,99 @@
+{% extends "base.html.twig" %}
+{% block title %}
+	{{title}}
+{% endblock %}
+
+{% block body %}
+	<div
+		class="flex justify-center">
+		<!--lien vers les images libre de droit : https://fr.vecteezy.com/photo/2055377-huile-d-olive-et-noix-->
+
+		<img class="w-screen object-cover opacity-50 h-80" src="../public/assets/vecteezy_olive-oil-and-nuts_2055377.jpg">
+
+
+		<h3 class="absolute text-black text-2xl my-10 ">Elixirs de jouvence</h3>
+		<h1 class="absolute text-green-500 py-12 text-4xl my-10 text-shadow-xl">Huiles Végétales KA</h1>
+
+	</div>
+	<!--content-->
+	<div
+		class="flex flex-wrap md:flex md:flex-nowrap justify-evenly ">
+		<!--texte-->
+		<div class="text-justify mt-20">
+			<p class="font-bold text-xl w-96">Son activité principale est la production des huiles végétales vierges première pression à froid à partir des graines germées. Sur ce projet, elle adopte des principes :</p>
+
+
+			<ul class="w-96">
+				<li>
+					- De croire en des producteurs agricoles porteurs des valeurs sur la nourriture saine</li>
+
+				<li>
+					- Du bien être de nos clients consommateurs qui est notre préoccupation quotidienne</li>
+
+
+				<li>- De la gestion des ressources de l’environnement au plus près des besoins de nos consommateurs clients et dans le respect de la biodiversité</li>
+
+
+				<li>
+					- De transformer des issues de l’agriculture biologique en respectant les valeurs nutritionnelles</li>
+
+
+				<li>- De promouvoir le partage des ressources naturelles et d’éviter le gaspillage</li>
+
+
+			</ul>
+			<button class=" rounded-2xl w-24 h-12 bg-green-400 hover:bg-green-600 hover:text-white mt-10  font-bold">Shop Now</button>
+
+
+		</div>
+		<!--image-->
+		<div>
+			<img class="h-96 w-96 mt-20" src="../public/assets/vecteezy_front-view-of-black-olives-with-olive-oil-in-a-glass-jar-on-a-black-background_1435390.jpg"></div>
+
+
+	</div>
+	<div class="flex justify-center flex-col px-4">
+		<h1 class="text-center text-gray-900 py-12 text-4xl text-green-400">
+			Qui sommes nous ?</h1>
+		<div class="flex flex-wrap justify-center  my-10">
+			<p class="max-w-lg  h-60 text-xl text-justify relative">
+				<span class="lg:text-6xl text-green-400">"</span>«HuilesVégétales_AK» tirent ses ressources d’exploitation des végétaux existant dans leur milieu naturel sur les cinq continents. cette démarche éco-responsable et éco-solidaire impose de restituer à l’état pur les huiles vierges offrant la meilleure garantie de qualité pour une meilleure efficience de ces «elixirs de jouvence».
+
+
+				<span class="lg:text-6xl lg:absolute lg:right-0 lg:bottom-0 text-green-400">
+					"</span>
+			</p>
+
+
+		</div>
+		<h1 class="text-center text-gray-900 py-12 text-4xl text-green-400">
+			Nos valeurs et nos engagements</h1>
+
+		<div class="flex flex-wrap justify-center  my-5">
+			<ul class="w-96">
+				<li class="text-xl">
+					<i class="fa fa-check text-green-400 " aria-hidden="true"></i>Satisfaire vos besoins</li>
+
+
+				<li class="text-xl">
+
+					<i class="fa fa-check text-green-400" aria-hidden="true"></i>Partager vos valeurs d’éco-responsable, de solidarité et votre éthique</li>
+
+
+				<li class="text-xl">
+
+					<i class="fa fa-check text-green-400" aria-hidden="true"></i>Faire respecter et rendre transparent nos engagements qualités : Origine des produits biologique, produire en France à partir des graines germées</li>
+
+
+				<li class="text-xl">
+
+					<i class="fa fa-check text-green-400" aria-hidden="true"></i>Produire les huiles vierges de première pression à froid à partir de pesse mécanique</li>
+
+
+				<li class="text-xl">
+
+					<i class="fa fa-check text-green-400" aria-hidden="true"></i>Oeuvrer pour une gestion raisonnée des ressources naturelles et la protection de l’environnement</li>
+			</ul>
+		</div>
+	</div>
+{% endblock %}
