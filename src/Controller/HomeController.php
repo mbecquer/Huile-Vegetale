@@ -29,7 +29,8 @@ class HomeController extends AbstractController
     {
 
         return $this->render("home/huiles.html.twig", [
-            "title" => "Nos Huiles"
+            "title" => "Nos Huiles",
+            "message" => "Nos Huiles"
         ]);
     }
 
@@ -42,7 +43,8 @@ class HomeController extends AbstractController
     {
 
         return $this->render("home/produits.html.twig", [
-            "title" => "Nos produits"
+            "title" => "Nos produits",
+            "message" => "Nos nouveautés"
         ]);
     }
 
@@ -56,6 +58,17 @@ class HomeController extends AbstractController
 
         return $this->render("home/blog.html.twig", [
             "title" => "Notre blog"
+        ]);
+    }
+    /**
+     * Undocumented function
+     *@Route("/mentions", name="mentions")
+     */
+    public function mentions(): Response
+    {
+
+        return $this->render("home/mentions.html.twig", [
+            "title" => "Mentions légales"
         ]);
     }
 }
