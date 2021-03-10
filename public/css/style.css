@@ -1,4 +1,83 @@
+:root {
+  --green: #34d399;
+}
 .container-oil {
   width: 1200px;
   margin: auto;
+}
+/* MENU MOBILE */
+.menu-btn {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  height: 40px;
+  cursor: pointer;
+  background: white;
+}
+.menu-btn span {
+  content: "";
+  position: absolute;
+  height: 5px;
+  width: 100%;
+  background: black;
+  transition: all 0.5s ease-in-out;
+}
+.menu-btn::before {
+  content: "";
+  top: 0;
+  position: absolute;
+  height: 5px;
+  width: 100%;
+  background: black;
+  transition: all 0.5s ease-in-out;
+}
+.menu-btn::after {
+  content: "";
+  bottom: 0;
+  position: absolute;
+  height: 5px;
+  width: 100%;
+  background: black;
+  transition: all 0.5s ease-in-out;
+}
+/* .menu-btn ul {
+  display:none;
+}  */
+.menu-btn.open ul {
+  display: block;
+}
+.menu-btn.open span {
+  transform: translateX(-50px) rotate(180deg);
+  width: 5%;
+  transition: all 0.5s ease-in-out;
+  opacity: 0%;
+}
+.menu-btn.open::before {
+  transition: all 0.5s ease-in-out;
+  transform: translateY(17px) rotate(45deg);
+  background: var(--green);
+}
+.menu-btn.open::after {
+  transition: all 0.5s ease-in-out;
+  transform: translateY(-17px) rotate(-45deg);
+  background: var(--green);
+}
+.menu-btn.open {
+  transition: 0.5s;
+}
+
+@media screen and (min-width: 580px) {
+  .menu-btn {
+    display: none;
+  }
+}
+@media screen and (max-width: 580px) {
+  .menu-desktop {
+    display: none;
+  }
+  .logo {
+    width: 30%;
+  }
 }
