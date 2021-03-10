@@ -1,10 +1,8 @@
 :root {
   --green: #34d399;
+  --blue: #374151;
 }
-.container-oil {
-  width: 1200px;
-  margin: auto;
-}
+
 /* MENU MOBILE */
 .menu-btn {
   position: relative;
@@ -42,11 +40,35 @@
   background: black;
   transition: all 0.5s ease-in-out;
 }
-/* .menu-btn ul {
-  display:none;
-}  */
+
+.menu-btn.open {
+  transition: 0.5s;
+}
+.menu-btn ul {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  background: var(--blue);
+  top: 0;
+  left: -100%;
+  transition: all 0.5s;
+}
 .menu-btn.open ul {
+  left: 0;
+  z-index: 1;
+}
+.menu-btn ul li {
   display: block;
+  margin: 100px 0;
+  line-height: 30px;
+}
+.menu-btn ul li a {
+  font-size: 20px;
+  color: white;
+}
+.menu-btn ul li,
+a:hover {
+  color: var(--green);
 }
 .menu-btn.open span {
   transform: translateX(-50px) rotate(180deg);
@@ -64,9 +86,6 @@
   transform: translateY(-17px) rotate(-45deg);
   background: var(--green);
 }
-.menu-btn.open {
-  transition: 0.5s;
-}
 
 @media screen and (min-width: 580px) {
   .menu-btn {
@@ -80,4 +99,10 @@
   .logo {
     width: 30%;
   }
+}
+/*PRODUITS*/
+.container-oil {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
 }

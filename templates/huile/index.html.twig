@@ -6,26 +6,33 @@
 	<h1 class="text-4xl text-center mt-10 text-green-400">{{message}}</h1>
 
 
-	<div class="container-oil h-full flex justify-evenly my-10 flex-wrap">
+	{% for huile in huiles %}
+		<div class=" container-oil h-96 mt-10 my-20">
 
-		{% for huile in huiles %}
-			<div class=" objet h-96 w-72  relative rounded-lg relative shadow-lg my-2 ">
-				<img class="w-full h-52 object-cover rounded-lg" src="{{huile.image}}" alt="">
-				<h5 class="text-xl uppercase text-center font-semibold">{{huile.name}}</h5>
-				<p class="ml-5 mt-2">{{huile.description}}</p>
-				<p class="absolute right-5 bottom-10 text-2xl">
-					{{huile.capacity}}ml
-					{{huile.price}}€</p>
-
-				<button class="absolute bottom-0 w-full h-10 text-lg font-bold bg-green-400 hover:text-white rounded-sm">
-
-					<i class="fa fa-shopping-cart fa-2x  align-middle"></i>Ajouter au panier</button>
+			<div class="oil-image">
+				<img class="w-72 h-72 object-cover rounded-lg" src="{{huile.image}}" alt="">
 			</div>
 
-		{% endfor %}
+			<div class="oil-description ">
+				<h5 class="font-bold text-3xl md:text-2xl text-green-400">{{huile.name}}</h5>
+				<p class="text-xl">{{huile.description}}</p>
+				<p class=" text-3xl sm:text-2xl">
+					{{huile.capacity}}<span class="font-bold text-green-400">ml</span>
+
+				</p>
+				<p class="text-3xl sm:text-2xl">{{huile.price}}<span class="font-bold text-green-400">€</span>
+				</p>
 
 
-	</div>
+				<button class="w-60 lg:w-96 mt-0 sm:mt-20 font-bold text-lg sm:text-3xl border-2 rounded-lg ">
+
+					<i class="fa fa-shopping-cart fa-2x align-middle text-green-400"></i>Ajouter au panier</button>
+			</div>
+
+		</div>
+		<hr>
+
+	{% endfor %}
 
 
 {% endblock %}
