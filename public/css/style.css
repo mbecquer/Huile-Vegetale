@@ -1,8 +1,20 @@
 :root {
-  --green: #34d399;
+  --green: #4a894c;
   --blue: #374151;
 }
-
+.text-green{
+  color:var(--green);
+}
+.text-survol:hover{
+  color:var(--green);
+}
+.button-shop{
+  border:2px solid var(--green);
+}
+.button-shop:hover{
+  background:var(--green);
+  color:white;
+}
 /* MENU MOBILE */
 .menu-btn {
   position: relative;

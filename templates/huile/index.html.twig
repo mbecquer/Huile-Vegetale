@@ -3,7 +3,7 @@
 {% endblock %}
 {% block body %}
 	<!--page de mes produits-->
-	<h1 class="text-4xl text-center mt-10 text-green-400">{{message}}</h1>
+	<h1 class="text-4xl text-center mt-10 text-green">{{message}}</h1>
 
 
 	{% for huile in huiles %}
@@ -14,19 +14,19 @@
 			</div>
 
 			<div class="oil-description ">
-				<h5 class="font-bold text-3xl md:text-2xl text-green-400">{{huile.name}}</h5>
+				<h5 class="font-bold text-3xl md:text-2xl text-green">{{huile.name}}</h5>
 				<p class="text-xl">{{huile.description}}</p>
 				<p class=" text-3xl sm:text-2xl">
-					{{huile.capacity}}<span class="font-bold text-green-400">ml</span>
+					{{huile.capacity}}<span class="font-bold text-green">ml</span>
 
 				</p>
-				<p class="text-3xl sm:text-2xl">{{huile.price}}<span class="font-bold text-green-400">€</span>
+				<p class="text-3xl sm:text-2xl">{{huile.price}}<span class="font-bold text-green">€</span>
 				</p>
 
 
 				<button class="w-60 lg:w-96 mt-0 sm:mt-20 font-bold text-lg sm:text-3xl border-2 rounded-lg ">
 
-					<i class="fa fa-shopping-cart fa-2x align-middle text-green-400"></i>Ajouter au panier</button>
+					<i class="fa fa-shopping-cart fa-2x align-middle text-green"></i>Ajouter au panier</button>
 			</div>
 
 		</div>
