@@ -58,4 +58,5 @@ class HomeController extends AbstractController
             "title" => "Mentions légales"
         ]);
     }
+     
 }

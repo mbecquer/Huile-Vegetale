@@ -1,0 +1,54 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+	{{title}}
+{% endblock %}
+{% block body %}
+	<h1 class="text-4xl text-center mt-10 text-green">{{title}}</h1>
+	<div class="w-full  md:w-96  mx-auto my-20 flex flex-wrap ">
+
+		{% if items | length > 0 %}
+			<table class=" relative text-center text-xl">
+				<thead>
+					<tr >
+						<th >Huile</th>
+						<th>Prix</th>
+						<th>Capacité</th>
+						<th>Quantité</th>
+						<th>Total</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for item in items %}
+						<tr>
+							<td>{{item.huile.name}}</td>
+							<td>{{item.huile.price}} €</td>
+							<td>{{item.huile.capacity}} ml</td>
+							<td>{{item.huile.quantity}}</td>
+							<td>{{item.huile.price * item.quantity}} €</td>
+							<td>
+								<a href="#">
+									<i class="fa fa-trash"></i>
+								</a>
+							</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+				<tfoot>
+					<tr class="absolute right-0">
+						<td >Total :</td>
+                        <td>{{total}} €</td>
+					</tr>
+				</tfoot>
+			</table>
+		{% else %}
+			<p>Surprise c'est vide !
+			</p>
+		{% endif %}
+
+
+	</div>
+
+
+{% endblock %}

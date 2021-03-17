@@ -13,7 +13,7 @@
 			{% endblock %}
 		</title>
 		{# Run `composer require symfony/webpack-encore-bundle`
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																				           and uncomment the following Encore helpers to start using Symfony UX #}
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																						           and uncomment the following Encore helpers to start using Symfony UX #}
 		{% block stylesheets %}
 			{#{{ encore_entry_link_tags('app') }}#}
 		{% endblock %}
@@ -34,7 +34,7 @@
 
 
 				<a class="text-survol text-gray-600 no-underline mx-2" href="{{path('blog')}}">Blog</a>
-
+				<a class="text-survol text-gray-600 no-underline" href="{{path('cart')}}">Mon panier</a>
 			</div>
 			<!--MENU MOBILE-->
 			<div class="menu-btn flex-col text-center">
@@ -44,6 +44,7 @@
 					<li><a class="text-survol text-gray-600 no-underline"href="{{path('huiles')}}">Huiles Végétales</a></li>
 					<li><a class="text-survol text-gray-600 no-underline"href="{{path('huile_index')}}">Produits</a></li>
 					<li><a class="text-survol text-gray-600 no-underline"href="{{path('blog')}}">Blog</a></li>
+					<li><a class="text-survol text-gray-600 no-underline"href="{{path('cart')}}">Mon panier</a></li>
 				</ul>
 			</div>
 
