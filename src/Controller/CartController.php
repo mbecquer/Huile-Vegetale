@@ -10,29 +10,28 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class CartController extends AbstractController
 {
- /**
+    /**
      * Undocumented function
      *@Route("/cart", name="cart")
      */
     public function cart(SessionInterface $session, HuilesRepository $huilesRepository): Response
     {
-        $panier =$session->get('panier',[]);
+        $panier = $session->get('panier', []);
 
-        $panierWithData =[];
+        $panierWithData = [];
 
         foreach ($panier as $id => $quantity) {
-           $panierWithData[] =[
-               'huile'=>  $huilesRepository->find($id) ,
-               'quantity'=> $quantity 
+            $panierWithData[] = [
+                'huile' =>  $huilesRepository->find($id),
+                'quantity' => $quantity
 
-           ];
-         
+            ];
         }
-    $total = 0;
-    foreach ($panierWithData as $item ) {
-     $totalItem = $item['huile']->getPrice() * $item['quantity'];
-     $total += $totalItem;
-    }
+        $total = 0;
+        foreach ($panierWithData as $item) {
+            $totalItem = $item['huile']->getPrice() * $item['quantity'];
+            $total += $totalItem;
+        }
         return $this->render("home/cart.html.twig", [
             "title" => "Mon panier",
             "items" => $panierWithData,
@@ -42,19 +41,19 @@ class CartController extends AbstractController
     /**
      * @Route("/cart/add/{id}", name="cart_add")
      */
-    public function add($id, SessionInterface $session){
-    
-        $panier = $session->get('panier',[]);
-        if(!empty($panier[$id])){
-            $panier[$id] ++;
-        }else{
+    public function add($id, SessionInterface $session)
+    {
+
+        $panier = $session->get('panier', []);
+        if (!empty($panier[$id])) {
+            $panier[$id]++;
+        } else {
             $panier[$id] = 1;
         }
 
 
-        $session->set('panier',$panier);
+        $session->set('panier', $panier);
 
-        dd($session->get('panier'));
-        
+        return $this->redirectToRoute('cart');
     }
 }
