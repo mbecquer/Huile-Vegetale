@@ -114,8 +114,6 @@ a:hover {
   }
 }
 /*PRODUITS*/
-.container-oil {
-  display: flex;
-  justify-content: space-evenly;
-  flex-wrap: wrap;
+.oil-button:hover{
+border-color:var(--green);
 }

@@ -3,17 +3,18 @@
 	<head>
 		<meta charset="UTF-8"/>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
 		<link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet"/>
 		<link rel="stylesheet" id="fa-fonts-css" href="https://maxcdn.icons8.com/fonts/line-awesome/1.1/css/line-awesome-font-awesome.min.css?ver=5.2" type="text/css" media="all"/>
 		<link rel="stylesheet" href="/css/style.css">
+		<link rel="icon" type="image/png" href="/assets/logo-removebg-preview.png"/>
 
 		<title>
 			{% block title %}Welcome!
 			{% endblock %}
 		</title>
 		{# Run `composer require symfony/webpack-encore-bundle`
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																						           and uncomment the following Encore helpers to start using Symfony UX #}
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																				           and uncomment the following Encore helpers to start using Symfony UX #}
 		{% block stylesheets %}
 			{#{{ encore_entry_link_tags('app') }}#}
 		{% endblock %}
@@ -26,13 +27,9 @@
 			<a class="text-survol text-gray-600 no-underline logo" href="{{path('index')}}" title="Accueil"><img class="mt-10" src="{{ asset('/assets/logo-removebg-preview.png') }}"></a>
 
 
-			<div class="menu-desktop ">
+			<div class="menu-desktop">
 				<a class="text-survol text-gray-600 no-underline mx-2" href="{{path('huiles')}}">Huiles Végétales</a>
-
-
 				<a class="text-survol text-gray-600 no-underline mx-2" href="{{path('huile_index')}}">Produits</a>
-
-
 				<a class="text-survol text-gray-600 no-underline mx-2" href="{{path('blog')}}">Blog</a>
 				<a class="text-survol text-gray-600 no-underline" href="{{path('cart')}}">Mon panier</a>
 			</div>
@@ -56,7 +53,7 @@
 			class="bg-gray-700 h-96 mt-20 md:mt-0 md:pt-40  w-screen text-white py-10 flex-col sm:flex sm:flex-wrap sm:flex-row text-center justify-evenly align-middle">
 			<!--texte-->
 			<div class="py-5">
-				<h1 class="text-lg md:text-6xl text-green">Huiles Végétales KA</h1>
+				<h1 class="text-3xl md:text-5xl text-green">Huiles Végétales KA</h1>
 				<p class=" md:text-2xl">Les huiles végétales, un véritable elixir</p>
 			</div>
 			<!--contact-->
