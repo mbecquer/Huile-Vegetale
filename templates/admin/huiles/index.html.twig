@@ -1,0 +1,40 @@
+{% extends 'base.html.twig'%}
+
+{% block title 'Administration'%}
+
+{% block body %}
+	<h2 class="text-4xl text-center mt-10 mb-5 text-green">Administration</h2>
+
+	<div class="mx-28">
+		<table class="w-full">
+			<thead class="border-b-2 font-bold text-2xl">
+				<tr>
+					<th>ID</th>
+					<th>NOM</th>
+					<th>DESCRIPTION</th>
+					<th>IMAGE</th>
+					<th>CAPACITE</th>
+					<th>PRIX</th>
+					<th>actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for huile in huiles %}
+					<tr class="text-center hover:bg-green-100 cursor-pointer text-xl border-b-2">
+						<td>{{huile.id}}</td>
+						<td>{{huile.name}}</td>
+						<td>{{huile.description}}</td>
+						<td><img class="mx-auto" src="{{huile.image}}"></td>
+						<td>{{huile.capacity}}
+							ml</td>
+						<td>{{huile.price}}
+							€</td>
+						<td></td>
+
+					</tr>
+
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+{% endblock %}

@@ -29,7 +29,7 @@ class HuilesController extends AbstractController
 
         return $this->render("huile/index.html.twig", [
             "title" => "Nos produits",
-            "message" => "Nos nouveautés",
+            "message" => "Nos produits",
             "huiles" => $properties
         ]);
     }
