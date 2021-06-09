@@ -6,7 +6,20 @@
 	<h2 class="text-4xl text-center mt-10 mb-5 text-green">Administration</h2>
 
 	<div class="mx-28">
-		<a href="{{path('admin_huiles_create')}}" class="bg-green-400 p-5 rounded-lg">Ajouter</a>
+		{% for message in app.flashes('success')  %}
+
+			<div class="bg-green-200 w-full text-center text-3xl p-2 mb-2 rounded-lg">
+				{{message}}
+			</div>
+
+		{% endfor %}
+
+
+		<a href="{{path('admin_huiles_create')}}" class="btn">
+			Ajouter
+		</a>
+
+
 		<table class="w-full my-5">
 			<thead class="border-b-2 font-bold text-2xl">
 				<tr>
@@ -30,7 +43,10 @@
 							ml</td>
 						<td>{{huile.price}}
 							€</td>
-						<td></td>
+						<td>
+							<a href="" class="btn">Modifier</a>
+						</td>
+
 
 					</tr>
 

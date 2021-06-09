@@ -42,13 +42,26 @@ class AdminHuilesController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->em->persist($huile);
+            $this->addFlash("success", "Huile ajoutée avec succès");
             $this->em->flush();
-
             return $this->redirectToRoute("admin_huiles_index");
         }
 
         return $this->render("admin/huiles/create.html.twig", [
             "form" => $form->createView()
         ]);
+    }
+
+    /**
+     * @Route("/admin/edit/{id}", name="admin_huiles_edit")
+     */
+    public function edit(int $id)
+    {
+    }
+    /**
+     * @Route("/admin/delete/{id}", name="admin_huiles_delete")
+     */
+    public function delete(int $id)
+    {
     }
 }

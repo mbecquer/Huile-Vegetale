@@ -1,6 +1,4 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+
 
 :root {
   --green: #4a894c;
@@ -9,15 +7,19 @@
 .text-green{
   color:var(--green);
 }
-.text-survol:hover{
-  color:var(--green);
+
+.btn{
+border:2px solid var(--green);
+font-weight: bold;
+color:black;
+border-radius:20px;
 }
-.button-shop{
-  border:2px solid var(--green);
-}
-.button-shop:hover{
-  background:var(--green);
+.btn:hover{
   color:white;
+  background:var(--green);
+}
+.link:hover{
+color:var(--green);
 }
 
 /* MENU MOBILE */
@@ -83,10 +85,7 @@
   font-size: 20px;
   color: white;
 }
-.menu-btn ul li,
-a:hover {
-  color: var(--green);
-}
+
 .menu-btn.open span {
   transform: translateX(-50px) rotate(180deg);
   width: 5%;
