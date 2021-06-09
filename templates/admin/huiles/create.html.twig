@@ -1,0 +1,26 @@
+{% extends "base.html.twig" %}
+
+
+{% block body  %}
+
+	<div class="mx-auto w-72">
+
+		<h2>Ajouter une nouvelle huile</h2>
+
+		{{ form_start(form) }}
+		{# <div class="p-10 border-2 border-black ring-2">{{form_row(form)}}</div> #}
+		{{form_row(form.name)}}
+		{{form_row(form.description)}}
+
+		{{form_row(form.capacity)}}
+		{{form_row(form.price)}}
+		{{form_row(form.image)}}
+		{{form_row(form.quantity)}}
+		<button class="bg-green-500 text-white p-3  my-2 " type="submit">Enregistrer</button>
+
+
+		{{form_end(form)}}
+
+
+	</div>
+{% endblock %}
