@@ -9,7 +9,7 @@
 		{% for huile in huiles %}
 
 			<div class="oil-product mt-10 my-20  m-2 cursor-pointer w-96 shadow-2xl rounded-lg">
-				<a href="{{path('huile_read', {id: huile.id})}}">
+				<a href="{{path('huile_read', {id: huile.id, slug:huile.slug})}}">
 					<div class="oil-image">
 						<img class=" w-full h-full object-cover " src="{{huile.image}}" alt="">
 

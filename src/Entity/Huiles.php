@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\HuilesRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Cocur\Slugify\Slugify;
 
 /**
  * @ORM\Entity(repositoryClass=HuilesRepository::class)
@@ -22,6 +23,7 @@ class Huiles
      */
     private $name;
 
+    private $slug;
     /**
      * @ORM\Column(type="string", length=255)
      */
@@ -122,5 +124,13 @@ class Huiles
         $this->quantity = $quantity;
 
         return $this;
+    }
+
+    /**
+     * Get the value of slug
+     */
+    public function getSlug()
+    {
+        return (new Slugify())->slugify($this->name);
     }
 }

@@ -29,11 +29,18 @@ class HuilesController extends AbstractController
         ]);
     }
     /**
-     * @Route("/huile/{id}",name="huile_read")
+     * @Route("/huile/{slug}-{id}",name="huile_read", requirements={"slug"="[a-z0-9\-]*"})
      */
-    public function read(int $id)
+    public function read(string $slug, int $id)
     {
         $huile = $this->huilesRepository->find($id);
+
+        if ($huile->getSlug() !== $slug) {
+            $this->redirectToRoute('huile_read', [
+                "id" => $huile->getId(),
+                "slug" => $huile->getSlug()
+            ]);
+        }
         return $this->render('huile/read.html.twig', [
             'huile' => $huile
         ]);
