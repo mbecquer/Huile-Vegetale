@@ -55,9 +55,9 @@ class AdminHuilesController extends AbstractController
     /**
      * @Route("/admin/edit/{id}", name="admin_huiles_edit")
      */
-    public function edit(int $id, Request $request)
+    public function edit(Huiles $huile, Request $request)
     {
-        $huile = $this->huilesRepository->find($id);
+
         $form = $this->createForm(HuilesType::class, $huile);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -71,13 +71,15 @@ class AdminHuilesController extends AbstractController
         ]);
     }
     /**
-     * @Route("/admin/delete/{id}", name="admin_huiles_delete")
+     * @Route("/admin/delete/{id}", name="admin_huiles_delete", methods="DELETE")
      */
-    public function delete(int $id)
+    public function delete(Huiles $huile, Request $request)
     {
-        $this->em->remove($this->huilesRepository->find($id));
-        $this->addFlash("success", "Huile supprimée avec succès");
-        $this->em->flush();
-        return $this->redirectToRoute('admin_huiles_index');
+        if ($this->isCsrfTokenValid('delete' . $huile->getId(), $request->get('_token'))) {
+            $this->em->remove($huile);
+            $this->em->flush();
+            $this->addFlash("success", "Huile supprimée avec succès");
+            return $this->redirectToRoute('admin_huiles_index');
+        };
     }
 }
