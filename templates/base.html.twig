@@ -7,6 +7,8 @@
 		<link href="/css/tailwind.css" rel="stylesheet">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+
 
 		<link rel="stylesheet" id="fa-fonts-css" href="https://maxcdn.icons8.com/fonts/line-awesome/1.1/css/line-awesome-font-awesome.min.css?ver=5.2" type="text/css" media="all"/>
 		<link rel="stylesheet" href="/css/style.css">
@@ -17,7 +19,7 @@
 			{% endblock %}
 		</title>
 		{# Run `composer require symfony/webpack-encore-bundle`
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																				           and uncomment the following Encore helpers to start using Symfony UX #}
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																           and uncomment the following Encore helpers to start using Symfony UX #}
 		{% block stylesheets %}
 			{#{{ encore_entry_link_tags('app') }}#}
 		{% endblock %}
@@ -25,20 +27,42 @@
 
 	</head>
 	<body>
-		<nav class="w-screen flex justify-evenly items-center h-72 px-4 text-2xl">
+		<nav class="w-screen flex justify-evenly items-center h-72 px-4 text-2xl ">
 
 			<a class=" text-gray-600 no-underline logo" href="{{path('index')}}" title="Accueil"><img class="mt-10" src="{{ asset('/assets/logo-removebg-preview.png') }}"></a>
-			<a href="{{path('app_login')}}">login</a>
-			<a href="{{path('app_logout')}}">logout</a>
-			<a href="{{path('test_register_index')}}">test</a>
+
+
 			<div class="menu-desktop">
 				<a class="link text-gray-600 no-underline mx-2" href="{{path('admin_huiles_index')}}">Administration</a>
-
 				<a class="link text-gray-600 no-underline mx-2" href="{{path('huiles')}}">Huiles Végétales</a>
 				<a class="link text-gray-600 no-underline mx-2" href="{{path('huile_index')}}">Produits</a>
 				<a class="link text-gray-600 no-underline mx-2" href="{{path('blog')}}">Blog</a>
 				<a class="link text-gray-600 no-underline" href="{{path('cart')}}">Mon panier</a>
 			</div>
+			<!--test-->
+			<div class="dropdown text-green">
+				<button type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
+					<i class="fa fa-user fa-2x" aria-hidden="true" title="Mon Compte"></i>
+
+
+				</button>
+				<ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+					<li>
+						<a href="{{path('app_login')}}">login</a>
+
+					</li>
+					<li>
+						<a href="{{path('app_logout')}}">logout</a>
+
+					</li>
+					<li>
+						<a href="{{path('test_register_index')}}">create user test</a>
+					</li>
+				</ul>
+			</div>
+
+			<!--test-->
+
 			<!--MENU MOBILE-->
 			<div class="menu-btn flex-col text-center">
 				<span></span>
