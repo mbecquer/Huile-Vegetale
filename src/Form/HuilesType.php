@@ -31,9 +31,9 @@ class HuilesType extends AbstractType
                     'placeholder' => 'Capacity'
                 ]
             ])
-            ->add('price')
+            ->add('price', NumberType::class)
             ->add('image')
-            ->add('quantity');
+            ->add('quantity', NumberType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver)
