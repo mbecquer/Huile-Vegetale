@@ -7,11 +7,14 @@
 	<div class="flex flex-wrap justify-center">
 
 		{% for huile in huiles %}
-			<div class="oil-product mt-10 my-20  m-2 cursor-pointer w-96 shadow-2xl rounded-lg">
-				<div class="oil-image">
-					<img class=" w-full h-full object-cover " src="{{huile.image}}" alt="">
 
-				</div>
+			<div class="oil-product mt-10 my-20  m-2 cursor-pointer w-96 shadow-2xl rounded-lg">
+				<a href="{{path('huile_read', {id: huile.id})}}">
+					<div class="oil-image">
+						<img class=" w-full h-full object-cover " src="{{huile.image}}" alt="">
+
+					</div>
+				</a>
 				<div class="oil-description ml-5 mt-5">
 					<span class="font-bold text-3xl md:text-2xl text-green">{{huile.name}}</span>
 					<span class="text-xl">{{huile.description}}</span>

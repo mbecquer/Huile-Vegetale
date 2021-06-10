@@ -1,0 +1,48 @@
+{% extends "base.html.twig" %}
+
+
+{% block body %}
+
+
+	<div class="container">
+		<h2>Huile :
+			{{huile.name}}</h2>
+
+		<div class="">
+			<div class=" flex justify-evenly">
+				<h3>Caracteristique</h3>
+				<table class="table table-striped capitalize">
+
+
+					<tr>
+						<td class="font-bold">description</td>
+
+						<td>{{huile.description}}</td>
+
+					</tr>
+
+
+					<tr>
+						<td class="font-bold">capacité</td>
+
+						<td>{{huile.capacity}}
+							ml</td>
+
+					</tr>
+
+
+					<tr>
+						<td class="font-bold">prix</td>
+
+						<td>{{huile.price}}
+							€</td>
+
+					</tr>
+
+
+				</table>
+				<img src="{{huile.image}}">
+			</div>
+		</div>
+	</div>
+{% endblock %}

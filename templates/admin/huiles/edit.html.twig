@@ -1,0 +1,27 @@
+{% extends "base.html.twig" %}
+
+
+{% block body %}
+
+
+	<div class="mx-auto w-72">
+
+		<h2>Editer une huile</h2>
+
+		{{ form_start(form) }}
+		{{form_row(form.name)}}
+		{{form_row(form.description)}}
+		{{form_row(form.capacity)}}
+		{{form_row(form.price)}}
+		{{form_row(form.image)}}
+		{{form_row(form.quantity)}}
+		<button class="btn my-2" type="submit">Editer</button>
+
+
+		{{form_end(form)}}
+
+
+	</div>
+
+
+{% endblock %}
