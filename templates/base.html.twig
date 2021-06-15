@@ -19,7 +19,7 @@
 			{% endblock %}
 		</title>
 		{# Run `composer require symfony/webpack-encore-bundle`
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																           and uncomment the following Encore helpers to start using Symfony UX #}
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																				           and uncomment the following Encore helpers to start using Symfony UX #}
 		{% block stylesheets %}
 			{#{{ encore_entry_link_tags('app') }}#}
 		{% endblock %}
@@ -27,32 +27,41 @@
 
 	</head>
 	<body>
-		<nav class="w-screen flex justify-evenly items-center h-72 px-4 text-2xl ">
+		<nav class="flex justify-evenly items-center my-5 h-52 px-4 text-2xl ">
 
-			<a class=" text-gray-600 no-underline logo" href="{{path('index')}}" title="Accueil"><img class="mt-10" src="{{ asset('/assets/logo-removebg-preview.png') }}"></a>
+			<a class=" text-gray-600  logo" href="{{path('index')}}" title="Accueil"><img class="mt-10 " src="{{ asset('/assets/logo-removebg-preview.png') }}"></a>
+
+			<div class="menu-desktop ">
+
+				{% if is_granted("ROLE_ADMIN")%}
+					<a class="link text-gray-600  mx-2" href="{{path('admin_huiles_index')}}">Administration</a>
+				{% endif %}
 
 
-			<div class="menu-desktop">
-				<a class="link text-gray-600 no-underline mx-2" href="{{path('admin_huiles_index')}}">Administration</a>
-				<a class="link text-gray-600 no-underline mx-2" href="{{path('huiles')}}">Huiles Végétales</a>
-				<a class="link text-gray-600 no-underline mx-2" href="{{path('huile_index')}}">Produits</a>
-				<a class="link text-gray-600 no-underline mx-2" href="{{path('blog')}}">Blog</a>
-				<a class="link text-gray-600 no-underline" href="{{path('cart')}}">Mon panier</a>
+				<a class="link text-gray-600  mx-2" href="{{path('huiles')}}">Huiles Végétales</a>
+				<a class="link text-gray-600  mx-2" href="{{path('huile_index')}}">Produits</a>
+				<a class="link text-gray-600  mx-2" href="{{path('blog')}}">Blog</a>
+				<a class="link text-gray-600 " href="{{path('cart')}}">Mon panier</a>
+
+
 			</div>
 			<!--test-->
-			<div class="dropdown text-green">
-				<button type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
-					<i class="fa fa-user fa-2x" aria-hidden="true" title="Mon Compte"></i>
-
-
+			<div class="dropdown text-green menu-desktop">
+				<button type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false" class="border-green border-2 p-3 rounded-lg focus:outline-none">
+					Mon compte
 				</button>
 				<ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
 					<li>
-						<a href="{{path('app_login')}}">login</a>
+						{% if app.user %}
+							{{ app.user.username }}
+						{% endif %}
+					</li>
 
+					<li>
+						<a class="link text-gray-600 text-xl" href="{{path('app_login')}}">Se connecter</a>
 					</li>
 					<li>
-						<a href="{{path('app_logout')}}">logout</a>
+						<a class="link text-gray-600 text-xl" href="{{path('app_logout')}}">Déconnexion</a>
 
 					</li>
 					<li>
@@ -60,32 +69,55 @@
 					</li>
 				</ul>
 			</div>
-
 			<!--test-->
+
 
 			<!--MENU MOBILE-->
 			<div class="menu-btn flex-col text-center">
 				<span></span>
 
 				<ul>
-					<li><a class="link text-gray-600 no-underline"href="{{path('huiles')}}">Huiles Végétales</a></li>
-					<li><a class="link text-gray-600 no-underline"href="{{path('huile_index')}}">Produits</a></li>
-					<li><a class="link text-gray-600 no-underline"href="{{path('blog')}}">Blog</a></li>
-					<li><a class="link text-gray-600 no-underline"href="{{path('cart')}}">Mon panier</a></li>
+					<li>
+						{% if is_granted("ROLE_ADMIN")%}
+							<a class="  " href="{{path('admin_huiles_index')}}">Administration</a>
+						{% endif %}
+					</li>
+
+					<li>
+						<a class=" " href="{{path('huiles')}}">Huiles Végétales</a>
+					</li>
+					<li>
+						<a class=" " href="{{path('huile_index')}}">Produits</a>
+					</li>
+					<li>
+						<a class=" " href="{{path('blog')}}">Blog</a>
+					</li>
+					<li>
+						<a class=" " href="{{path('cart')}}">Mon panier</a>
+					</li>
+					<li>
+						<a class="border-green border-2 rounded-lg p-3" href="{{path('app_login')}}">Se connecter</a>
+					</li>
+					<li>
+						<a class="border-green border-2 rounded-lg p-3" href="{{path('app_logout')}}">Déconnexion</a>
+
+					</li>
 				</ul>
+
+
 			</div>
-
 		</nav>
-
 
 		{% block body %}{% endblock %}
 		<div
-			class="bg-gray-700 h-96 mt-20 md:mt-0 md:pt-40  w-screen text-white py-10 flex-col sm:flex sm:flex-wrap sm:flex-row text-center justify-evenly align-middle">
+			class="bg-gray-700  mt-20 md:mt-0 md:pt-40  text-white py-10 flex-col sm:flex sm:flex-wrap sm:flex-row text-center justify-evenly align-middle">
+
 			<!--texte-->
 			<div class="py-5">
 				<h1 class="text-3xl md:text-5xl text-green">Huiles Végétales KA</h1>
 				<p class=" md:text-2xl">Les huiles végétales, un véritable elixir</p>
 			</div>
+
 			<!--contact-->
 			<div class="text-lg py-5">
 				<h3 class="text-4xl font-bold ">Nous contacter</h3>
@@ -94,13 +126,14 @@
 				<p class="text-xl">
 					<i class="fa fa-envelope text-green" aria-hidden="true"></i>kaele.andji@gmail.com</p>
 			</div>
+
 			<!--mentions-->
 			<div class=" text-lg py-5">
-				<a class="text-white text-survol no-underline" href="{{path('mentions')}}">Mentions légales</a>
+				<a class="text-white text-survol no-underline text-xl" href="{{path('mentions')}}">Mentions légales</a>
 			</div>
+
 		</div>
 		{% block javascripts %}{#{{ encore_entry_script_tags('app') }}#}<script src="/js/main.js"></script>
 		{% endblock %}
-
 	</body>
 </html>

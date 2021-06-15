@@ -5,50 +5,53 @@
 {% endblock %}
 {% block body %}
 	<h1 class="text-4xl text-center mt-10 text-green">{{title}}</h1>
-	<div class="w-full  md:w-96  mx-auto my-20 flex flex-wrap ">
-
-		{% if items | length > 0 %}
-			<table class=" relative text-center text-xl">
-				<thead>
-					<tr >
-						<th >Huile</th>
-						<th>Prix</th>
-						<th>Capacité</th>
-						<th>Quantité</th>
-						<th>Total</th>
-						<th></th>
-					</tr>
-				</thead>
-				<tbody>
-					{% for item in items %}
-						<tr>
-							<td>{{item.huile.name}}</td>
-							<td>{{item.huile.price}} €</td>
-							<td>{{item.huile.capacity}} ml</td>
-							<td>{{item.huile.quantity}}</td>
-							<td>{{item.huile.price * item.quantity}} €</td>
-							<td>
-								<a href="#">
-									<i class="fa fa-trash"></i>
-								</a>
-							</td>
-						</tr>
-					{% endfor %}
-				</tbody>
-				<tfoot>
-					<tr class="absolute right-0">
-						<td >Total :</td>
-                        <td>{{total}} €</td>
-					</tr>
-				</tfoot>
-			</table>
-		{% else %}
-			<p>Surprise c'est vide !
-			</p>
-		{% endif %}
 
 
-	</div>
+	{% if items | length > 0 %}
 
 
+		{% for item in items %}
+			<div class=" text-xl my-20 flex flex-wrap justify-evenly border-b-2">
+
+				<div class="image">
+
+					<img src="{{item.huile.image}}">
+
+				</div>
+				<div class="description">
+					<p>Nom :
+						{{item.huile.name}}</p>
+
+					<p>Capacité :
+						{{item.huile.capacity}}
+						ml</p>
+					<p>Quantité :
+						{{item.quantity}}</p>
+					<p>Prix unitaire :
+						{{item.huile.price}}
+						€</p>
+
+					<p>Sous-total :
+						{{item.huile.price * item.quantity}}
+						€</p>
+					<a href="#">
+						<i class="fa fa-trash fa-2x text-gray-700"></i>
+					</a>
+
+				</div>
+
+			</div>
+
+		{% endfor %}
+
+
+	{% else %}
+		<p class="text-center text-xl">Surprise c'est vide !
+		</p>
+	{% endif %}
+
+
+	<div class="text-center text-4xl">Total :
+		{{total}}
+		€</div>
 {% endblock %}
