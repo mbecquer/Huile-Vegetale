@@ -4,45 +4,40 @@
 {% block body %}
 
 
-	<div class="container">
-		<h2>Huile :
-			{{huile.name}}</h2>
+	<div class="flex justify-evenly text-xl my-5">
+		<div><img class="w-96" src="{{huile.image}}"></div>
+		<div class="w-96">
+			<p>{{huile.name}}</p>
+			<p>{{huile.price}}
+				€</p>
+			<hr>
+			<p>Capacité :
+				{{huile.capacity}}
+				ml</p>
+			<p>Quantité :
+				{{huile.quantity}}</p>
 
-		<div class="">
-			<div class=" flex justify-evenly">
-				<h3>Caracteristique</h3>
-				<table class="table table-striped capitalize">
+			<label for="quantity-select">Choisissez une quantité :</label>
+			<select name="quantities" id="quantity-select">
+				<option value="">--Quantité(s)--</option>
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+			</select>
 
+			<a href="{{path('cart_add',{'id':huile.id})}}">
 
-					<tr>
-						<td class="font-bold">description</td>
-
-						<td>{{huile.description}}</td>
-
-					</tr>
-
-
-					<tr>
-						<td class="font-bold">capacité</td>
-
-						<td>{{huile.capacity}}
-							ml</td>
-
-					</tr>
-
-
-					<tr>
-						<td class="font-bold">prix</td>
-
-						<td>{{huile.price}}
-							€</td>
-
-					</tr>
-
-
-				</table>
-				<img src="{{huile.image}}">
-			</div>
+				<button class="text-green text-xl border-green border-2 p-3 rounded-lg focus:outline-none my-5">Ajouter au panier</button>
+			</a>
 		</div>
+
+
+	</div>
+	<div class="mx-20">
+		<h1>Commentaires des clients :
+		</h1>
+		<p>Système notation</p>
+
+
 	</div>
 {% endblock %}

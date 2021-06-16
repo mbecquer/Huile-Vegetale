@@ -9,6 +9,9 @@
 
 	{% if items | length > 0 %}
 
+		<div class=" text-right mx-20 sticky top-0 text-4xl">Total :
+			{{total}}
+			€</div>
 
 		{% for item in items %}
 			<div class=" text-xl my-20 flex flex-wrap justify-evenly border-b-2">
@@ -27,6 +30,14 @@
 						ml</p>
 					<p>Quantité :
 						{{item.quantity}}</p>
+					<label for="quantity-select">Choisissez une quantité :</label>
+					<select name="quantities" id="quantity-select">
+						<option value="">--Quantité(s)--</option>
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+					</select>
+
 					<p>Prix unitaire :
 						{{item.huile.price}}
 						€</p>
@@ -43,6 +54,13 @@
 			</div>
 
 		{% endfor %}
+		<!--BOUTON PAYPAL-->
+		<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" class="flex justify-center my-5">
+			<input type="hidden" name="cmd" value="_s-xclick"/>
+			<input type="hidden" name="hosted_button_id" value="UUZU4C87Z4R7A"/>
+			<input type="image" src="https://www.paypalobjects.com/fr_FR/FR/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal, le réflexe sécurité pour payer en ligne"/>
+			<img alt="" border="0" src="https://www.paypalobjects.com/fr_FR/i/scr/pixel.gif" width="1" height="1"/>
+		</form>
 
 
 	{% else %}
@@ -51,7 +69,4 @@
 	{% endif %}
 
 
-	<div class="text-center text-4xl">Total :
-		{{total}}
-		€</div>
 {% endblock %}
