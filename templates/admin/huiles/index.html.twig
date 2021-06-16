@@ -35,7 +35,14 @@
 						<td>{{huile.id}}</td>
 						<td>{{huile.name}}</td>
 						<td>{{huile.description}}</td>
-						<td><img class="mx-auto" src="{{huile.image}}"></td>
+						<td>
+							{% if huile.filename %}
+								<img class="w-40 mx-auto object-cover " src="{{vich_uploader_asset(huile, 'imageFile')| imagine_filter('thumb')}}" alt="">
+
+
+							{% endif %}
+						</td>
+
 						<td>{{huile.capacity}}
 							ml</td>
 						<td>{{huile.price}}

@@ -1,11 +1,22 @@
 {% extends "base.html.twig" %}
 
+{% block title %}
+	{{huile.name}}
+{% endblock %}
 
 {% block body %}
 
 
 	<div class="flex justify-evenly text-xl my-5">
-		<div><img class="w-96" src="{{huile.image}}"></div>
+		<div class="">
+			{% if huile.filename %}
+				<img class=" w-80 object-cover " src="{{vich_uploader_asset(huile, 'imageFile') | imagine_filter('thumb')}}" alt="">
+
+		
+
+			{% endif %}
+		</div>
+
 		<div class="w-96">
 			<p>{{huile.name}}</p>
 			<p>{{huile.price}}

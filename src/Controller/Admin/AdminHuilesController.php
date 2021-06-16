@@ -6,9 +6,12 @@ use App\Entity\Huiles;
 use App\Form\HuilesType;
 use App\Repository\HuilesRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Liip\ImagineBundle\Imagine\Cache\CacheManager;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Vich\UploaderBundle\Templating\Helper\UploaderHelper;
 
 class AdminHuilesController extends AbstractController
 {
@@ -55,12 +58,16 @@ class AdminHuilesController extends AbstractController
     /**
      * @Route("/admin/edit/{id}", name="admin_huiles_edit")
      */
-    public function edit(Huiles $huile, Request $request)
+    public function edit(Huiles $huile, Request $request, CacheManager $cacheManager, UploaderHelper $uploaderHelper)
     {
 
         $form = $this->createForm(HuilesType::class, $huile);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+
+            if ($huile->getImageFile() instanceof UploadedFile) {
+                $cacheManager->remove($uploaderHelper->asset($huile, 'imageFile'));
+            }
 
             $this->addFlash("success", "Huile modifiée avec succès");
             $this->em->flush();

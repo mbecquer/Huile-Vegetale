@@ -2,12 +2,17 @@
 
 namespace App\Entity;
 
-use App\Repository\HuilesRepository;
-use Doctrine\ORM\Mapping as ORM;
 use Cocur\Slugify\Slugify;
+use Doctrine\ORM\Mapping as ORM;
+use App\Repository\HuilesRepository;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=HuilesRepository::class)
+ * @Vich\Uploadable()
  */
 class Huiles
 {
@@ -44,6 +49,22 @@ class Huiles
      */
     private $image;
 
+    /**
+     * @var File|null
+     * @Assert\Image(
+     * mimeTypes="image/jpeg")
+     * @Vich\UploadableField(mapping="huile_image", fileNameProperty="filename")
+     */
+    private $imageFile;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $filename;
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $updated_at;
     /**
      * @ORM\Column(type="integer")
      */
@@ -132,5 +153,51 @@ class Huiles
     public function getSlug()
     {
         return (new Slugify())->slugify($this->name);
+    }
+
+    /**
+     * Get the value of imageFile
+     *
+     * @return  File|null
+     */
+    public function getImageFile()
+    {
+        return $this->imageFile;
+    }
+
+    /**
+     * Set the value of imageFile
+     *
+     * @param  File|null  $imageFile
+     *
+     * @return  self
+     */
+    public function setImageFile($imageFile)
+    {
+        $this->imageFile = $imageFile;
+        if ($this->imageFile instanceof UploadedFile) {
+            $this->updated_at = new \DateTime();
+        }
+        return $this;
+    }
+
+    /**
+     * Get the value of filename
+     */
+    public function getFilename()
+    {
+        return $this->filename;
+    }
+
+    /**
+     * Set the value of filename
+     *
+     * @return  self
+     */
+    public function setFilename($filename)
+    {
+        $this->filename = $filename;
+
+        return $this;
     }
 }

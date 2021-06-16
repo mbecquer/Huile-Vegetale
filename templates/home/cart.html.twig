@@ -9,16 +9,30 @@
 
 	{% if items | length > 0 %}
 
-		<div class=" text-right mx-20 sticky top-0 text-4xl">Total :
-			{{total}}
-			€</div>
+		<div class="my-5 flex lg:justify-end justify-center lg:mx-20  relative 2xl:sticky top-0 text-4xl ">
+
+			<div class="border-green border-2 rounded-lg p-3 bg-white shadow-lg">Total :
+
+				{{total}}
+				€
+				<!--BOUTON PAYPAL-->
+				<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" class=" my-5">
+					<input type="hidden" name="cmd" value="_s-xclick"/>
+					<input type="hidden" name="hosted_button_id" value="UUZU4C87Z4R7A"/>
+					<input type="image" src="https://www.paypalobjects.com/fr_FR/FR/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal, le réflexe sécurité pour payer en ligne"/>
+					<img alt="" border="0" src="https://www.paypalobjects.com/fr_FR/i/scr/pixel.gif" width="1" height="1"/>
+				</form>
+			</div>
+		</div>
 
 		{% for item in items %}
-			<div class=" text-xl my-20 flex flex-wrap justify-evenly border-b-2">
+			<div class="mx-5 text-xl my-20 flex flex-wrap justify-evenly border-b-2">
 
-				<div class="image">
+				<div class="image ">
 
-					<img src="{{item.huile.image}}">
+
+					<img class=" w-80 object-cover  " src="/images/huiles/{{item.huile.filename}}" alt="">
+
 
 				</div>
 				<div class="description">
@@ -54,13 +68,6 @@
 			</div>
 
 		{% endfor %}
-		<!--BOUTON PAYPAL-->
-		<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" class="flex justify-center my-5">
-			<input type="hidden" name="cmd" value="_s-xclick"/>
-			<input type="hidden" name="hosted_button_id" value="UUZU4C87Z4R7A"/>
-			<input type="image" src="https://www.paypalobjects.com/fr_FR/FR/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal, le réflexe sécurité pour payer en ligne"/>
-			<img alt="" border="0" src="https://www.paypalobjects.com/fr_FR/i/scr/pixel.gif" width="1" height="1"/>
-		</form>
 
 
 	{% else %}

@@ -32,8 +32,9 @@ class HuilesType extends AbstractType
                 ]
             ])
             ->add('price', NumberType::class)
-            ->add('image')
-            ->add('quantity', NumberType::class);
+            ->add('imageFile', FileType::class, [
+                'required' => false
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)
