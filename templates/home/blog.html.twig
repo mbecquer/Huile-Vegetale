@@ -5,12 +5,38 @@
 {% endblock %}
 {% block body %}
 	<h1 class="text-4xl text-center mt-10 text-green">{{title}}</h1>
-	<div class="w-full  md:w-96  mx-auto my-20 flex flex-wrap ">
+	<div
+		class="flex flex-wrap justify-evenly py-5">
+		<!--article-->
+		<div class="flex flex-wrap py-5 shadow-lg p-5">
+			<div class="image-article mx-auto">
+				<img class="w-72" src="{{ asset('/assets/oilbg.jpeg') }}"></div>
 
-		<h1 class="mx-auto text-4xl text-center ">Contenu à venir bientôt</h1>
-		<span class="text-8xl mx-auto">
-			<i class="fa fa-clock-o text-green  " aria-hidden="true"></i>
-		</span>
+			<div class="text-article mx-5  ">
+				<h2>Nouveautés !! Nouvelle Huile à la pistache d'amande douce</h2>
+				<p class="text-green">Hier à 14h50</p>
+
+				<p class="text-lg">De nouveaux correctifs pour The Burning Crusade Classic ont été déployés dans la nuit du 16 juin 2021. Retrouvez les détails dans la suite de cet article.</p>
+
+			</div>
+		</div>
+
+		<!--fin article-->
+
+		<!--article-->
+		<div class="flex flex-wrap  py-5 shadow-lg p-5">
+			<div class="image-article mx-auto">
+				<img class="w-72 " src="{{ asset('/assets/pressage.jpg') }}"></div>
+
+			<div class="text-article mx-5">
+				<h2>Le pressage, comment ça marche ?</h2>
+				<p class="text-green">Hier à 16h50</p>
+
+				<p class="text-lg">De nouveaux correctifs pour The Burning Crusade Classic ont été déployés dans la nuit du 16 juin 2021. Retrouvez les détails dans la suite de cet article.</p>
+
+			</div>
+		</div>
+		<!--fin article-->
 
 
 	</div>

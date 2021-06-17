@@ -14,8 +14,6 @@
 						{% if huile.filename %}
 							<img class="object-cover mx-auto" src="{{vich_uploader_asset(huile, 'imageFile')| imagine_filter('thumb')}}" alt="">
 
-						{% else %}
-							<img class="object-cover mx-auto" src="{{ asset('images/huiles/notfound.jpg')| imagine_filter('thumb')}}">
 
 						{% endif %}
 
