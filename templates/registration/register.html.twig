@@ -6,10 +6,6 @@
 {% block body %}
 	<div class="mx-10 sm:mx-auto sm:w-96">
 
-		{% for error in app.flashes('verify_email_error') %}
-			<div class="alert alert-danger" role="alert">{{ error }}</div>
-		{% endfor %}
-
 
 		<h1 class="h3 mb-3 font-weight-normal">Inscription</h1>
 
