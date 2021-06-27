@@ -15,23 +15,20 @@
 		</div>
 
 		<div class="w-96">
-			<p>{{huile.name}}</p>
-			<p>{{huile.price}}
+			<p class="font-bold text-2xl text-green">{{huile.name}}</p>
+			<p>
+				<span class="font-bold">Prix :</span>
+				{{huile.price}}
 				€</p>
+			<p class="font-bold">Description :</p>
+
+			<p class="text-justify">{{huile.description}}</p>
 			<hr>
-			<p>Capacité :
+			<p>
+				<span class="font-bold">Capacité :</span>
 				{{huile.capacity}}
 				ml</p>
-			<p>Quantité :
-				{{huile.quantity}}</p>
 
-			<label for="quantity-select">Choisissez une quantité :</label>
-			<select name="quantities" id="quantity-select">
-				<option value="">--Quantité(s)--</option>
-				<option value="1">1</option>
-				<option value="2">2</option>
-				<option value="3">3</option>
-			</select>
 
 			<a href="{{path('cart_add',{'id':huile.id})}}">
 

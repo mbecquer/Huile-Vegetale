@@ -19,7 +19,7 @@
 			{% endblock %}
 		</title>
 		{# Run `composer require symfony/webpack-encore-bundle`
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																				           and uncomment the following Encore helpers to start using Symfony UX #}
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																												           and uncomment the following Encore helpers to start using Symfony UX #}
 		{% block stylesheets %}
 			{#{{ encore_entry_link_tags('app') }}#}
 		{% endblock %}
@@ -51,11 +51,7 @@
 					Mon compte
 				</button>
 				<ul class="dropdown-menu pl-3" aria-labelledby="dropdownMenu2">
-					<li class="text-xl font-bold pr-3">
-						{% if app.user %}
-							{{ app.user.username }}
-						{% endif %}
-					</li>
+
 
 					<li>
 						<a class="link text-gray-600 text-xl" href="{{path('app_login')}}">Connexion</a>
@@ -109,7 +105,11 @@
 
 		</div>
 	</body>
-</html></nav>{% block body %}{% endblock %}<div
+</html></nav><div class=" text-gray-600 text-2xl text-right  mx-20">
+{% if app.user %}
+	Vous êtes connecté :
+	<span class="text-green">{{ app.user.username }}</span>
+{% endif %}</div>{% block body %}{% endblock %}<div
 
 class="bg-gray-700  mt-20 md:mt-0 md:pt-40  text-white py-10 flex-col sm:flex sm:flex-wrap sm:flex-row text-center justify-evenly align-middle">
 

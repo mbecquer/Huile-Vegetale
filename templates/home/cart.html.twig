@@ -26,12 +26,12 @@
 		</div>
 
 		{% for item in items %}
-			<div class="mx-5 text-xl my-20 flex flex-wrap justify-evenly border-b-2">
+			<div class="mx-5 text-xl my-40 flex flex-wrap justify-evenly border-b-2">
 
-				<div class="image ">
+				<div class="  ">
 
 
-					<img class=" w-80 object-cover  " src="/images/huiles/{{item.huile.filename}}" alt="">
+					<img class=" w-80 object-cover " src="/images/huiles/{{item.huile.filename}}" alt="">
 
 
 				</div>
@@ -42,15 +42,15 @@
 					<p>Capacité :
 						{{item.huile.capacity}}
 						ml</p>
+					<hr>
 					<p>Quantité :
 						{{item.quantity}}</p>
-					<label for="quantity-select">Choisissez une quantité :</label>
-					<select name="quantities" id="quantity-select">
-						<option value="">--Quantité(s)--</option>
-						<option value="1">1</option>
-						<option value="2">2</option>
-						<option value="3">3</option>
-					</select>
+					<p>En rajouter un au panier ?</p>
+					<a href="{{path('cart_add',{'id':item.huile.id} )}}">
+
+						<button class="text-green  border-green border-2 p-3 rounded-lg focus:outline-none">Cliquez ici !</button>
+					</a>
+
 
 					<p>Prix unitaire :
 						{{item.huile.price}}

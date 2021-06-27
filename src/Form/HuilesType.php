@@ -10,6 +10,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class HuilesType extends AbstractType
 {
@@ -22,20 +23,21 @@ class HuilesType extends AbstractType
                     'placeholder' => "Enter the name of the oil"
                 ]
             ])
-            ->add('description', TextType::class, [
+            ->add('description', TextareaType::class, [
                 "attr" => [
-                    'placeholder' => "Enter description"
+                    'placeholder' => "Enter description ...",
+                    'rows' => 15,
+                    'cols' => 20,
                 ]
             ])
             ->add('capacity', NumberType::class, [
-                'attr' => [
-                    'placeholder' => 'Capacity'
-                ]
+                'attr' => []
             ])
             ->add('price', NumberType::class)
             ->add('imageFile', FileType::class, [
                 'required' => false,
-               
+                'label' => 'Image'
+
 
             ]);
     }
