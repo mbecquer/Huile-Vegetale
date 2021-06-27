@@ -23,7 +23,10 @@ border-radius:20px;
 .link:hover{
 color:var(--green);
 }
-
+.test{
+  width:1000px;
+  margin:auto;
+}
 /* MENU MOBILE */
 .menu-btn {
   position: relative;

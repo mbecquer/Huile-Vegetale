@@ -30,7 +30,7 @@ class Huiles
 
     private $slug;
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="text", length=1000)
      */
     private $description;
 
@@ -44,10 +44,6 @@ class Huiles
      */
     private $price;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $image;
 
     /**
      * @var File|null
@@ -66,7 +62,7 @@ class Huiles
      */
     private $updated_at;
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $quantity;
 
@@ -123,17 +119,7 @@ class Huiles
         return $this;
     }
 
-    public function getImage(): ?string
-    {
-        return $this->image;
-    }
 
-    public function setImage(string $image): self
-    {
-        $this->image = $image;
-
-        return $this;
-    }
 
     public function getQuantity(): ?int
     {

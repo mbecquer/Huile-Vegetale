@@ -34,10 +34,10 @@
 					<tr class="  cursor-pointer text-xl border-b-2">
 						<td>{{huile.id}}</td>
 						<td>{{huile.name}}</td>
-						<td>{{huile.description}}</td>
+						<td class="w-96 text-justify">{{huile.description}}</td>
 						<td>
 							{% if huile.filename %}
-								<img class="w-40 mx-auto object-cover " src="{{vich_uploader_asset(huile, 'imageFile')| imagine_filter('thumb')}}" alt="">
+								<img class="w-60 mx-auto object-cover " src="{{vich_uploader_asset(huile, 'imageFile')| imagine_filter('thumb')}}" alt="">
 
 
 							{% endif %}
