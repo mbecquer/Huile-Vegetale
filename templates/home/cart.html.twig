@@ -25,55 +25,48 @@
 			</div>
 		</div>
 
-		{% for item in items %}
-			<div class="mx-5 text-xl my-40 flex flex-wrap justify-evenly border-b-2">
-
-				<div class="  ">
-
-
-					<img class=" w-80 object-cover " src="/images/huiles/{{item.huile.filename}}" alt="">
-
-
-				</div>
-				<div class="description">
-					<p>Nom :
-						{{item.huile.name}}</p>
-
-					<p>Capacité :
-						{{item.huile.capacity}}
-						ml</p>
-					<hr>
-					<p>Quantité :
-						{{item.quantity}}</p>
-					<p>En rajouter un au panier ?</p>
-					<a href="{{path('cart_add',{'id':item.huile.id} )}}">
-
-						<button class="text-green  border-green border-2 p-3 rounded-lg focus:outline-none">Cliquez ici !</button>
-					</a>
-
-
-					<p>Prix unitaire :
-						{{item.huile.price}}
-						€</p>
-
-					<p>Sous-total :
-						{{item.huile.price * item.quantity}}
-						€</p>
-					<a href="#">
-						<i class="fa fa-trash fa-2x text-gray-700"></i>
-					</a>
-
-				</div>
-
-			</div>
-
-		{% endfor %}
+		{# {% for item in items %} #}
+		<!--<div class="mx-5 text-xl my-40 flex flex-wrap justify-evenly border-b-2">
+					
+								<div class="  "><img class=" w-80 object-cover " src="/images/huiles/" alt="">
+					
+					
+								</div>
+								<div class="description">
+									<p>Nom :
+										{# {{item.huile}}</p> #}
+								</p>
+								<p>Capacité :
+									{# {{item.huile}} #}
+									ml</p>
+								<hr>
+								<p>Quantité :
+									{# {{item.huile}}</p> #}
+							</p>
+							<p>En rajouter un au panier ?</p>
+							{# <a href="{{path('cart_add',{'id':item.huile} )}}"> #}
+					
+								<button class="text-green  border-green border-2 p-3 rounded-lg focus:outline-none">Cliquez ici !</button>
+							</a>
+					
+					
+							<p>Prix unitaire :
+								{# {{item.huile.price}} #}
+								€</p>
+					
+							<p>Sous-total :
+								{# {{item.huile.price * item.quantity}} #}
+								€</p>
+							<a href="#">
+								<i class="fa fa-trash fa-2x text-gray-700"></i>
+							</a>
+					
+						</div>
+					</div>-->
+		{# {% endfor %} #}
 
 
 	{% else %}
-		<p class="text-center text-xl">Surprise c'est vide !
-		</p>
+		<p class="text-center text-xl my-40">Surprise c'est vide !</p>
 	{% endif %}
-
-
 {% endblock %}

@@ -3,12 +3,14 @@
 namespace App\Entity;
 
 use Cocur\Slugify\Slugify;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\HuilesRepository;
 use Symfony\Component\HttpFoundation\File\File;
-use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints as Assert;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass=HuilesRepository::class)
@@ -44,27 +46,28 @@ class Huiles
      */
     private $price;
 
-
-    /**
-     * @var File|null
-     * @Assert\Image(
-     * mimeTypes="image/jpeg")
-     * @Vich\UploadableField(mapping="huile_image", fileNameProperty="filename")
-     */
-    private $imageFile;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $filename;
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    private $updated_at;
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
     private $quantity;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Picture::class, mappedBy="huiles", orphanRemoval=true, cascade={"persist"})
+     */
+    private $pictures;
+
+    /**
+     * @Assert\All(
+     *      @Assert\Image(mimeTypes="image/jpeg")
+     * )
+     */
+    private $pictureFiles;
+
+
+    public function __construct()
+    {
+        $this->pictures = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -142,48 +145,62 @@ class Huiles
     }
 
     /**
-     * Get the value of imageFile
-     *
-     * @return  File|null
+     * @return Collection|Picture[]
      */
-    public function getImageFile()
+    public function getPictures(): Collection
     {
-        return $this->imageFile;
+        return $this->pictures;
     }
 
-    /**
-     * Set the value of imageFile
-     *
-     * @param  File|null  $imageFile
-     *
-     * @return  self
-     */
-    public function setImageFile($imageFile)
+    public function addPicture(Picture $picture): self
     {
-        $this->imageFile = $imageFile;
-        if ($this->imageFile instanceof UploadedFile) {
-            $this->updated_at = new \DateTime();
+        if (!$this->pictures->contains($picture)) {
+            $this->pictures[] = $picture;
+            $picture->setHuiles($this);
         }
+
+        return $this;
+    }
+
+    public function removePicture(Picture $picture): self
+    {
+        if ($this->pictures->removeElement($picture)) {
+            // set the owning side to null (unless already changed)
+            if ($picture->getHuiles() === $this) {
+                $picture->setHuiles(null);
+            }
+        }
+
         return $this;
     }
 
     /**
-     * Get the value of filename
+     * Get )
+     *
+     * @return  arrayCollection|null
      */
-    public function getFilename()
+    public function getPictureFiles()
     {
-        return $this->filename;
+        return $this->pictureFiles;
     }
 
     /**
-     * Set the value of filename
+     * Set )
      *
-     * @return  self
+     * @param  mixed $pictureFiles
+     *
+     * @return  Huiles
      */
-    public function setFilename($filename)
+    public function setPictureFiles($pictureFiles)
     {
-        $this->filename = $filename;
+        foreach ($pictureFiles as $pictureFile) {
 
+            $picture = new Picture();
+            $picture->setImageFile($pictureFile);
+            $this->addPicture($picture);
+        }
+
+        $this->pictureFiles = $pictureFiles;
         return $this;
     }
 }

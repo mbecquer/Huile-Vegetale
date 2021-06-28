@@ -3,6 +3,7 @@
 namespace App\Listener;
 
 use App\Entity\Huiles;
+use App\Entity\Picture;
 use Doctrine\Common\EventSubscriber;
 use Liip\ImagineBundle\Imagine\Cache\CacheManager;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -30,7 +31,7 @@ class ImageCacheListener implements EventSubscriber
     {
         $entity = $args->getObject();
 
-        if (!$entity instanceof Huiles) {
+        if (!$entity instanceof Picture) {
             return;
         }
 
@@ -41,7 +42,7 @@ class ImageCacheListener implements EventSubscriber
 
         $entity = $args->getObject();
 
-        if (!$entity instanceof Huiles) {
+        if (!$entity instanceof Picture) {
             return;
         }
         if ($entity->getImageFile() instanceof UploadedFile) {

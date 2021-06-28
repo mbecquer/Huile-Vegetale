@@ -36,14 +36,23 @@
 						<td>{{huile.id}}</td>
 						<td>{{huile.name}}</td>
 						<td class="w-96 text-justify">{{huile.description}}</td>
+
 						<td>
-							{% if huile.filename %}
-								<img class="w-60 mx-auto object-cover " src="{{vich_uploader_asset(huile, 'imageFile')| imagine_filter('thumb')}}" alt="">
+							{% for picture in huile.pictures %}
+
+								<img class="object-cover mx-auto" src="{{vich_uploader_asset(picture, 'imageFile')| imagine_filter('thumb')}}">
+								<form method="post" action="{{path('admin_picture_delete',{'id': picture.id})}}" onsubmit="return confirm('Etes vous sûr de vouloir supprimer ?')">
+									<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ picture.id) }}">
+									<input type="hidden" name="_method" value="DELETE">
+									<button class="text-green  border-green border-2 p-3 rounded-lg focus:outline-none" type="submit">Supprimer image</button>
+
+								</form>
 
 
-							{% endif %}
+							{% endfor %}
+
+
 						</td>
-
 						<td>{{huile.capacity}}
 							ml</td>
 						<td>{{huile.price}}

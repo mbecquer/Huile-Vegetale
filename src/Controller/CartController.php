@@ -2,17 +2,20 @@
 
 namespace App\Controller;
 
+use App\Entity\Huiles;
 use App\Repository\HuilesRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Liip\ImagineBundle\Imagine\Cache\CacheManager;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Vich\UploaderBundle\Templating\Helper\UploaderHelper;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class CartController extends AbstractController
 {
     /**
-     * Undocumented function
-     *@Route("/cart", name="cart")
+     * @Route("/cart", name="cart")
      */
     public function cart(SessionInterface $session, HuilesRepository $huilesRepository): Response
     {
@@ -28,14 +31,15 @@ class CartController extends AbstractController
             ];
         }
         $total = 0;
-        foreach ($panierWithData as $item) {
-            $totalItem = $item['huile']->getPrice() * $item['quantity'];
-            $total += $totalItem;
-        }
+        //  foreach ($panierWithData as $item) {
+        //      $totalItem = $item['huile']->getPrice() * $item['quantity'];
+        //     $total += $totalItem;
+        //  }
         return $this->render("home/cart.html.twig", [
             "title" => "Mon panier",
             "items" => $panierWithData,
             "total" => $total
+
         ]);
     }
     /**

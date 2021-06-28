@@ -65,7 +65,7 @@ class AdminHuilesController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
 
-            if ($huile->getImageFile() instanceof UploadedFile) {
+            if ($huile->getPictures() instanceof UploadedFile) {
                 $cacheManager->remove($uploaderHelper->asset($huile, 'imageFile'));
             }
 
@@ -74,7 +74,9 @@ class AdminHuilesController extends AbstractController
             return $this->redirectToRoute("admin_huiles_index");
         }
         return $this->render('admin/huiles/edit.html.twig', [
-            "form" => $form->createView()
+            "form" => $form->createView(),
+            'huile' => $huile
+
         ]);
     }
     /**

@@ -9,9 +9,11 @@
 
 	<div class="flex justify-evenly text-xl my-5">
 		<div class="">
-			{% if huile.filename %}
-				<img class=" w-80 object-cover " src="{{vich_uploader_asset(huile, 'imageFile') | imagine_filter('thumb')}}" alt="">
-			{% endif %}
+			{% for picture in huile.pictures %}
+				<img class="object-cover mx-auto" src="{{vich_uploader_asset(picture, 'imageFile')| imagine_filter('thumb')}}" alt="">
+
+			{% endfor %}
+
 		</div>
 
 		<div class="w-96">
