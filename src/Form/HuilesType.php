@@ -25,7 +25,7 @@ class HuilesType extends AbstractType
             ])
             ->add('description', TextareaType::class, [
                 "attr" => [
-                    'placeholder' => "Enter description ...",
+
                     'rows' => 15,
                     'cols' => 20,
                 ]

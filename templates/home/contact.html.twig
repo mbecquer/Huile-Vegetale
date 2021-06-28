@@ -1,0 +1,16 @@
+{% extends "base.html.twig" %}
+{% block title %}Contact
+{% endblock %}
+
+{% block body %}
+
+	<div class="mx-auto w-72">
+
+		{{form_start(form)}}
+		{{form_rest(form)}}
+		<button class="text-green text-xl border-green border-2 p-3 rounded-lg focus:outline-none my-5" type="submit">Envoyer</button>
+
+		{{form_end(form)}}
+	</div>
+
+{% endblock %}

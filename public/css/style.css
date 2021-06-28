@@ -10,6 +10,7 @@
 .border-green{
 border-color:var(--green);
 }
+
 .btn{
 border:2px solid var(--green);
 font-weight: bold;
@@ -23,9 +24,28 @@ border-radius:20px;
 .link:hover{
 color:var(--green);
 }
-.test{
+.imageAccueil{
   width:1000px;
   margin:auto;
+}
+.custom-shape-divider-top-1624862864 {
+    /* position: absolute; */
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.custom-shape-divider-top-1624862864 svg {
+    position: relative;
+    display: block;
+    width: calc(140% + 1.3px);
+    height: 120px;
+}
+
+.custom-shape-divider-top-1624862864 .shape-fill {
+    fill: #fff;
 }
 /* MENU MOBILE */
 .menu-btn {
