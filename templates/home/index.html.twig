@@ -4,6 +4,12 @@
 {% endblock %}
 
 {% block body %}
+	{% for message in app.flashes('success')  %}
+		<div class="bg-green-200 w-full text-center text-3xl p-2 mb-2 rounded-lg">
+			{{message}}
+		</div>
+	{% endfor %}
+
 	<div class="flex justify-center mx-20 ">
 
 
