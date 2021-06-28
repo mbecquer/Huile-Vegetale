@@ -10,9 +10,9 @@
 
 			<div class="oil-product mt-10 my-20  m-2 cursor-pointer w-96 shadow-2xl rounded-lg">
 				<a href="{{path('huile_read', {id: huile.id, slug:huile.slug})}}">
-					<div class="oil-image my-5 w-80 h-80 mx-auto">
+					<div class="oil-image my-5 w-80  mx-auto">
 						{% for picture in huile.pictures %}
-							<img class="object-cover mx-auto" src="{{vich_uploader_asset(picture, 'imageFile')| imagine_filter('thumb')}}" alt="">
+							<img class="object-cover mx-auto rounded-lg" src="{{vich_uploader_asset(picture, 'imageFile')| imagine_filter('thumb')}}" alt="">
 
 						{% endfor %}
 

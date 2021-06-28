@@ -8,7 +8,7 @@
 
 
 	<div class="flex justify-evenly text-xl my-5">
-		<div class="">
+		<div class="flex">
 			{% for picture in huile.pictures %}
 				<img class="object-cover mx-auto" src="{{vich_uploader_asset(picture, 'imageFile')| imagine_filter('thumb')}}" alt="">
 
