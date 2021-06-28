@@ -1,10 +1,13 @@
-{{ form_start(form) }}
-{{form_row(form.name)}}
-{{form_row(form.description)}}
-{{form_row(form.capacity)}}
-{{form_row(form.price)}}
-{{form_row(form.imageFile)}}
-<button class="text-green text-xl border-green border-2 p-3 rounded-lg focus:outline-none my-5" type="submit">Enregistrer</button>
+<div class="mx-auto w-96  p-5 shadow-lg rounded-lg">
+
+	{{ form_start(form) }}
+	{{form_row(form.name)}}
+	{{form_row(form.description)}}
+	{{form_row(form.capacity)}}
+	{{form_row(form.price)}}
+	{{form_row(form.imageFile)}}
+	<button class="text-green  text-xl border-green border-2 p-3 rounded-lg focus:outline-none my-5" type="submit">Enregistrer</button>
 
 
-{{form_end(form)}}
+	{{form_end(form)}}
+</div>

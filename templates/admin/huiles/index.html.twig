@@ -7,10 +7,11 @@
 
 	<div class="mx-28">
 		{% for message in app.flashes('success')  %}
-			<div class="bg-green-200 w-full text-center text-3xl p-2 mb-2 rounded-lg">
+			<div class="bg-green-200  text-center text-3xl p-2 mb-2 rounded-lg mx-20">
 				{{message}}
 			</div>
 		{% endfor %}
+
 		<a href="{{path('admin_huiles_create')}}">
 			<button class="text-green text-xl border-green border-2 p-3 rounded-lg focus:outline-none">
 
