@@ -1,85 +1,83 @@
 {% extends "base.html.twig" %}
 
 {% block title %}
-	{{title}}
+	Mon panier
 {% endblock %}
 {% block body %}
-	<h1 class="text-4xl text-center mt-10 text-green">{{title}}</h1>
+	<h1 class="text-4xl text-center mt-10 text-green">Mon panier</h1>
 
 
-	{% if items | length > 0 %}
+	<div class="my-5 flex lg:justify-end justify-center lg:mx-20  relative 2xl:sticky top-0 text-4xl ">
 
-		<div class="my-5 flex lg:justify-end justify-center lg:mx-20  relative 2xl:sticky top-0 text-4xl ">
+		<div class="border-green border-2 rounded-lg p-3 bg-white shadow-lg">Total :
 
-			<div class="border-green border-2 rounded-lg p-3 bg-white shadow-lg">Total :
-
-				{{total}}
-				€
-				<!--BOUTON PAYPAL-->
-				<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" class=" my-5">
-					<input type="hidden" name="cmd" value="_s-xclick"/>
-					<input type="hidden" name="hosted_button_id" value="UUZU4C87Z4R7A"/>
-					<input type="image" src="https://www.paypalobjects.com/fr_FR/FR/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal, le réflexe sécurité pour payer en ligne"/>
-					<img alt="" border="0" src="https://www.paypalobjects.com/fr_FR/i/scr/pixel.gif" width="1" height="1"/>
-				</form>
-			</div>
+			{{total}}
+			€
+			<!--BOUTON PAYPAL-->
+			<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" class=" my-5">
+				<input type="hidden" name="cmd" value="_s-xclick"/>
+				<input type="hidden" name="hosted_button_id" value="UUZU4C87Z4R7A"/>
+				<input type="image" src="https://www.paypalobjects.com/fr_FR/FR/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal, le réflexe sécurité pour payer en ligne"/>
+				<img alt="" border="0" src="https://www.paypalobjects.com/fr_FR/i/scr/pixel.gif" width="1" height="1"/>
+			</form>
 		</div>
-
-		{% for message in app.flashes('success')  %}
-			<div class="bg-green-200  text-center text-3xl p-2 mb-2 rounded-lg mx-20">
-				{{message}}
-			</div>
-		{% endfor %}
-
-
-		<div class="mx-5 text-xl my-40 flex flex-wrap   justify-evenly border-b-2">
-			{% for item in items %}
-
-
-				<div class="">
-					<img class=" w-96 object-cover" src="{{ asset('/assets/logo-removebg-preview.png') }}" alt="">
-
-
-				</div>
-				<div class="description ">
-					<p>Nom :
-						{{item.huile.name}}
-
-					</p>
-					<p>Capacité :
-						{{item.huile.capacity}}
-
-						ml</p>
-					<hr>
-					<p>Quantité :
-						{{item.quantity}}
-					</p>
-				</p>
-				<p>En rajouter un au panier ?</p>
-				<a href="{{path('cart_add',{'id':item.huile.id} )}}">
-
-					<button class="text-green  border-green border-2 p-3 rounded-lg focus:outline-none">Cliquez ici !</button>
-				</a>
-
-
-				<p>Prix unitaire :
-					{{item.huile.price}}
-
-					€</p>
-
-				<p>Sous-total :
-					{{item.huile.price * item.quantity}}
-
-					€</p>
-				<a href="{{path('cart_remove',{'id':item.huile.id})}}">
-					<button class="text-green  border-green border-2 p-3 rounded-lg focus:outline-none">Supprimer du panier</button>
-
-				</a>
-
-			</div>
-		{% endfor %}
 	</div>
-{% else %}
-	<p class="text-center text-xl my-40">
-		Surprise c'est vide !</p>
-{% endif %}{% endblock %}
+
+	{% for message in app.flashes('success')  %}
+		<div class="bg-green-200  text-center text-3xl p-2 mb-2 rounded-lg mx-20">
+			{{message}}
+		</div>
+	{% endfor %}
+
+
+	<div class="mx-5 text-xl my-40 flex flex-wrap   justify-evenly border-b-2">
+		{% for item in panierWithData %}
+
+
+			<div class="">
+				<img class=" w-96 object-cover" src="{{ asset('/assets/logo-removebg-preview.png') }}" alt="">
+
+
+			</div>
+			<div class="description ">
+				<p>Nom :
+					{{item.huile.name}}
+
+				</p>
+				<p>Capacité :
+					{{item.huile.capacity}}
+
+					ml</p>
+				<hr>
+				<p>Quantité :
+					{{item.quantity}}
+				</p>
+			</p>
+
+			<a href="{{path('cart_add',{'id':item.huile.id} )}}">
+
+				<button class="text-green  border-green border-2 p-3 rounded-lg focus:outline-none">Ajouter</button>
+			</a>
+			<a href="{{path('cart_remove',{'id':item.huile.id} )}}">
+
+				<button class="text-green  border-green border-2 p-3 rounded-lg focus:outline-none">Enlever 1</button>
+			</a>
+
+
+			<p>Prix unitaire :
+				{{item.huile.price}}
+
+				€</p>
+
+			<p>Sous-total :
+				{{item.huile.price * item.quantity}}
+
+				€</p>
+			<a href="{{path('cart_delete',{'id':item.huile.id})}}">
+				<button class="text-green  border-green border-2 p-3 rounded-lg focus:outline-none">Supprimer du panier</button>
+
+			</a>
+
+		</div>
+	{% endfor %}
+</div>{% endblock %}
