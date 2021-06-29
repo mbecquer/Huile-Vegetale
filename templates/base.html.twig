@@ -5,21 +5,24 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
 		<link href="/css/tailwind.css" rel="stylesheet">
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
-
 
 		<link rel="stylesheet" id="fa-fonts-css" href="https://maxcdn.icons8.com/fonts/line-awesome/1.1/css/line-awesome-font-awesome.min.css?ver=5.2" type="text/css" media="all"/>
 		<link rel="stylesheet" href="/css/style.css">
-		<link rel="icon" type="image/png" href="/assets/logo-removebg-preview.png"/>
+		<link
+		rel="icon" type="image/png" href="/assets/logo-removebg-preview.png"/>
+
+		<!--bootstrap-->
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
 
 		<title>
 			{% block title %}Welcome!
 			{% endblock %}
 		</title>
 		{# Run `composer require symfony/webpack-encore-bundle`
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																												           and uncomment the following Encore helpers to start using Symfony UX #}
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																		           and uncomment the following Encore helpers to start using Symfony UX #}
 		{% block stylesheets %}
 			{#{{ encore_entry_link_tags('app') }}#}
 		{% endblock %}
@@ -128,10 +131,10 @@
 <!--contact-->
 <div class="text-xl  py-5">
 
-	<a href="{{path('app_contact')}}" class="hover:no-underline">
+	<a href="{{path('app_contact')}}" class="no-underline">
 
 
-		<div class="border-2 border-white p-3 py-2 rounded-lg relative">
+		<div class="border-2 border-white p-3 py-3 rounded-lg relative">
 
 			<span class="text-white pl-5">Nous contacter</span>
 			<span class="text-3xl absolute left-1 top-0">
@@ -149,4 +152,6 @@
 <!--mentions-->
 <div class="text-lg py-5">
 	<a class="text-white text-survol no-underline text-xl" href="{{path('mentions')}}">Mentions légales</a>
-</div></div>{% block javascripts %}{#{{ encore_entry_script_tags('app') }}#}<script src="/js/main.js"></script>{% endblock %}</body></html>
+</div></div>{% block javascripts %}
+
+<script src="/js/main.js"></script>{% endblock %}</body></html>

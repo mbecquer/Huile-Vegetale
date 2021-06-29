@@ -11,11 +11,32 @@
 			<div class="oil-product mt-10 my-20  m-2 cursor-pointer w-96 shadow-2xl rounded-lg">
 				<a href="{{path('huile_read', {id: huile.id, slug:huile.slug})}}">
 					<div class="oil-image my-5 w-80  mx-auto">
-						{% for picture in huile.pictures %}
-							<img class="object-cover mx-auto rounded-lg" src="{{vich_uploader_asset(picture, 'imageFile')| imagine_filter('thumb')}}" alt="">
+						{% if huile.pictures %}
+							<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
 
-						{% endfor %}
+								<div class="carousel-inner">
 
+									{% for picture in huile.pictures %}
+										<div class="carousel-item {% if loop.first %} active {% endif %}">
+											<img class="d-block w-100" src="{{vich_uploader_asset(picture, 'imageFile')| imagine_filter('thumb')}}" alt="">
+										</div>
+									{% endfor %}
+
+								</div>
+								<button
+									class="carousel-control-prev" data-bs-target="#carouselExampleControls" type="button" data-bs-slide="prev">{# <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+																			<span class="visually-hidden"></span> #}
+								</button>
+								<button
+									class="carousel-control-next" data-bs-target="#carouselExampleControls" type="button" data-bs-slide="next">{# <span class="carousel-control-next-icon" aria-hidden="true"></span>
+																			<span class="visually-hidden"></span> #}
+								</button>
+
+
+							</div>
+						{% else %}
+							<img src="{{asset('images/huiles/empty.jpg')| imagine_filter('thumb')}}">
+						{% endif %}
 
 					</div>
 				</a>
