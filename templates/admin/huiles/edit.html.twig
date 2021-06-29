@@ -11,6 +11,19 @@
 		<h2>Editer une huile</h2>
 		{% include "admin/huiles/_form.html.twig" %}
 
+		{% for picture in huile.pictures %}
+
+			<img class="object-cover mx-auto" src="{{vich_uploader_asset(picture, 'imageFile')| imagine_filter('thumb')}}">
+			<form method="post" action="{{path('admin_picture_delete',{'id': picture.id})}}" onsubmit="return confirm('Etes vous sûr de vouloir supprimer ?')">
+				<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ picture.id) }}">
+				<input type="hidden" name="_method" value="DELETE">
+				<button class="text-green  border-green border-2 p-3 rounded-lg focus:outline-none" type="submit">Supprimer image</button>
+
+			</form>
+
+
+		{% endfor %}
+
 
 	</div>
 
