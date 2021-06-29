@@ -71,7 +71,7 @@ class CartController extends AbstractController
                 unset($panier[$id]);
             }
         }
-
+        $this->addFlash("success", "Huile enlevée du panier");
         $session->set('panier', $panier);
 
         return $this->redirectToRoute("cart");
@@ -90,6 +90,7 @@ class CartController extends AbstractController
         }
 
         // On sauvegarde dans la session
+        $this->addFlash("success", "Huile supprimée du panier");
         $session->set("panier", $panier);
 
         return $this->redirectToRoute("cart");
