@@ -4,18 +4,14 @@
 
 {% block body %}
 	<h2 class="text-4xl text-center mt-10 mb-5 text-green">Administration</h2>
-
 	<div class="mx-28">
 		{% for message in app.flashes('success')  %}
 			<div class="bg-green-200  text-center text-3xl p-2 mb-2 rounded-lg mx-20">
 				{{message}}
 			</div>
 		{% endfor %}
-
-
 		<a href="{{path('admin_huiles_create')}}">
-			<button class="text-green text-xl border-green border-2 p-3 rounded-lg focus:outline-none">
-
+			<button class="text-green text-xl border-green border-2 p-3 rounded-lg focus:outline-none ">
 				Ajouter
 			</button>
 		</a>
@@ -27,7 +23,7 @@
 					<th>DESCRIPTION</th>
 					<th>CAPACITE</th>
 					<th>PRIX</th>
-					<th>actions</th>
+					<th>ACTIONS</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -40,15 +36,15 @@
 							ml</td>
 						<td>{{huile.price}}
 							€</td>
-						<td>
+						<td class="flex text-center justify-center">
 							<a href="{{path('admin_huiles_edit', { id: huile.id })}}">
-								<button class="text-green  border-green border-2 p-3 rounded-lg focus:outline-none">Modifier</button>
+								<button class="text-green text-xl border-green border-2 p-3 rounded-lg focus:outline-none mx-2">Modifier</button>
 
 							</a>
 							<form method="post" action="{{path('admin_huiles_delete',{id:huile.id})}}" onsubmit="return confirm('Etes vous sûr de vouloir supprimer ?')">
 								<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ huile.id) }}">
 								<input type="hidden" name="_method" value="DELETE">
-								<button class="text-green  border-green border-2 p-3 rounded-lg focus:outline-none">Supprimer</button>
+								<button class="text-green text-xl border-green border-2 p-3 rounded-lg focus:outline-none">Supprimer</button>
 
 							</form>
 						</td>

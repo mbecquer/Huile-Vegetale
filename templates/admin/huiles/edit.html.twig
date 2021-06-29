@@ -7,29 +7,24 @@
 	<h2 class="text-center">Editer une huile</h2>
 
 
-	<div class="mx-auto  flex justify-evenly">
-
-
+	<div class="flex justify-evenly">
 		{% include "admin/huiles/_form.html.twig" %}
-
 		<!---->
-		<div class="flex flex-wrap  my-5">
+		<div class="flex flex-wrap my-5">
 			{% for picture in huile.pictures %}
-				<div class=" mx-auto">
-					<img class="object-cover " src="{{vich_uploader_asset(picture, 'imageFile')| imagine_filter('thumb')}}">
-					<div class="mx-auto my-2">
+				<div class="mx-2">
+					<img class="object-cover rounded-lg" src="{{vich_uploader_asset(picture, 'imageFile')| imagine_filter('thumb')}}">
+					<div class="  my-2 mx-2">
 						<form method="post" action="{{path('admin_picture_delete',{'id': picture.id})}}" onsubmit="return confirm('Etes vous sûr de vouloir supprimer ?')">
 							<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ picture.id) }}">
 							<input type="hidden" name="_method" value="DELETE">
-							<button class="text-green  border-green border-2 p-3 rounded-lg focus:outline-none" type="submit">Supprimer image</button>
-
+							<button class="text-green border-green border-2 p-3 rounded-lg focus:outline-none w-full" type="submit">Supprimer image</button>
 						</form>
 					</div>
 				</div>
 			{% endfor %}
 		</div>
 		<!---->
-
 	</div>
 
 {% endblock %}
