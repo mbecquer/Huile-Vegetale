@@ -7,6 +7,7 @@ use App\Entity\Huiles;
 use App\Repository\HuilesRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
@@ -17,19 +18,23 @@ class CartController extends AbstractController
      */
     public function cart(SessionInterface $session, HuilesRepository $huilesRepository): Response
     {
+
         $panier = $session->get('panier', []);
 
         $panierWithData = [];
         $total = 0;
         foreach ($panier as $id => $quantity) {
             $huile = $huilesRepository->find($id);
+            $pictures = $huilesRepository->find($id);
             $panierWithData[] = [
                 'huile' =>  $huile,
-                'quantity' => $quantity
+                'quantity' => $quantity,
+                'pictures' => $pictures
 
             ];
             $total += $huile->getPrice() * $quantity;
         }
+
         return $this->render('home/cart.html.twig', compact("panierWithData", "total"));
     }
     /**

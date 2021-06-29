@@ -35,7 +35,12 @@
 
 
 			<div class="">
-				<img class=" w-96 object-cover" src="{{ asset('/assets/logo-removebg-preview.png') }}" alt="">
+
+
+				{% for picture in item.huile.pictures %}
+					<img class="object-cover mx-auto" src="{{vich_uploader_asset(picture, 'imageFile')| imagine_filter('thumb')}}" alt="">
+
+				{% endfor %}
 
 
 			</div>
