@@ -1,14 +1,50 @@
 {% extends "base.html.twig" %}
 {% block body %}
-	<h1>section  administration article</h1>
-	<a href="{{path('admin_article_create')}}">
-		<button class="text-green text-xl border-green border-2 p-3 rounded-lg focus:outline-none ">
-			Ajouter un article
-		</button>
-	</a>
-	{% for article in articles %}
-		<p>{{article.title}}</p>
-		<p>{{article.content}}</p>
-		<p>{{article.image}}</p>
-	{% endfor %}
+
+	<h2 class="text-4xl text-center mt-10 mb-5 text-green">Admin article</h2>
+	<div class="mx-28">
+		{% for message in app.flashes('success')  %}
+			<div class="bg-green-200  text-center text-3xl p-2 mb-2 rounded-lg mx-20">
+				{{message}}
+			</div>
+		{% endfor %}
+		<a href="{{path('admin_article_create')}}">
+			<button class="text-green text-xl border-green border-2 p-3 rounded-lg focus:outline-none ">
+				Ajouter un article
+			</button>
+		</a>
+		<table class="w-full my-5  table-striped text-center">
+			<thead class="border-b-2 font-bold text-2xl">
+				<tr>
+					<th>ID</th>
+					<th>titre</th>
+					<th>contenu</th>
+					<th>image</th>
+					<th>creation</th>
+					<th>ACTIONS</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for article in articles %}
+					<tr class="  cursor-pointer text-xl border-b-2">
+						<td>{{article.id}}</td>
+						<td>{{article.title}}</td>
+						<td class="w-96 text-center">{{article.content}}</td>
+						<td></td>
+						<td></td>
+						<td class="flex text-center justify-center">
+							<a href="#">
+								<button class="text-green text-xl border-green border-2 p-3 rounded-lg focus:outline-none mx-2">Modifier</button>
+							</a>
+							<a href="#">
+								<button class="text-red-500 text-xl border-red-500 border-2 p-3 rounded-lg focus:outline-none mx-2">Supprimer</button>
+							</a>
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+
+
 {% endblock %}
