@@ -34,19 +34,6 @@ class HomeController extends AbstractController
         ]);
     }
 
-
-
-    /**
-     * Undocumented function
-     *@Route("/blog", name="blog")
-     */
-    public function blog(): Response
-    {
-
-        return $this->render("home/blog.html.twig", [
-            "title" => "Notre blog"
-        ]);
-    }
     /**
      * Undocumented function
      *@Route("/mentions", name="mentions")
@@ -58,5 +45,4 @@ class HomeController extends AbstractController
             "title" => "Mentions légales"
         ]);
     }
-     
 }

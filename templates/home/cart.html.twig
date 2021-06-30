@@ -37,57 +37,64 @@
 		</div>
 	{% endfor %}
 
+	{% if panierWithData %}
 
-	<div class="text-xl  flex flex-wrap mx-40  ">
-		{% for item in panierWithData %}
-			<!--image du panier-->
-			<div class=" w-full shadow-lg rounded-lg my-5">
-				<div class="flex p-5   float-left">
-					{% for picture in item.huile.pictures %}
-						<img class="object-cover mx-2" src="{{vich_uploader_asset(picture, 'imageFile')| imagine_filter('thumb')}}" alt="">
+		<div class="text-xl flex flex-wrap mx-60 mr-20">
+			{% for item in panierWithData %}
+				<!--image du panier-->
+				<div class=" w-full shadow-lg rounded-lg my-5">
+					<div class="flex p-5 float-left">
+						{% for picture in item.huile.pictures %}
+							<img class="object-cover mx-2" src="{{vich_uploader_asset(picture, 'imageFile')| imagine_filter('thumb')}}" alt="">
 
-					{% endfor %}
+						{% endfor %}
 
-				</div>
+					</div>
 
-				<!--information des articles du panier-->
-				<div class="flex flex-col  float-right my-5 mr-5">
-					<p>Nom :
-						<span class="font-bold capitalize">{{item.huile.name}}</span>
-					</p>
-					<p>Capacité :
-						{{item.huile.capacity}}
-						ml</p>
-					<!--bouton + ou - d'un produit du panier-->
-					<div class="flex">
-						<p>Quantité :
-							{{item.quantity}}
+					<!--information des articles du panier-->
+					<div class="flex flex-col  float-right my-5 mr-20 ">
+						<p>Nom :
+							<span class="font-bold capitalize">{{item.huile.name}}</span>
 						</p>
+						<p>Capacité :
+							{{item.huile.capacity}}
+							ml</p>
+						<!--bouton + ou - d'un produit du panier-->
+						<div class="flex">
+							<p>Quantité :
+								{{item.quantity}}
+							</p>
 
-						<a href="{{path('cart_add',{'id':item.huile.id} )}}" class="no-underline mx-2 ">
-							<i class="fa fa-plus 2x text-green  border-green border-2 p-3 rounded-lg focus:outline-none " aria-hidden="true"></i>
-						</a>
-						<a href="{{path('cart_remove',{'id':item.huile.id} )}}" class="no-underline">
-							<i class="fa fa-minus text-red-400  border-red-400 border-2 p-3 rounded-lg focus:outline-none" aria-hidden="true"></i>
+							<a href="{{path('cart_add',{'id':item.huile.id} )}}" class="no-underline mx-5 ">
+								<i class="fa fa-plus 2x text-green  border-green border-2 p-3 rounded-lg focus:outline-none " aria-hidden="true"></i>
+							</a>
+							<a href="{{path('cart_remove',{'id':item.huile.id} )}}" class="no-underline">
+								<i class="fa fa-minus text-red-400  border-red-400 border-2 p-3 rounded-lg focus:outline-none" aria-hidden="true"></i>
+							</a>
+						</div>
+						<!--information part 2 des articles du panier-->
+						<hr>
+						<p>Prix unitaire :
+							{{item.huile.price}}
+
+							€</p>
+
+						<p>Sous-total :
+							{{item.huile.price * item.quantity}}
+
+							€</p>
+						<a href="{{path('cart_delete',{'id':item.huile.id})}}">
+							<button class="text-green  border-green border-2 p-3 rounded-lg focus:outline-none">Supprimer cette huile du panier</button>
 						</a>
 					</div>
-					<!--information part 2 des articles du panier-->
-					<hr>
-					<p>Prix unitaire :
-						{{item.huile.price}}
 
-						€</p>
-
-					<p>Sous-total :
-						{{item.huile.price * item.quantity}}
-
-						€</p>
-					<a href="{{path('cart_delete',{'id':item.huile.id})}}">
-						<button class="text-green  border-green border-2 p-3 rounded-lg focus:outline-none">Supprimer cette huile du panier</button>
-					</a>
 				</div>
+			{% endfor %}
+		</div>
+	{% else %}
 
-			</div>
-		{% endfor %}
-	</div>
+		<div class="h-96 ">
+			<h1 class="text-center">Surprise c'est vide !</h1>
+		</div>
+	{% endif %}
 {% endblock %}

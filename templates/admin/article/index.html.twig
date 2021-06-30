@@ -1,0 +1,14 @@
+{% extends "base.html.twig" %}
+{% block body %}
+	<h1>section  administration article</h1>
+	<a href="{{path('admin_article_create')}}">
+		<button class="text-green text-xl border-green border-2 p-3 rounded-lg focus:outline-none ">
+			Ajouter un article
+		</button>
+	</a>
+	{% for article in articles %}
+		<p>{{article.title}}</p>
+		<p>{{article.content}}</p>
+		<p>{{article.image}}</p>
+	{% endfor %}
+{% endblock %}

@@ -35,7 +35,11 @@ class CartController extends AbstractController
             $total += $huile->getPrice() * $quantity;
         }
 
-        return $this->render('home/cart.html.twig', compact("panierWithData", "total"));
+        return $this->render('home/cart.html.twig', [
+            'panierWithData' => $panierWithData,
+            'total' => $total,
+
+        ]);
     }
     /**
      * @Route("/cart/add/{id}", name="cart_add")
