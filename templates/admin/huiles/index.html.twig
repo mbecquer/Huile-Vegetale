@@ -17,18 +17,18 @@
 		</a>
 		<table class="w-full my-5  table-striped text-center">
 			<thead class="border-b-2 font-bold text-2xl">
-				<tr>
-					<th>ID</th>
-					<th>NOM</th>
-					<th>DESCRIPTION</th>
-					<th>CAPACITE</th>
-					<th>PRIX</th>
-					<th>ACTIONS</th>
+				<tr class="uppercase">
+					<th>id</th>
+					<th>nom</th>
+					<th>description</th>
+					<th>capacité</th>
+					<th>prix</th>
+					<th>actions</th>
 				</tr>
 			</thead>
 			<tbody>
 				{% for huile in huiles %}
-					<tr class="  cursor-pointer text-xl border-b-2">
+					<tr class="cursor-pointer text-xl border-b-2">
 						<td>{{huile.id}}</td>
 						<td>{{huile.name}}</td>
 						<td class="w-96 text-center">{{huile.description}}</td>
@@ -40,7 +40,7 @@
 							<a href="{{path('admin_huiles_edit', { id: huile.id })}}">
 								<button class="text-green text-xl border-green border-2 p-3 rounded-lg focus:outline-none mx-2">Modifier</button>
 							</a>
-							<form method="post" action="{{path('admin_huiles_delete',{id:huile.id})}}" onsubmit="return confirm('Etes vous sûr de vouloir supprimer ?')">
+							<form method="post" action="{{path('admin_huiles_delete',{id:huile.id})}}" onsubmit="return confirm('Etes vous sûr de vouloir supprimer {{huile.name }}?')">
 								<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ huile.id) }}">
 								<input type="hidden" name="_method" value="DELETE">
 								<button class="text-red-500 text-xl border-red-500 border-2 p-3 rounded-lg focus:outline-none">Supprimer</button>

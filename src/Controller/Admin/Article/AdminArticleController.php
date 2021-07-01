@@ -96,4 +96,14 @@ class AdminArticleController extends AbstractController
             return $this->redirectToRoute('admin_article_index');
         };
     }
+    /**
+     * @Route("/blog/{id}",name="blog_read")
+     */
+    public function read(int $id)
+    {
+        $article = $this->articleRepository->find($id);
+        return $this->render('blog/read.html.twig', [
+            'article' => $article
+        ]);
+    }
 }
