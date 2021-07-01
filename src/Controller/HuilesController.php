@@ -14,6 +14,7 @@ class HuilesController extends AbstractController
     {
         $this->huilesRepository = $huilesRepository;
     }
+
     /**
      * Undocumented function
      *@Route("/produits", name="huile_index")

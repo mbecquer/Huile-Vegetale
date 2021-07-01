@@ -54,13 +54,46 @@ class AdminArticleController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->em->persist($article);
-            $this->addFlash("success", "article ajouté avec succès");
+            $this->addFlash("success", "Article ajouté avec succès");
             $this->em->flush();
             return $this->redirectToRoute("admin_article_index");
         }
 
         return $this->render("admin/article/create.html.twig", [
-            "form" => $form->createView()
+            "form" => $form->createView(),
+
         ]);
+    }
+
+    /**
+     * @Route("/admin/article/edit/{id}", name="admin_article_edit")
+     */
+    public function edit(Article $article, Request $request)
+    {
+
+        $form = $this->createForm(ArticleType::class, $article);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $this->addFlash("success", "Article modifié avec succès");
+            $this->em->flush();
+            return $this->redirectToRoute("admin_article_index");
+        }
+        return $this->render('admin/article/edit.html.twig', [
+            "form" => $form->createView(),
+            'article' => $article
+        ]);
+    }
+    /**
+     * @Route("/admin/article/delete/{id}", name="admin_article_delete", methods="DELETE")
+     */
+    public function delete(Article $article, Request $request)
+    {
+        if ($this->isCsrfTokenValid('delete' . $article->getId(), $request->get('_token'))) {
+            $this->em->remove($article);
+            $this->em->flush();
+            $this->addFlash("success", "Article supprimé avec succès");
+            return $this->redirectToRoute('admin_article_index');
+        };
     }
 }

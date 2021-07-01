@@ -37,6 +37,7 @@ class Article
      */
     private $created_at;
 
+
     public function getId(): ?int
     {
         return $this->id;
@@ -89,4 +90,6 @@ class Article
 
         return $this;
     }
+
+   
 }

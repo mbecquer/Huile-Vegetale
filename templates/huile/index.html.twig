@@ -44,10 +44,18 @@
 					<p class="text-3xl sm:text-2xl font-bold">{{huile.price}}<span class="font-bold text-green">€</span>
 					</p>
 					<div class="flex justify-center mt-5">
-						<a href="{{path('cart_add',{'id':huile.id})}}">
-							<button class="text-green text-xl border-green border-2 p-3 rounded-lg focus:outline-none mb-2">
-								Ajouter au panier</button>
-						</a>
+						{% if is_granted("ROLE_USER")%}
+
+							<a href="{{path('cart_add',{'id':huile.id})}}">
+								<button class="text-green text-xl border-green border-2 p-3 rounded-lg focus:outline-none mb-2">
+									Ajouter au panier</button>
+							</a>
+						{% else %}
+							<a href="{{path('app_login')}}">
+								<button class="text-green text-xl border-green border-2 p-3 rounded-lg focus:outline-none mb-2">
+									Ajouter au panier</button>
+							</a>
+						{% endif %}
 					</div>
 				</div>
 
