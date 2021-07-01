@@ -57,6 +57,20 @@
 
 
 		</div>
+		<!--répondre commentaire-->
+		{% if is_granted('ROLE_USER') %}
+			<div class=" p-5 w-full my-5 rounded-lg shadow-lg flex flex-col">
+				<h2 class="mb-5">Bonjour
+					<span class="text-green">Baptiste</span>
+					écrivez votre message !
+				</h2>
+				<textarea rows="10" cols="25" placeholder="Saisissez ici votre message ..." style="resize:none" class="w-96 text-lg border-2 rounded-lg border-gray-500 focus:outline-none focus:ring px-3 py-3 "></textarea>
+				<a href="#">
+					<button class="text-green text-xl border-green border-2 p-3 rounded-lg focus:outline-none my-5 px-5">Poster</button>
+				</a>
+			</div>
+		{% endif %}
+		<!--encart connexion pour commenter-->
 		<div class=" p-5 w-full my-5 rounded-lg shadow-lg text-center flex flex-col items-center ">
 			<p class=" text-lg">Vous voulez participer au forum ? Connectez-vous !</p>
 			<div class="flex">
@@ -68,7 +82,6 @@
 				</a>
 			</div>
 		</div>
+
 	</div>
-
-
 {% endblock %}
