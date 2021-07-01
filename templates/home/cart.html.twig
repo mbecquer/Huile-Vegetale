@@ -4,30 +4,7 @@
 	Mon panier
 {% endblock %}
 {% block body %}
-	<h1 class="text-4xl text-center mt-10 text-green">Mon panier</h1>
-
-
-	<!--encart paypal-->
-	<div class=" flex flex-col justify-end w-60 float-right sticky top-5 right-5 border-green border-2 rounded-lg  p-3 bg-white shadow-lg text-2xl">Total :
-
-		{{total}}
-		€
-		<hr>
-		<!--BOUTON PAYPAL-->
-		<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" class="">
-			<input type="hidden" name="cmd" value="_s-xclick"/>
-			<input type="hidden" name="hosted_button_id" value="UUZU4C87Z4R7A"/>
-			<input type="image" src="https://www.paypalobjects.com/fr_FR/FR/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal, le réflexe sécurité pour payer en ligne"/>
-			<img alt="" border="0" src="https://www.paypalobjects.com/fr_FR/i/scr/pixel.gif" width="1" height="1"/>
-		</form>
-		<hr>
-		<!--bouton vider le panier-->
-		<a href="{{path('delete_all')}}">
-			<button class="text-red-400 border-2 border-red-400 p-3 rounded-lg focus:outline-none">Vider le panier</button>
-		</a>
-
-
-	</div>
+	<h1 class="text-center">Mon panier</h1>
 
 
 	<!--message flash-->
@@ -38,7 +15,27 @@
 	{% endfor %}
 
 	{% if panierWithData %}
+		<!--encart paypal-->
+		<div class=" flex flex-col justify-end w-60 float-right sticky top-5 right-5 border-green border-2 rounded-lg  p-3 bg-white shadow-lg text-2xl">Total :
 
+			{{total}}
+			€
+			<hr>
+			<!--BOUTON PAYPAL-->
+			<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" class="">
+				<input type="hidden" name="cmd" value="_s-xclick"/>
+				<input type="hidden" name="hosted_button_id" value="UUZU4C87Z4R7A"/>
+				<input type="image" src="https://www.paypalobjects.com/fr_FR/FR/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal, le réflexe sécurité pour payer en ligne"/>
+				<img alt="" border="0" src="https://www.paypalobjects.com/fr_FR/i/scr/pixel.gif" width="1" height="1"/>
+			</form>
+			<hr>
+			<!--bouton vider le panier-->
+			<a href="{{path('delete_all')}}">
+				<button class="text-red-400 border-2 border-red-400 p-3 rounded-lg focus:outline-none">Vider le panier</button>
+			</a>
+
+
+		</div>
 		<div class="text-xl flex flex-wrap mx-60 mr-20">
 			{% for item in panierWithData %}
 				<!--image du panier-->
@@ -93,8 +90,16 @@
 		</div>
 	{% else %}
 
-		<div class="h-96 ">
-			<h1 class="text-center">Surprise c'est vide !</h1>
+		<div class="shadow-lg rounded-lg mx-96 text-center ">
+			<div class="my-36 p-20">
+				<h1 class="">Surprise votre panier est vide !</h1>
+				<p class="text-lg">Commencez vos achats dès maintenant en suivant ce lien :
+					<a class="text-green text-xl " href="{{path('huile_index')}}">
+						Boutique
+					</a>
+				</p>
+			</div>
+
 		</div>
 	{% endif %}
 

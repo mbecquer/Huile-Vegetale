@@ -31,11 +31,17 @@
 				{{huile.capacity}}
 				ml</p>
 
-
-			<a href="{{path('cart_add',{'id':huile.id})}}">
-
-				<button class="text-green text-xl border-green border-2 p-3 rounded-lg focus:outline-none my-5">Ajouter au panier</button>
-			</a>
+			{% if is_granted("ROLE_USER")%}
+				<a href="{{path('cart_add',{'id':huile.id})}}">
+					<button class="text-green text-xl border-green border-2 p-3 rounded-lg focus:outline-none mb-2">
+						Ajouter au panier</button>
+				</a>
+			{% else %}
+				<a href="{{path('app_login')}}">
+					<button class="text-green text-xl border-green border-2 p-3 rounded-lg focus:outline-none mb-2">
+						Ajouter au panier</button>
+				</a>
+			{% endif %}
 		</div>
 
 

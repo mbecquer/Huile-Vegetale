@@ -3,7 +3,7 @@
 {% endblock %}
 {% block body %}
 	<!--page de mes produits-->
-	<h1 class="text-4xl text-center mt-10 text-green">{{message}}</h1>
+	<h1 class="text-center">{{message}}</h1>
 	<div class="flex flex-wrap justify-center">
 
 		{% for huile in huiles %}
@@ -45,7 +45,6 @@
 					</p>
 					<div class="flex justify-center mt-5">
 						{% if is_granted("ROLE_USER")%}
-
 							<a href="{{path('cart_add',{'id':huile.id})}}">
 								<button class="text-green text-xl border-green border-2 p-3 rounded-lg focus:outline-none mb-2">
 									Ajouter au panier</button>

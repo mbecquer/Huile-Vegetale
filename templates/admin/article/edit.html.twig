@@ -1,7 +1,10 @@
 {% extends "base.html.twig" %}
 {% block body %}
-	<h1>edition article</h1>
+	<h1 class="text-center">Modifier l'article :
+		<span class="text-green">{{article.title}}</span>
+	</h1>
 	<div class=" flex w-96 mx-auto p-5 shadow-lg rounded-lg">
+
 		{{ form_start(form) }}
 		{{form_row(form.title)}}
 		{{form_row(form.content)}}
