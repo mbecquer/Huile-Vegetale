@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Vich\UploaderBundle\Form\Type\VichFileType;
 
 class ArticleType extends AbstractType
 {
@@ -18,8 +19,9 @@ class ArticleType extends AbstractType
         $builder
             ->add('title', TextType::class)
             ->add('content', TextareaType::class)
-            ->add('image', TextType::class, [
-                "required" => false
+            ->add('image', FileType::class, [
+                "required" => true,
+
             ])
             ->add('created_at', DateType::class);
     }

@@ -23,6 +23,7 @@ class CommentType extends AbstractType
                 'label' => "Votre commentaire"
             ])
             ->add('rgpd', CheckboxType::class, [
+                'label' => "J'accepte la collecte de mes données personnelles dans le cadre de ce formulaire de commentaire",
                 'constraints' => [
                     new NotBlank()
                 ]

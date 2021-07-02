@@ -10,7 +10,10 @@ use App\Repository\ArticleRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Liip\ImagineBundle\Imagine\Cache\CacheManager;
 use Symfony\Component\Validator\Constraints\DateTime;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Vich\UploaderBundle\Templating\Helper\UploaderHelper;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class AdminArticleController extends AbstractController
@@ -82,6 +85,7 @@ class AdminArticleController extends AbstractController
             $this->em->flush();
             return $this->redirectToRoute("admin_article_index");
         }
+
         return $this->render('admin/article/edit.html.twig', [
             "form" => $form->createView(),
             'article' => $article
@@ -125,7 +129,7 @@ class AdminArticleController extends AbstractController
 
             //on définit le parent
             $comment->setParent($parent ?? null);
-            
+
             $em->persist($comment);
             $em->flush();
 
@@ -135,7 +139,8 @@ class AdminArticleController extends AbstractController
 
         return $this->render('blog/read.html.twig', [
             'article' => $article,
-            'form' => $form->createView()
+            'form' => $form->createView(),
+
         ]);
     }
 }
