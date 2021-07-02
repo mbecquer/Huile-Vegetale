@@ -118,10 +118,13 @@ class AdminArticleController extends AbstractController
             $comment->setArticle($article);
             //on recupere le contenu du champ parent
             $parentid = $form->get('parent')->getData();
-             //on va chercher le commentaire correspondant 
-            $parent = $em->getRepository(Comment::class)->find($parentid);
-             //on définit le parent
-            $comment->setParent($parent);
+            //on va chercher le commentaire correspondant 
+            if ($parentid != null) {
+                $parent = $em->getRepository(Comment::class)->find($parentid);
+            }
+
+            //on définit le parent
+            $comment->setParent($parent ?? null);
             $em->persist($comment);
             $em->flush();
 
