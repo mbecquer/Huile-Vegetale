@@ -31,7 +31,7 @@
 						<td>{{article.title}}</td>
 						<td class="w-96  text-justify">{{article.content}}</td>
 						<td></td>
-						<td></td>
+						<td>{{article.createdAt|date("d/m/Y H:i","Europe/Paris")}}</td>
 						<td class="flex  justify-center">
 							<a href="{{path('admin_article_edit',{'id': article.id})}}">
 								<button class="text-green text-xl border-green border-2 p-3 rounded-lg focus:outline-none mx-2">Modifier</button>

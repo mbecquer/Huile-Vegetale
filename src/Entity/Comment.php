@@ -32,7 +32,7 @@ class Comment
     /**
      * @ORM\Column(type="boolean")
      */
-    private $rgpd;
+    private $rgpd = null;
 
     /**
      * @ORM\ManyToOne(targetEntity=Article::class, inversedBy="comments")

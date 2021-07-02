@@ -44,7 +44,7 @@
 					<!--info user-->
 					<div class="flex justify-between">
 						<h2 class="text-green">{{comment.nickname}}</h2>
-						<span class="text-green">{{comment.createdAt|date("d/m/Y H:i")}}</span>
+						<span class="text-green">{{comment.createdAt|date("d/m/Y H:i","Europe/Paris")}}</span>
 					</div>
 					<!-- fin info user-->
 					<hr>
@@ -61,7 +61,7 @@
 						<!--info user reply-->
 						<div class="flex justify-between mt-32">
 							<h2 class="text-green">{{reply.nickname}}</h2>
-							<span class="text-green mr-5">{{reply.createdAt|date("d/m/Y H:i")}}</span>
+							<span class="text-green mr-5">{{reply.createdAt|date("d/m/Y H:i","Europe/Paris")}}</span>
 						</div>
 						<!-- fin info user reply-->
 						<hr>

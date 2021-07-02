@@ -125,6 +125,7 @@ class AdminArticleController extends AbstractController
 
             //on définit le parent
             $comment->setParent($parent ?? null);
+            
             $em->persist($comment);
             $em->flush();
 

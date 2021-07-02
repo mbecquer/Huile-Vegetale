@@ -11,6 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 class CommentType extends AbstractType
 {
@@ -21,7 +22,11 @@ class CommentType extends AbstractType
             ->add('content', TextareaType::class, [
                 'label' => "Votre commentaire"
             ])
-            ->add('rgpd', CheckboxType::class)
+            ->add('rgpd', CheckboxType::class, [
+                'constraints' => [
+                    new NotBlank()
+                ]
+            ])
             ->add('parent', HiddenType::class, [
                 'mapped' => false
             ]);
