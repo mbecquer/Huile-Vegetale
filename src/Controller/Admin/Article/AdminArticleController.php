@@ -117,11 +117,11 @@ class AdminArticleController extends AbstractController
             $comment->setCreatedAt(new \DateTime());
             $comment->setArticle($article);
             //on recupere le contenu du champ parent
-            // $parentid = $comment->get('parent')->getData();
-            // //on va chercher le commentaire correspondant 
-            // $parent = $em->getRepository(Comment::class)->find($parentid);
-            // //on définit le parent
-            // $comment->setParent($parent);
+            $parentid = $form->get('parent')->getData();
+             //on va chercher le commentaire correspondant 
+            $parent = $em->getRepository(Comment::class)->find($parentid);
+             //on définit le parent
+            $comment->setParent($parent);
             $em->persist($comment);
             $em->flush();
 
