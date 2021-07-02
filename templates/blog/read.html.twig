@@ -29,55 +29,60 @@
 
 			<!--bloc commentaire-->
 			{% for comment in article.comments %}
-				<div class="p-5 w-full shadow-lg rounded-lg my-5">
-					<div class="flex justify-between">
-						<h2 class="text-green">{{comment.nickname}}</h2>
-						<span class="text-green">{{comment.createdAt|date("d/m/Y H:i")}}</span>
-					</div>
-					<hr>
-					<div>
-						<p class="text-lg">{{comment.content}}</p>
-						<a href="#ajout-commentaire" data-reply data-id="{{comment.id}}" class="text-green text-xl border-green border-2 p-3 rounded-lg focus:outline-none float-right">
-							Répondre à ce commentaire
-						</a>
-					</div>
+				{% if comment.parent == null %}
+
+					<div class="p-5 w-full shadow-lg rounded-lg my-5">
+						<div class="flex justify-between">
+							<h2 class="text-green">{{comment.nickname}}</h2>
+							<span class="text-green">{{comment.createdAt|date("d/m/Y H:i")}}</span>
+						</div>
+						<hr>
+						<div>
+							<p class="text-lg">{{comment.content}}</p>
+							<a href="#ajout-commentaire" data-reply data-id="{{comment.id}}">
+								<button class="text-green text-xl border-green border-2 p-3 rounded-lg focus:outline-none float-right">Répondre</button>
+							</a>
+						</div>
+						<!--on affiche les réponses-->
+						{% for reply in comment.replies %}
+							<div class="flex justify-between mt-32">
+								<h2 class="text-green">{{reply.nickname}}</h2>
+								<span class="text-green mr-5">{{reply.createdAt|date("d/m/Y H:i")}}</span>
+							</div>
+							<hr>
+							<div class="shadow-lg rounded-lg mx-20 p-5 my-3 border-l-4 border-gray-500 bg-gray-100">
+								<h2 class="my-2">Citation de
+									<span class="text-green">{{comment.nickname}}</span>
+								</h2>
+								<p>{{comment.content}}</p>
+							</div>
+							<div>
+								<p>{{reply.content}}</p>
+								<button class="text-green text-xl border-green border-2 p-3 rounded-lg focus:outline-none float-right">Répondre</button>
+							</div>
+						{% endfor %}
+					{% endif %}
 				</div>
+
 			{% endfor %}
-			<!--bloc commentaire-->
-			<div class="p-5 w-full shadow-lg rounded-lg">
-				<div class="flex justify-between">
-					<h2 class="text-green">Jean-Deidara</h2>
-					<span class="text-green">Il y a 10 heures</span>
-				</div>
-				<hr>
-				<div class="shadow-lg rounded-lg mx-20 p-5 my-3 border-l-4 border-gray-500 bg-gray-100">
-					<h2 class="my-2">Citation de
-						<span class="text-green">Baptiste</span>
-					</h2>
-					<p>Moi je stream tout les jours !</p>
-				</div>
-				<div>
-					<p>Mais t'es pas net Baptiste !</p>
-					<button class="text-green text-xl border-green border-2 p-3 rounded-lg focus:outline-none float-right">Répondre à ce commentaire</button>
-				</div>
 
-
-			</div>
 			<!--répondre commentaire-->
 			{% if is_granted('ROLE_USER') %}
-				<div class=" p-5 w-full my-5 rounded-lg shadow-lg flex flex-col" id="ajout-commentaire">
-					<h2 class="mb-5">Bonjour
+				<div class=" p-5  my-5 rounded-lg shadow-lg flex flex-col" id="ajout-commentaire">
+					<h2 class="mb-5 text-center">Bonjour
 						{% if app.user %}
 							<span class="text-green">{{app.user.username}}</span>
 						{% endif %}
 						écrivez votre message !
 					</h2>
-					{{form_start(form)}}
-					{{form_row(form.nickname)}}
-					{{form_row(form.content)}}
-					{{form_row(form.rgpd)}}
-					<button class="text-green text-xl border-green border-2 p-3 rounded-lg focus:outline-none my-5 px-5" type="submit">Poster</button>
-					{{form_end(form)}}
+					<div class="w-96 mx-auto">
+						{{form_start(form)}}
+						{{form_row(form.nickname)}}
+						{{form_row(form.content)}}
+						{{form_row(form.rgpd)}}
+						<button class="text-green text-xl border-green border-2 p-3 rounded-lg focus:outline-none my-5 px-5" type="submit">Poster</button>
+						{{form_end(form)}}
+					</div>
 				</div>
 			{% endif %}
 			<!--encart connexion pour commenter-->
