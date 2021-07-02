@@ -3,11 +3,14 @@
 namespace App\Controller\Admin\Article;
 
 use App\Entity\Article;
+use App\Entity\Comment;
 use App\Form\ArticleType;
+use App\Form\CommentType;
 use App\Repository\ArticleRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Validator\Constraints\DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class AdminArticleController extends AbstractController
@@ -99,11 +102,36 @@ class AdminArticleController extends AbstractController
     /**
      * @Route("/blog/{id}",name="blog_read")
      */
-    public function read(int $id)
+    public function read(int $id, Request $request, EntityManagerInterface $em)
     {
         $article = $this->articleRepository->find($id);
+
+        //partie commentaires
+        //on crée le commentaire vierge
+        $comment = new Comment();
+        //on génère le formulaire
+        $form = $this->createForm(CommentType::class, $comment);
+        $form->handleRequest($request);
+        //traitement formulaire
+        if ($form->isSubmitted() && $form->isValid()) {
+            $comment->setCreatedAt(new \DateTime());
+            $comment->setArticle($article);
+            //on recupere le contenu du champ parent
+            // $parentid = $comment->get('parent')->getData();
+            // //on va chercher le commentaire correspondant 
+            // $parent = $em->getRepository(Comment::class)->find($parentid);
+            // //on définit le parent
+            // $comment->setParent($parent);
+            $em->persist($comment);
+            $em->flush();
+
+            $this->addFlash('message', 'Votre commentaire a bien été envoyé');
+            return $this->redirectToRoute('blog_read', ['id' => $article->getId()]);
+        }
+
         return $this->render('blog/read.html.twig', [
-            'article' => $article
+            'article' => $article,
+            'form' => $form->createView()
         ]);
     }
 }

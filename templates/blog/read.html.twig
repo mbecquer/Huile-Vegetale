@@ -2,86 +2,107 @@
 
 {% block body %}
 
-
-	<div
-		class="flex flex-wrap  mx-52">
-		<!--article-->
-
+	<div class="mx-28">
+		{% for message in app.flashes('message')  %}
+			<div class="bg-green-200  text-center text-3xl p-2 mb-2 rounded-lg mx-20">
+				{{message}}
+			</div>
+		{% endfor %}
 		<div
-			class="flex flex-wrap my-5 rounded-lg shadow-lg p-5 w-full ">
-			<!--image-->
-			<div class="image-article ">
-				<img class="w-72 h-72" src="{{article.image }}"></div>
-			<!--content-->
-			<div class="text-article mx-20  ">
-				<h2>{{article.title}}</h2>
-				<p class="text-green">Hier à 14h50</p>
-				<p class="text-lg w-96">{{article.content}}</p>
+			class="flex flex-wrap  mx-52">
+			<!--article-->
+			<div
+				class="flex flex-wrap my-5 rounded-lg shadow-lg p-5 w-full ">
+				<!--image-->
+				<div class="image-article ">
+					<img class="w-72 h-72" src="{{article.image }}"></div>
+				<!--content-->
+				<div class="text-article mx-20  ">
+					<h2>{{article.title}}</h2>
+					<p class="text-green">Hier à 14h50</p>
+					<p class="text-lg w-96">{{article.content}}</p>
+				</div>
+
+			</div>
+			<h2>Liste des commentaires
+			</h2>
+
+			<!--bloc commentaire-->
+			{% for comment in article.comments %}
+				<div class="p-5 w-full shadow-lg rounded-lg my-5">
+					<div class="flex justify-between">
+						<h2 class="text-green">{{comment.nickname}}</h2>
+						<span class="text-green">{{comment.createdAt|date("d/m/Y H:i")}}</span>
+					</div>
+					<hr>
+					<div>
+						<p class="text-lg">{{comment.content}}</p>
+						<a href="#ajout-commentaire" data-reply data-id="{{comment.id}}" class="text-green text-xl border-green border-2 p-3 rounded-lg focus:outline-none float-right">
+							Répondre à ce commentaire
+						</a>
+					</div>
+				</div>
+			{% endfor %}
+			<!--bloc commentaire-->
+			<div class="p-5 w-full shadow-lg rounded-lg">
+				<div class="flex justify-between">
+					<h2 class="text-green">Jean-Deidara</h2>
+					<span class="text-green">Il y a 10 heures</span>
+				</div>
+				<hr>
+				<div class="shadow-lg rounded-lg mx-20 p-5 my-3 border-l-4 border-gray-500 bg-gray-100">
+					<h2 class="my-2">Citation de
+						<span class="text-green">Baptiste</span>
+					</h2>
+					<p>Moi je stream tout les jours !</p>
+				</div>
+				<div>
+					<p>Mais t'es pas net Baptiste !</p>
+					<button class="text-green text-xl border-green border-2 p-3 rounded-lg focus:outline-none float-right">Répondre à ce commentaire</button>
+				</div>
+
+
+			</div>
+			<!--répondre commentaire-->
+			{% if is_granted('ROLE_USER') %}
+				<div class=" p-5 w-full my-5 rounded-lg shadow-lg flex flex-col" id="ajout-commentaire">
+					<h2 class="mb-5">Bonjour
+						{% if app.user %}
+							<span class="text-green">{{app.user.username}}</span>
+						{% endif %}
+						écrivez votre message !
+					</h2>
+					{{form_start(form)}}
+					{{form_row(form.nickname)}}
+					{{form_row(form.content)}}
+					{{form_row(form.rgpd)}}
+					<button class="text-green text-xl border-green border-2 p-3 rounded-lg focus:outline-none my-5 px-5" type="submit">Poster</button>
+					{{form_end(form)}}
+				</div>
+			{% endif %}
+			<!--encart connexion pour commenter-->
+			<div class=" p-5 w-full my-5 rounded-lg shadow-lg text-center flex flex-col items-center ">
+				<p class=" text-lg">Vous voulez participer au forum ? Connectez-vous !</p>
+				<div class="flex">
+					<a href="{{path('app_login')}}" class="mr-5">
+						<button class="text-green text-xl border-green border-2 p-3 rounded-lg focus:outline-none ">Connexion</button>
+					</a>
+					<a href="{{path('app_register')}}" class="ml-5">
+						<button class="text-green text-xl border-green border-2 p-3 rounded-lg focus:outline-none ">Inscription</button>
+					</a>
+				</div>
 			</div>
 
 		</div>
-
-
-		<!--bloc commentaire-->
-		<div class="p-5 w-full shadow-lg rounded-lg my-5">
-			<div class="flex justify-between">
-				<h2 class="text-green">Baptiste</h2>
-				<span class="text-green">Il y a 10 heures</span>
-			</div>
-			<hr>
-			<div>
-				<p>Moi je stream tout les jours !</p>
-				<button class="text-green text-xl border-green border-2 p-3 rounded-lg focus:outline-none float-right">Répondre à ce commentaire</button>
-			</div>
-
-
-		</div>
-		<!--bloc commentaire-->
-		<div class="p-5 w-full shadow-lg rounded-lg">
-			<div class="flex justify-between">
-				<h2 class="text-green">Jean-Deidara</h2>
-				<span class="text-green">Il y a 10 heures</span>
-			</div>
-			<hr>
-			<div class="shadow-lg rounded-lg mx-20 p-5 my-3 border-l-4 border-gray-500 bg-gray-100">
-				<h2 class="my-2">Citation de
-					<span class="text-green">Baptiste</span>
-				</h2>
-				<p>Moi je stream tout les jours !</p>
-			</div>
-			<div>
-
-				<p>Mais t'es pas net Baptiste !</p>
-				<button class="text-green text-xl border-green border-2 p-3 rounded-lg focus:outline-none float-right">Répondre à ce commentaire</button>
-			</div>
-
-
-		</div>
-		<!--répondre commentaire-->
-		{% if is_granted('ROLE_USER') %}
-			<div class=" p-5 w-full my-5 rounded-lg shadow-lg flex flex-col">
-				<h2 class="mb-5">Bonjour
-					<span class="text-green">Baptiste</span>
-					écrivez votre message !
-				</h2>
-				<textarea rows="10" cols="25" placeholder="Saisissez ici votre message ..." style="resize:none" class="w-96 text-lg border-2 rounded-lg border-gray-500 focus:outline-none focus:ring px-3 py-3 "></textarea>
-				<a href="#">
-					<button class="text-green text-xl border-green border-2 p-3 rounded-lg focus:outline-none my-5 px-5">Poster</button>
-				</a>
-			</div>
-		{% endif %}
-		<!--encart connexion pour commenter-->
-		<div class=" p-5 w-full my-5 rounded-lg shadow-lg text-center flex flex-col items-center ">
-			<p class=" text-lg">Vous voulez participer au forum ? Connectez-vous !</p>
-			<div class="flex">
-				<a href="{{path('app_login')}}" class="mr-5">
-					<button class="text-green text-xl border-green border-2 p-3 rounded-lg focus:outline-none ">Connexion</button>
-				</a>
-				<a href="{{path('app_register')}}" class="ml-5">
-					<button class="text-green text-xl border-green border-2 p-3 rounded-lg focus:outline-none ">Inscription</button>
-				</a>
-			</div>
-		</div>
-
-	</div>
-{% endblock %}
+	{% endblock %}
+	{% block javascripts %}
+		<script>
+			window.onload = () => {
+document.querySelectorAll("[data-reply]").forEach((element) => {
+element.addEventListener("click", function () {
+document.querySelector("#comment_parent").value = this.dataset.id;
+});
+});
+};
+		</script>
+	{% endblock %}
