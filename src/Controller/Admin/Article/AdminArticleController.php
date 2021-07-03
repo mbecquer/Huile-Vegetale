@@ -4,6 +4,7 @@ namespace App\Controller\Admin\Article;
 
 use App\Entity\Article;
 use App\Entity\Comment;
+use App\Entity\PictureArticle;
 use App\Form\ArticleType;
 use App\Form\CommentType;
 use App\Repository\ArticleRepository;
@@ -81,7 +82,22 @@ class AdminArticleController extends AbstractController
         $form = $this->createForm(ArticleType::class, $article);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-
+            //on récupère les images transmises
+            $images = $form->get('image')->getData();
+            //on boucle sur les images
+            foreach ($images as $image) {
+                //on génére un nouveau nom de fichier
+                $fichier = md5(uniqid()) . '.' . $image->guessExtension();
+                //on cope le fichier dans le dossier d'upload
+                $image->move(
+                    $this->getParameter('images_directory'),
+                    $fichier
+                );
+                //on crée l'image dans la base de données
+                $img = new PictureArticle();
+                $img->setName($fichier);
+                $article->addPictureArticle($img);
+            }
             $this->addFlash("success", "Article modifié avec succès");
             $this->em->flush();
             return $this->redirectToRoute("admin_article_index");

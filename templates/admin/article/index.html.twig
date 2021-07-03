@@ -26,12 +26,15 @@
 			</thead>
 			<tbody>
 				{% for article in articles %}
-					<tr class="cursor-pointer text-xl border-b-2">
+					<tr class="cursor-pointer text-xl border-b-2 ">
 						<td>{{article.id}}</td>
 						<td>{{article.title}}</td>
 						<td class="w-96  text-justify">{{article.content}}</td>
-						<td><img class="object-cover rounded-lg" src=""></td>
-						<img class="object-cover rounded-lg" src="{{article.image}}">
+						<td class="w-52">
+							{% for pictureArticle in article.pictureArticles %}
+								<img class="object-cover rounded-lg " src="{{asset('/images/articles/'~ pictureArticle.name)}}">
+							{% endfor %}
+						</td>
 						<td>{{article.createdAt|date("d/m/Y H:i","Europe/Paris")}}</td>
 						<td class="flex  justify-center">
 							<a href="{{path('admin_article_edit',{'id': article.id})}}">

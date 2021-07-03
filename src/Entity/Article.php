@@ -43,16 +43,15 @@ class Article
     private $comments;
 
     /**
-     * 
-     * @ORM\Column(type="string", length=255)
-     * @Assert\Image(mimeTypes="image/jpeg")
+     * @ORM\OneToMany(targetEntity=PictureArticle::class, mappedBy="articles", orphanRemoval=true, cascade={"persist"})
      */
-    private $image;
+    private $pictureArticles;
 
 
     public function __construct()
     {
         $this->comments = new ArrayCollection();
+        $this->pictureArticles = new ArrayCollection();
     }
 
 
@@ -127,14 +126,34 @@ class Article
         return $this;
     }
 
-    public function getImage(): ?string
+
+
+    /**
+     * @return Collection|PictureArticle[]
+     */
+    public function getPictureArticles(): Collection
     {
-        return $this->image;
+        return $this->pictureArticles;
     }
 
-    public function setImage(string $image): self
+    public function addPictureArticle(PictureArticle $pictureArticle): self
     {
-        $this->image = $image;
+        if (!$this->pictureArticles->contains($pictureArticle)) {
+            $this->pictureArticles[] = $pictureArticle;
+            $pictureArticle->setArticles($this);
+        }
+
+        return $this;
+    }
+
+    public function removePictureArticle(PictureArticle $pictureArticle): self
+    {
+        if ($this->pictureArticles->removeElement($pictureArticle)) {
+            // set the owning side to null (unless already changed)
+            if ($pictureArticle->getArticles() === $this) {
+                $pictureArticle->setArticles(null);
+            }
+        }
 
         return $this;
     }

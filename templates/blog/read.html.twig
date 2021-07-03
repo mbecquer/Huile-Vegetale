@@ -19,7 +19,12 @@
 			class="flex flex-wrap my-5 rounded-lg shadow-lg p-5 w-full ">
 			<!--image-->
 			<div class="image-article ">
-				<img class="w-72 h-72" src="{{article.image }}"></div>
+
+				{% for pictureArticle in article.pictureArticles %}
+					<img class="object-cover rounded-lg w-52" src="{{asset('/images/articles/'~ pictureArticle.name)}}">
+				{% endfor %}
+
+			</div>
 			<!--content-->
 			<div class="text-article mx-20  ">
 				<h2>{{article.title}}</h2>

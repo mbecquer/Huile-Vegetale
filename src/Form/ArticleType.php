@@ -20,7 +20,12 @@ class ArticleType extends AbstractType
             ->add('title', TextType::class)
             ->add('content', TextareaType::class)
             ->add('image', FileType::class, [
-                "required" => true,
+                "required" => false,
+                "mapped" => false,
+                'label' => false,
+                'multiple' => true
+
+
 
             ])
             ->add('created_at', DateType::class);
