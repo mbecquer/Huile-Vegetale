@@ -61,6 +61,25 @@ class AdminArticleController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            // On récupère les images transmises
+            $images = $form->get('image')->getData();
+
+            // On boucle sur les images
+            foreach ($images as $image) {
+                // On génère un nouveau nom de fichier
+                $fichier = md5(uniqid()) . '.' . $image->guessExtension();
+                // On copie le fichier dans le dossier uploads
+                $image->move(
+                    $this->getParameter('images_directory'),
+                    $fichier
+                );
+                // On crée l'image dans la base de données
+                $img = new PictureArticle();
+                $img->setName($fichier);
+                $article->addPictureArticle($img);
+            }
+
             $this->em->persist($article);
             $this->addFlash("success", "Article ajouté avec succès");
             $this->em->flush();
@@ -119,6 +138,21 @@ class AdminArticleController extends AbstractController
             $this->addFlash("success", "Article supprimé avec succès");
             return $this->redirectToRoute('admin_article_index');
         };
+    }
+    /**
+     * @Route("admin/article/picture/{id}", name="admin_article_picture_delete", methods={"DELETE"})
+     */
+    public function deletePicture(PictureArticle $pictureArticle, Request $request)
+    {
+        $articleId = $pictureArticle->getArticles()->getId();
+
+        if ($this->isCsrfTokenValid('delete' . $pictureArticle->getId(), $request->get('_token'))) {
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($pictureArticle);
+            $em->flush();
+            $this->addFlash("success", "Image supprimée avec succès");
+        };
+        return $this->redirectToRoute('admin_article_index', ['id' => $articleId]);
     }
     /**
      * @Route("/blog/{id}",name="blog_read")
