@@ -31,3 +31,5 @@ services:
     # please note that last definitions always *replace* previous ones
     App\Listener\ImageCacheListener:
         tags: ['doctrine.event_subscriber']
+
+       

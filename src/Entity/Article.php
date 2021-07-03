@@ -6,14 +6,12 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\ArticleRepository;
 use Doctrine\Common\Collections\Collection;
-use Symfony\Component\HttpFoundation\File\File;
 use Doctrine\Common\Collections\ArrayCollection;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
-use Vich\UploaderBundle\Mapping\Annotation as Vich;
+
 
 /**
  * @ORM\Entity(repositoryClass=ArticleRepository::class)
- * @Vich\Uploadable()
+ * 
  */
 class Article
 {
@@ -45,8 +43,9 @@ class Article
     private $comments;
 
     /**
-     * @ORM\Column(type="string", length=255)
      * 
+     * @ORM\Column(type="string", length=255)
+     * @Assert\Image(mimeTypes="image/jpeg")
      */
     private $image;
 

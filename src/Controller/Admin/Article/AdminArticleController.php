@@ -7,6 +7,7 @@ use App\Entity\Comment;
 use App\Form\ArticleType;
 use App\Form\CommentType;
 use App\Repository\ArticleRepository;
+use App\Repository\CommentRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -106,10 +107,12 @@ class AdminArticleController extends AbstractController
     /**
      * @Route("/blog/{id}",name="blog_read")
      */
-    public function read(int $id, Request $request, EntityManagerInterface $em)
+    public function read(int $id, Request $request, EntityManagerInterface $em, CommentRepository $commentRepo)
     {
         $article = $this->articleRepository->find($id);
-
+        $commentaires = $commentRepo->findBy([
+            'article' => $article
+        ]);
         //partie commentaires
         //on crée le commentaire vierge
         $comment = new Comment();
@@ -140,7 +143,7 @@ class AdminArticleController extends AbstractController
         return $this->render('blog/read.html.twig', [
             'article' => $article,
             'form' => $form->createView(),
-
+            'commentaires' => $commentaires,
         ]);
     }
 }
