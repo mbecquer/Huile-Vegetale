@@ -24,9 +24,6 @@ class ArticleType extends AbstractType
                 "mapped" => false,
                 'label' => false,
                 'multiple' => true
-
-
-
             ])
             ->add('created_at', DateType::class);
     }

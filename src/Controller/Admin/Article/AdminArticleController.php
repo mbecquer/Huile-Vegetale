@@ -36,9 +36,10 @@ class AdminArticleController extends AbstractController
     public function blog()
     {
         $articles = $this->articleRepository->findAll();
+
         return $this->render('home/blog.html.twig', [
             "articles" => $articles,
-            "title" => "Notre blog"
+            "title" => "Notre blog",
         ]);
     }
     /**
@@ -157,10 +158,10 @@ class AdminArticleController extends AbstractController
     /**
      * @Route("/blog/{id}",name="blog_read")
      */
-    public function read(int $id, Request $request, EntityManagerInterface $em, CommentRepository $commentRepo)
+    public function read(int $id, Request $request, EntityManagerInterface $em, CommentRepository $commentRepository)
     {
         $article = $this->articleRepository->find($id);
-        $commentaires = $commentRepo->findBy([
+        $commentaires = $commentRepository->findBy([
             'article' => $article
         ]);
         //partie commentaires
