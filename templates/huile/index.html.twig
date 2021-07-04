@@ -18,15 +18,13 @@
 
 									{% for picture in huile.pictures %}
 										<div class="carousel-item {% if loop.first %} active {% endif %}">
-											<img class="d-block w-100" src="{{vich_uploader_asset(picture, 'imageFile')| imagine_filter('thumb')}}" alt="">
+											<img class="d-block w-100 rounded-lg object-cover" src="{{vich_uploader_asset(picture, 'imageFile')| imagine_filter('thumb')}}" alt="">
 										</div>
 									{% endfor %}
 
 								</div>
 								<button class="carousel-control-prev" data-bs-target="#carouselExampleControls" type="button" data-bs-slide="prev"></button>
 								<button class="carousel-control-next" data-bs-target="#carouselExampleControls" type="button" data-bs-slide="next"></button>
-
-
 							</div>
 
 						{% endif %}
@@ -46,12 +44,12 @@
 					<div class="flex justify-center mt-5">
 						{% if is_granted("ROLE_USER")%}
 							<a href="{{path('cart_add',{'id':huile.id})}}">
-								<button class="text-green text-xl border-green border-2 p-3 rounded-lg focus:outline-none mb-2">
+								<button class="text-green text-xl border-green border-2 p-3 rounded-lg focus:outline-none my-3">
 									Ajouter au panier</button>
 							</a>
 						{% else %}
 							<a href="{{path('app_login')}}">
-								<button class="text-green text-xl border-green border-2 p-3 rounded-lg focus:outline-none mb-2">
+								<button class="text-green text-xl border-green border-2 p-3 rounded-lg focus:outline-none my-3">
 									Ajouter au panier</button>
 							</a>
 						{% endif %}

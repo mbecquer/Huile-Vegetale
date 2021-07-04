@@ -20,7 +20,7 @@
 			{% endblock %}
 		</title>
 		{# Run `composer require symfony/webpack-encore-bundle`
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																           and uncomment the following Encore helpers to start using Symfony UX #}
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																										           and uncomment the following Encore helpers to start using Symfony UX #}
 		{% block stylesheets %}
 			{#{{ encore_entry_link_tags('app') }}#}
 		{% endblock %}
@@ -29,29 +29,26 @@
 	</head>
 	<body>
 
-		<!--test-->
-		{# <a href="#" class="text-black hover:text-black">
-				<div class="w-14 border-4 border-green sticky top-5 float-right rounded-full text-center z-50 bg-white">
-					<span class="text-4xl">
-						<i class="fa fa-arrow-up" aria-hidden="true"></i>
-					</span>
-				</div>
-			</a> #}
-		<!--test-->
+		<span class="sticky top-3 float-right mr-5 z-50 text-6xl ">
+			<a href="#" class="no-underline arrow hidden">
+				<i class="fa fa-arrow-circle-o-up bg-white text-green rounded-full" aria-hidden="true"></i>
+			</a>
+		</span>
 
-			<nav class="flex justify-evenly items-center my-5 h-52 px-4 text-2xl "> <a class=" text-gray-600 logo " href="{{path('index')}}" title="Accueil"><img class="mt-10 " src="{{ asset('/assets/logo-removebg-preview.png') }}"></a>
+		<nav class="flex justify-evenly items-center my-5 h-52 mx-10 text-2xl ">
+			<a class=" text-gray-600 logo " href="{{path('index')}}" title="Accueil"><img src="{{ asset('/assets/logo-removebg-preview.png') }}"></a>
 
-			<div class="menu-desktop  z-50">
+			<div class="menu-desktop z-50 ">
 
 				{% if is_granted("ROLE_ADMIN")%}
-					<a class="link text-gray-600  mx-2" href="{{path('admin_huiles_index')}}">Administration Huiles</a>
-					<a class="link text-gray-600 " href="{{path('admin_article_index')}}">Administration Articles</a>
+					<a class="link text-gray-600 no-underline mx-2" href="{{path('admin_huiles_index')}}">Admin Huiles</a>
+					<a class="link text-gray-600 no-underline" href="{{path('admin_article_index')}}">Admin Articles</a>
 				{% endif %}
 
-				<a class="link text-gray-600  mx-2" href="{{path('huiles')}}">Huiles Végétales</a>
-				<a class="link text-gray-600  mx-2" href="{{path('huile_index')}}">Produits</a>
-				<a class="link text-gray-600  mx-2" href="{{path('blog_index')}}">Blog</a>
-				<a class="link text-gray-600 " href="{{path('cart')}}">Mon panier</a>
+				<a class="link text-gray-600  mx-2 no-underline" href="{{path('huiles')}}">Huiles Végétales</a>
+				<a class="link text-gray-600  mx-2 no-underline" href="{{path('huile_index')}}">Produits</a>
+				<a class="link text-gray-600  mx-2 no-underline" href="{{path('blog_index')}}">Blog</a>
+				<a class="link text-gray-600  no-underline" href="{{path('cart')}}">Mon panier</a>
 
 
 			</div>
@@ -83,7 +80,7 @@
 
 
 			<!--MENU MOBILE-->
-			<div class="menu-btn flex-col ">
+			<div class="menu-btn ml-32">
 				<span></span>
 				<ul>
 					{% if is_granted("ROLE_ADMIN")%}
@@ -129,31 +126,31 @@
 
 		</div>
 	</body>
-</html></nav><div class="text-gray-600 text-2xl text-center z-50 my-2 flex flex-col ">
+</html></nav><div class="text-gray-600 text-2xl text-right mr-2  z-50 my-2 flex flex-col ">
 {% if app.user %}
 	Vous êtes connecté
 	<span class="text-green">{{ app.user.username }}</span>
 {% endif %}</div><div class="mx-2"> {% block body %}{% endblock %}
 </div>
 <div
-	class="bg-gray-700 mt-20  text-white flex-col sm:flex sm:flex-wrap sm:flex-row text-center justify-evenly align-middle ">
+	class="bg-gray-700  text-white flex flex-col flex-wrap text-center justify-evenly  xl:flex-row ">
 
 
 	<!--texte-->
-	<div class="py-5">
+	<div class="py-5 ">
 		<h1 class="text-4xl md:text-5xl text-green">Huiles Végétales KA</h1>
-		<p class=" md:text-2xl">Les huiles végétales, un véritable elixir</p>
+		<p class="text-lg">Les huiles végétales, un véritable elixir</p>
 	</div>
 
 	<!--contact-->
-	<div class="text-xl  py-5">
+	<div class="py-5 text-lg ">
 
 		<a href="{{path('app_contact')}}" class="no-underline">
 
 
-			<div class="border-2 border-white mx-5 py-3 rounded-lg relative">
+			<div class="border-2 border-white  py-3 rounded-lg relative w-52 mx-auto">
 
-				<span class="text-white ">Nous contacter</span>
+				<span class="text-white pl-5">Nous contacter</span>
 				<span class="text-3xl absolute left-1 top-0">
 					<i class="fa fa-phone text-green" aria-hidden="true"></i>
 				</span>
@@ -167,8 +164,8 @@
 	</div>
 
 	<!--mentions-->
-	<div class="text-lg py-5">
-		<a class="text-white text-survol no-underline text-xl" href="{{path('mentions')}}">Mentions légales</a>
+	<div class="text-lg py-5 ">
+		<a class="text-white text-survol no-underline text-lg" href="{{path('mentions')}}">Mentions légales</a>
 	</div>
 </div>
 {% block javascripts %}

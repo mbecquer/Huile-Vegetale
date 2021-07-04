@@ -110,17 +110,17 @@ color:var(--green);
   background: var(--green);
 }
 
-@media screen and (min-width: 580px) {
+@media screen and (min-width: 797px) {
   .menu-btn {
     display: none;
   }
 }
-@media screen and (max-width: 580px) {
+@media screen and (max-width: 797px) {
   .menu-desktop {
     display: none;
   }
   .logo {
-    width: 30%;
+    width: 40%;
   }
 }
 /*PRODUITS*/
