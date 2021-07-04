@@ -4,35 +4,33 @@
 {% endblock %}
 
 {% block body %}
+
 	{% for message in app.flashes('success')  %}
 		<div class="bg-green-200  text-center text-3xl p-2 mb-2 rounded-lg mx-20">
 			{{message}}
 		</div>
 	{% endfor %}
 
-	<div class="flex justify-center mx-20 ">
 
-
-		<img class="w-full object-cover opacity-50 h-96 rounded-lg" src="{{ asset('/assets/PageACC.jpg') }}">
-
-	</div>
 	<!--content-->
 
 
 	<div
-		class="flex flex-wrap md:flex md:flex-nowrap justify-evenly ">
+		class="flex flex-wrap justify-evenly ">
 		<!--texte-->
+		<div>
+			<img class="object-cover opacity-50 w-80 rounded-lg" src="{{ asset('/assets/PageACC.jpg') }}">
+		</div>
+
+		<div class="my-5">
+
+			<h1 class="text-green text-center text-4xl">Elixirs de jouvence</h1>
 
 
-		<div class="text-justify mt-20 mx-5 md:w-96">
-
-			<h3 class="text-green text-black text-4xl">Elixirs de jouvence</h3>
+			<p class="font-bold text-lg text-justify">Son activité principale est la production des huiles végétales vierges première pression à froid à partir des graines germées. Sur ce projet, elle adopte des principes :</p>
 
 
-			<p class="font-bold text-xl ">Son activité principale est la production des huiles végétales vierges première pression à froid à partir des graines germées. Sur ce projet, elle adopte des principes :</p>
-
-
-			<ul class="text-lg">
+			<ul class="text-lg text-justify">
 				<li>
 					- De croire en des producteurs agricoles porteurs des valeurs sur la nourriture saine</li>
 
@@ -49,74 +47,69 @@
 
 				<li>- De promouvoir le partage des ressources naturelles et d’éviter le gaspillage</li>
 
-
 			</ul>
-
-
 		</div>
 		<!--image-->
 		<div>
-			<img class="w-96 mt-20  object-cover rounded-lg" src="{{ asset('/assets/Page Ac.jpg') }}"></div>
+			<img class="object-cover w-80 rounded-lg" src="{{ asset('/assets/Page Ac.jpg') }}"></div>
 
 
 	</div>
+	<!--qui sommes nous-->
+	<div class="flex flex-col flex-wrap bg-gray-100 rounded-lg shadow-lg my-5">
 
-	<div class="flex flex-col justify-evenly  mx-20 my-10 bg-gray-100 shadow-lg rounded-lg">
-
-
-		<div class="flex flex-col flex-wrap justify-center   ">
-			<h1 class="text-green text-center py-10 text-4xl">
+		<div>
+			<h1 class="text-green text-center text-4xl">
 				Qui sommes nous ?</h1>
 
 
-			<p class="max-w-lg  h-60 text-xl text-justify mx-auto relative">
-				<span class="text-green lg:text-6xl">"</span>«HuilesVégétales_AK» tirent ses ressources d’exploitation des végétaux existant dans leur milieu naturel sur les cinq continents. cette démarche éco-responsable et éco-solidaire impose de restituer à l’état pur les huiles vierges offrant la meilleure garantie de qualité pour une meilleure efficience de ces «elixirs de jouvence».
+			<p class="relative text-lg text-justify">
+				<span class="text-5xl text-green lg:text-6xl">"</span>HuilesVégétales_AK» tirent ses ressources d’exploitation des végétaux existant dans leur milieu naturel sur les cinq continents. cette démarche éco-responsable et éco-solidaire impose de restituer à l’état pur les huiles vierges offrant la meilleure garantie de qualité pour une meilleure efficience de ces «elixirs de jouvence.
 
-
-				<span class=" text-green lg:text-6xl lg:absolute lg:right-0 lg:-bottom-5 ">
+				<span class="text-5xl text-green absolute right-0 -bottom-10 lg:text-6xl lg:absolute lg:right-0 lg:-bottom-5 ">
 					"</span>
 			</p>
 
 
 		</div>
-		<div class="imageAccueil my-5">
-			<img class="  mt-10  object-cover rounded-lg" src="{{ asset('/assets/Marché.jpg') }}"></div>
+		<div>
+			<img class="w-80 my-3 mx-auto object-cover rounded-lg" src="{{ asset('/assets/Marché.jpg') }}"></div>
 
 	</div>
-	<div class="flex justify-evenly mx-5 my-10">
-		<div class="flex flex-col flex-wrap justify-center  my-5 ">
-			<h1 class=" text-green text-center  py-12 text-4xl ">
-
+	<!--valeurs et engagements-->
+	<div class="flex flex-col justify-evenly  ">
+		<div class="">
+			<h1 class="text-green text-center text-4xl ">
 				Nos valeurs et nos engagements</h1>
+			<ul class="text-lg">
 
-			<ul class="max-w-lg ">
-
-				<li class="text-xl">
-					<i class="text-green fa fa-check  " aria-hidden="true"></i>Satisfaire vos besoins</li>
+				<li>
+					<i class="text-green fa fa-check" aria-hidden="true"></i>Satisfaire vos besoins</li>
 
 
-				<li class="text-xl">
+				<li>
 
 					<i class="text-green fa fa-check " aria-hidden="true"></i>Partager vos valeurs d’éco-responsable, de solidarité et votre éthique</li>
 
 
-				<li class="text-xl">
+				<li>
 
 					<i class=" text-green fa fa-check " aria-hidden="true"></i>Faire respecter et rendre transparent nos engagements qualités : Origine des produits biologique, produire en France à partir des graines germées</li>
 
 
-				<li class="text-xl">
+				<li>
 
 					<i class="text-green fa fa-check " aria-hidden="true"></i>Produire les huiles vierges de première pression à froid à partir de pesse mécanique</li>
 
 
-				<li class="text-xl">
+				<li>
 
 					<i class=" text-green fa fa-check " aria-hidden="true"></i>Oeuvrer pour une gestion raisonnée des ressources naturelles et la protection de l’environnement</li>
 			</ul>
 		</div>
 		<div>
-			<img class=" w-96 mt-20  object-cover rounded-lg" src="{{ asset('/assets/Presse hydraulique.jpg') }}"></div>
+			<img class=" w-80 mx-auto my-3 object-cover rounded-lg" src="{{ asset('/assets/Presse hydraulique.jpg') }}"></div>
 
 	</div>
+
 {% endblock %}

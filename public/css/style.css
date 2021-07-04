@@ -10,7 +10,9 @@
 .border-green{
 border-color:var(--green);
 }
-
+.bg-green{
+  background:var(--green);
+}
 .btn{
 border:2px solid var(--green);
 font-weight: bold;
@@ -24,10 +26,7 @@ border-radius:20px;
 .link:hover{
 color:var(--green);
 }
-.imageAccueil{
-  width:1000px;
-  margin:auto;
-}
+
 
 
 /* MENU MOBILE */
@@ -73,7 +72,7 @@ color:var(--green);
 }
 .menu-btn ul {
   position: fixed;
-  width: 100%;
+  width:60%;
   height: 100vh;
   background: var(--blue);
   top: 0;
@@ -86,8 +85,8 @@ color:var(--green);
 }
 .menu-btn ul li {
   display: block;
-   margin: 50px 0; 
-   line-height: 30px; 
+   margin: 30px 0; 
+
 }
 .menu-btn ul li a {
   font-size: 20px;
