@@ -17,7 +17,7 @@ class HuilesController extends AbstractController
 
     /**
      * Undocumented function
-     *@Route("/produits", name="huile_index")
+     * @Route("/produits", name="huile_index")
      */
     public function index()
     {
