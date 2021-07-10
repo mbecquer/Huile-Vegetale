@@ -5,7 +5,6 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
 		<link href="/css/tailwind.css" rel="stylesheet">
-		<link rel="stylesheet" id="fa-fonts-css" href="https://maxcdn.icons8.com/fonts/line-awesome/1.1/css/line-awesome-font-awesome.min.css?ver=5.2" type="text/css" media="all"/>
 		<link rel="stylesheet" href="/css/style.css">
 		<link
 		rel="icon" type="image/png" href="/assets/logo-removebg-preview.png"/>
@@ -20,7 +19,7 @@
 			{% endblock %}
 		</title>
 		{# Run `composer require symfony/webpack-encore-bundle`
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																										           and uncomment the following Encore helpers to start using Symfony UX #}
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																												           and uncomment the following Encore helpers to start using Symfony UX #}
 		{% block stylesheets %}
 			{#{{ encore_entry_link_tags('app') }}#}
 		{% endblock %}
@@ -29,9 +28,11 @@
 	</head>
 	<body>
 
-		<span class="sticky top-3 float-right mr-5 z-50 text-6xl ">
-			<a href="#" class="no-underline arrow hidden">
-				<i class="fa fa-arrow-circle-o-up bg-white text-green rounded-full" aria-hidden="true"></i>
+		<span class="sticky top-3 float-right mr-5 z-50 text-6xl text-green">
+			<a href="#" class="no-underline arrow hidden ">
+				<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-arrow-up-circle-fill text-green" viewbox="0 0 16 16">
+					<path d="M16 8A8 8 0 1 0 0 8a8 8 0 0 0 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z"/>
+				</svg>
 			</a>
 		</span>
 
@@ -52,31 +53,31 @@
 
 
 			</div>
-			<!--test-->
-			<div class="dropdown text-green menu-desktop">
+			<!--menu mon compte-->
 
 
-				<button type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false" class="text-green text-xl border-green border-2 p-3 rounded-lg focus:outline-none ">
-
-					Mon compte
-				</button>
-				<ul class="dropdown-menu pl-3" aria-labelledby="dropdownMenu2">
-
-
-					<li>
-						<a class="link text-gray-600 text-xl" href="{{path('app_login')}}">Connexion</a>
-					</li>
-					<li>
-						<a class="link text-gray-600 text-xl" href="{{path('app_logout')}}">Déconnexion</a>
-
-					</li>
-					<li>
-						<a class="link text-gray-600 text-xl" href="{{path('app_register')}}">Inscription</a>
-
-					</li>
-				</ul>
+			<div class="accordion menu-desktop" id="accordionExample">
+				<div class="accordion-item">
+					<h2 class="accordion-header " id="headingOne">
+						<button class=" text-green text-xl border-green border-2 p-3 rounded-lg focus:outline-none " type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">Mon Compte</button>
+					</h2>
+					<div id="collapseOne" class="accordion-collapse collapse " aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+						<div class="accordion-body">
+							<ul class="-mx-10">
+								<li>
+									<a class="link text-gray-600 text-xl" href="{{path('app_login')}}">Connexion</a>
+								</li>
+								<li>
+									<a class="link text-gray-600 text-xl" href="{{path('app_logout')}}">Déconnexion</a>
+								</li>
+								<li>
+									<a class="link text-gray-600 text-xl" href="{{path('app_register')}}">Inscription</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
 			</div>
-			<!--test-->
 
 
 			<!--MENU MOBILE-->
@@ -132,6 +133,7 @@
 	<span class="text-green">{{ app.user.username }}</span>
 {% endif %}</div><div class="mx-2"> {% block body %}{% endblock %}
 </div>
+<!--footer-->
 <div
 	class="bg-gray-700  text-white flex flex-col flex-wrap text-center justify-evenly  xl:flex-row ">
 
@@ -151,11 +153,15 @@
 			<div class="border-2 border-white  py-3 rounded-lg relative w-52 mx-auto">
 
 				<span class="text-white pl-5">Nous contacter</span>
-				<span class="text-3xl absolute left-1 top-0">
-					<i class="fa fa-phone text-green" aria-hidden="true"></i>
+				<span class="text-3xl absolute left-1 top-1">
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-envelope-fill text-green" viewbox="0 0 16 16">
+						<path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555zM0 4.697v7.104l5.803-3.558L0 4.697zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757zm3.436-.586L16 11.801V4.697l-5.803 3.546z"/>
+					</svg>
 				</span>
-				<span class="text-3xl absolute left-1 bottom-0">
-					<i class="fa fa-envelope text-green" aria-hidden="true"></i>
+				<span class="text-3xl absolute left-1 bottom-1">
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-telephone-fill text-green" viewbox="0 0 16 16">
+						<path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z"/>
+					</svg>
 				</span>
 			</div>
 		</a>

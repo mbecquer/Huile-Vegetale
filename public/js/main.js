@@ -16,4 +16,3 @@ menuBtn.addEventListener('click', () => {
     // console.log('close');
   }
 });
-$('.carousel').carousel();

@@ -13,22 +13,15 @@
 					<div class="oil-image my-5 w-80  mx-auto">
 						{% if huile.pictures %}
 							<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-
 								<div class="carousel-inner">
-
 									{% for picture in huile.pictures %}
 										<div class="carousel-item {% if loop.first %} active {% endif %}">
 											<img class="d-block w-100 rounded-lg object-cover" src="{{vich_uploader_asset(picture, 'imageFile')| imagine_filter('thumb')}}" alt="">
 										</div>
 									{% endfor %}
-
 								</div>
-								<button class="carousel-control-prev" data-bs-target="#carouselExampleControls" type="button" data-bs-slide="prev"></button>
-								<button class="carousel-control-next" data-bs-target="#carouselExampleControls" type="button" data-bs-slide="next"></button>
 							</div>
-
 						{% endif %}
-
 					</div>
 				</a>
 
