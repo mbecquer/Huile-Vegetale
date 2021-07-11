@@ -1,0 +1,26 @@
+{% extends "base.html.twig" %}
+{% block title %}Inscription !
+{% endblock %}
+{% block body %}
+	<!--register-->
+	{% for message in app.flashes('success')  %}
+		<div class="bg-green-200  text-center text-3xl p-2 mb-2 rounded-lg mx-20">
+			{{message}}
+		</div>
+	{% endfor %}
+	<div class="mx-10 sm:mx-auto sm:w-96 shadow-lg rounded-lg my-5">
+		<div class="mx-auto w-96  p-5 ">
+			<h1 class="text-green text-center text-4xl">Inscription</h1>
+			{{form_start(registerForm)}}
+			{{form_row(registerForm.email)}}
+			{{form_row(registerForm.plainPassword)}}
+			{{form_row(registerForm.agreeTerms)}}
+			<button class="text-green text-xl border-green border-2 p-3 rounded-lg focus:outline-none my-5" type="submit">S'inscrire</button>
+			{{form_end(registerForm)}}
+		</div>
+		<span class="mx-3 text-lg">
+			Vous avez déjà un compte ?
+			<a href="{{path('app_login')}}">C'est par ici !</a>
+		</span>
+	</div>
+{% endblock %}
