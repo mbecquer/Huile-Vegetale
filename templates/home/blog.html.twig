@@ -10,25 +10,27 @@
 
 
 		<div
-			class="flex flex-wrap mx-52">
+			class="flex flex-wrap ">
 			<!--article-->
 
-			<div class="flex flex-wrap my-5 rounded-lg shadow-lg p-5 w-full justify-around">
-
-				<div class="image-article w-52">
+			<div
+				class="flex flex-wrap my-5 rounded-lg shadow-lg  w-full justify-around xl:mx-20">
+				<!--image article-->
+				<div class="image-article w-60  my-5">
 					{% for pictureArticle in article.pictureArticles %}
 						<img class="object-cover rounded-lg " src="{{asset('/images/articles/'~ pictureArticle.name)}}">
 					{% endfor %}
 				</div>
-
-				<div class="text-article mx-20  ">
+				<!--text article-->
+				<div class="w-96  my-5 px-2">
 					<h2>{{article.title}}</h2>
 
 					<p class="text-green">{{article.createdAt|date("d/m/Y")}}</p>
-					<p class="text-lg w-96">{{article.content}}</p>
+					<p class="text-lg text-justify">{{article.content}}</p>
 
 				</div>
-				<div class=" flex items-center">
+				<!--bouton en voir plus-->
+				<div class=" flex items-center my-5 ">
 					<a href="{{path('blog_read', {'id': article.id})}}">
 						<button class="text-green text-xl border-green border-2 p-3 rounded-lg focus:outline-none ">En voir plus</button>
 					</a>
