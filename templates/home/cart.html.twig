@@ -16,7 +16,7 @@
 
 	{% if panierWithData %}
 		<!--encart paypal-->
-		<div class=" flex flex-col justify-end w-60 float-right sticky top-5 right-5 border-green border-2 rounded-lg  p-3 bg-white shadow-lg text-2xl">Total :
+		<div class=" flex xl:flex-col flex-wrap justify-end xl:w-60 xl:float-right xl:sticky xl:top-5 xl:right-5 border-green border-2 rounded-lg  p-3 bg-white shadow-lg text-2xl ">Total :
 
 			{{total}}
 			€
@@ -36,11 +36,12 @@
 
 
 		</div>
-		<div class="text-xl flex flex-wrap mx-60 mr-20">
+		<!--fin encart paypal-->
+		<div class="text-xl flex flex-wrap xl:mx-60 xl:mr-20">
 			{% for item in panierWithData %}
 				<!--image du panier-->
-				<div class=" w-full shadow-lg rounded-lg my-5">
-					<div class="flex p-5 float-left">
+				<div class=" shadow-lg rounded-lg my-5">
+					<div class="flex flex-wrap p-5 xl:float-left">
 						{% for picture in item.huile.pictures %}
 							<img class="object-cover mx-2" src="{{vich_uploader_asset(picture, 'imageFile')| imagine_filter('thumb')}}" alt="">
 
@@ -49,7 +50,7 @@
 					</div>
 
 					<!--information des articles du panier-->
-					<div class="flex flex-col  float-right my-5 mr-20 ">
+					<div class="flex flex-col xl:float-right my-5 mx-5 ">
 						<p>Nom :
 							<span class="font-bold capitalize">{{item.huile.name}}</span>
 						</p>
@@ -63,10 +64,11 @@
 							</p>
 
 							<a href="{{path('cart_add',{'id':item.huile.id} )}}" class="no-underline mx-5 ">
-								<i class="fa fa-plus 2x text-green  border-green border-2 p-3 rounded-lg focus:outline-none " aria-hidden="true"></i>
+								PLUS
+
 							</a>
 							<a href="{{path('cart_remove',{'id':item.huile.id} )}}" class="no-underline">
-								<i class="fa fa-minus text-red-400  border-red-400 border-2 p-3 rounded-lg focus:outline-none" aria-hidden="true"></i>
+								MOINS
 							</a>
 						</div>
 						<!--information part 2 des articles du panier-->
@@ -90,7 +92,7 @@
 		</div>
 	{% else %}
 
-		<div class="shadow-lg rounded-lg mx-96 text-center ">
+		<div class="shadow-lg rounded-lg xl:mx-96 xl:text-center ">
 			<div class="my-36 p-20">
 				<h1 class="">Surprise votre panier est vide !</h1>
 				<p class="text-lg">Commencez vos achats dès maintenant en suivant ce lien :

@@ -3,9 +3,9 @@
 {% block body %}
 	<!--page-->
 	<div
-		class="mx-52">
+		class="xl:mx-52">
 		<!--message flash-->
-		<div class="mx-28">
+		<div class="xl:mx-28">
 			{% for message in app.flashes('message')  %}
 				<div class="bg-green-200  text-center text-3xl p-2 mb-2 rounded-lg mx-20">
 					{{message}}
@@ -26,10 +26,10 @@
 
 			</div>
 			<!--content-->
-			<div class="text-article mx-20  ">
+			<div class="text-article xl:mx-20  ">
 				<h2>{{article.title}}</h2>
 				<p class="text-green">{{article.createdAt|date("d/m/Y")}}</p>
-				<p class="text-lg w-96">{{article.content}}</p>
+				<p class="text-lg xl:w-96">{{article.content}}</p>
 			</div>
 
 		</div>
@@ -75,7 +75,7 @@
 						<!-- fin info user reply-->
 						<hr>
 						<!--comment user reply-->
-						<div class="shadow-lg rounded-lg mx-20 p-2 px-5 my-3 border-l-4 border-gray-500 bg-gray-100">
+						<div class="shadow-lg rounded-lg xl:mx-20 p-2 px-5 my-3 border-l-4 border-gray-500 bg-gray-100">
 							<h2 class="my-2">Citation de
 								<span class="text-green">{{comment.nickname}}</span>
 							</h2>
