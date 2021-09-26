@@ -3,12 +3,10 @@
 {% block title %}
 	{{title}}
 {% endblock %}
+
 {% block body %}
 	<h1 class="text-center text-green text-4xl">{{title}}</h1>
-
 	{% for article in articles %}
-
-
 		<div
 			class="flex flex-wrap ">
 			<!--article-->
@@ -36,10 +34,6 @@
 					</a>
 				</div>
 			</div>
-
 		</div>
-
-
 	{% endfor %}
-
 {% endblock %}

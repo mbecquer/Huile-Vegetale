@@ -2,13 +2,18 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\HuilesRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class HomeController extends AbstractController
 {
-
+    private $huilesRepository;
+    public function __construct(HuilesRepository $huilesRepository)
+    {
+        $this->huilesRepository = $huilesRepository;
+    }
     /**
      * Undocumented function
      *@Route("/", name="index")
@@ -27,10 +32,11 @@ class HomeController extends AbstractController
      */
     public function huiles(): Response
     {
-
+        $properties = $this->huilesRepository->findAll();
         return $this->render("home/huiles.html.twig", [
             "title" => "Nos Huiles",
-            "message" => "Nos Huiles"
+            "message" => "Nos Huiles",
+            "huiles" => $properties
         ]);
     }
 
@@ -42,7 +48,7 @@ class HomeController extends AbstractController
     {
 
         return $this->render("home/mentions.html.twig", [
-            "title" => "Mentions légales"
+            "title" => "Informations"
         ]);
     }
 }

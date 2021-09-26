@@ -19,7 +19,7 @@
 			{% endblock %}
 		</title>
 		{# Run `composer require symfony/webpack-encore-bundle`
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																						           and uncomment the following Encore helpers to start using Symfony UX #}
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																								           and uncomment the following Encore helpers to start using Symfony UX #}
 		{% block stylesheets %}
 			{#{{ encore_entry_link_tags('app') }}#}
 		{% endblock %}
@@ -40,43 +40,44 @@
 			<a class=" text-gray-600 logo " href="{{path('index')}}" title="Accueil"><img src="{{ asset('/assets/logo-removebg-preview.png') }}"></a>
 
 			<div class="menu-desktop z-50 ">
-
+				<a class="link text-gray-600  mx-2 no-underline" href="{{path('huiles')}}">Huiles Végétales</a>
 				{% if is_granted("ROLE_ADMIN")%}
 					<a class="link text-gray-600 no-underline mx-2" href="{{path('admin_huiles_index')}}">Admin Huiles</a>
 					<a class="link text-gray-600 no-underline" href="{{path('admin_article_index')}}">Admin Articles</a>
+
+
+					<a class="link text-gray-600  mx-2 no-underline" href="{{path('huile_index')}}">Mes produits</a>
+
+					<a class="link text-gray-600  mx-2 no-underline" href="{{path('blog_index')}}">Le blog</a>
+
+					<a class="link text-gray-600  no-underline" href="{{path('cart')}}">Mon panier</a>
 				{% endif %}
-
-				<a class="link text-gray-600  mx-2 no-underline" href="{{path('huiles')}}">Huiles Végétales</a>
-				<a class="link text-gray-600  mx-2 no-underline" href="{{path('huile_index')}}">Produits</a>
-				<a class="link text-gray-600  mx-2 no-underline" href="{{path('blog_index')}}">Blog</a>
-				<a class="link text-gray-600  no-underline" href="{{path('cart')}}">Mon panier</a>
-
 
 			</div>
 			<!--menu mon compte-->
 
+			{% if is_granted("ROLE_ADMIN")%}
+				<div class="accordion menu-desktop" id="accordionExample">
+					<div class="accordion-item">
+						<h2 class="accordion-header " id="headingOne">
+							<button class=" text-green text-xl border-green border-2 p-3 rounded-lg focus:outline-none " type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">Mon Compte</button>
+						</h2>
+						<div id="collapseOne" class="accordion-collapse collapse " aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+							<div class="accordion-body">
+								<ul class="-mx-10">
+									<li>
+										<a class="link text-gray-600 text-xl" href="{{path('app_login')}}">Connexion</a>
+									</li>
+									<li>
+										<a class="link text-gray-600 text-xl" href="{{path('app_logout')}}">Déconnexion</a>
+									</li>
 
-			<div class="accordion menu-desktop" id="accordionExample">
-				<div class="accordion-item">
-					<h2 class="accordion-header " id="headingOne">
-						<button class=" text-green text-xl border-green border-2 p-3 rounded-lg focus:outline-none " type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">Mon Compte</button>
-					</h2>
-					<div id="collapseOne" class="accordion-collapse collapse " aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-						<div class="accordion-body">
-							<ul class="-mx-10">
-								<li>
-									<a class="link text-gray-600 text-xl" href="{{path('app_login')}}">Connexion</a>
-								</li>
-								<li>
-									<a class="link text-gray-600 text-xl" href="{{path('app_logout')}}">Déconnexion</a>
-								</li>
-
-							</ul>
+								</ul>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-
+			{% endif %}
 
 			<!--MENU MOBILE-->
 			<div class="menu-btn ml-32">
@@ -88,8 +89,7 @@
 								<p class="text-green">Admin Huiles</p>
 							</a>
 						</li>
-					{% endif %}
-					{% if is_granted("ROLE_ADMIN") %}
+
 						<li>
 							<a class="no-underline" href="{{path('admin_article_index')}}">
 								<p class="text-green">Admin Articles</p>
@@ -99,78 +99,65 @@
 					<li>
 						<a class="no-underline" href="{{path('huiles')}}">Huiles Végétales</a>
 					</li>
-					<li>
-						<a class="no-underline" href="{{path('huile_index')}}">Produits</a>
-					</li>
-					<li>
-						<a class="no-underline" href="{{path('blog_index')}}">Blog</a>
-					</li>
-					<li>
-						<a class="no-underline" href="{{path('cart')}}">Mon panier</a>
-					</li>
-				</li>
-				<li>
-					<a class="border-green border-2 rounded-lg p-2 no-underline" href="{{path('app_login')}}">Se connecter</a>
-				</li>
+					{% if is_granted("ROLE_ADMIN")%}
+						<li>
+							<a class="no-underline" href="{{path('huile_index')}}">Produits</a>
+						</li>
+						<li>
+							<a class="no-underline" href="{{path('blog_index')}}">Blog</a>
+						</li>
+						<li>
+							<a class="no-underline" href="{{path('cart')}}">Mon panier</a>
+						</li>
 
-				{% if is_granted('ROLE_USER') %}
-					<li>
-						<a class="border-green border-2 rounded-lg p-2 no-underline" href="{{path('app_logout')}}">Déconnexion</a>
-					</li>
-				{% endif %}
-			</ul>
+						<li>
+							<a class="border-green border-2 rounded-lg p-2 no-underline" href="{{path('app_login')}}">Se connecter</a>
+						</li>
 
 
-		</div>
-	</body>
-</html></nav><div class="text-gray-600 text-2xl text-right mr-2   z-50 my-2 flex flex-col ">
-{% if app.user %}
-	Vous êtes connecté
-	<span class="text-green">{{ app.user.username }}</span>
-{% endif %}</div><div class="mx-2 "> {% block body %}{% endblock %}
-</div>
-<!--footer-->
-<div
-	class="bg-gray-700  text-white flex flex-col flex-wrap text-center justify-evenly  xl:flex-row ">
+						<li>
+							<a class="border-green border-2 rounded-lg p-2 no-underline" href="{{path('app_logout')}}">Déconnexion</a>
+						</li>
+					{% endif %}
+				</ul>
 
 
-	<!--texte-->
-	<div class="py-5 ">
-		<h1 class="text-4xl md:text-5xl text-green">Huiles Végétales KA</h1>
-		<p class="text-lg">Les huiles végétales, un véritable elixir</p>
-	</div>
-
-	<!--contact-->
-	<div class="py-5 text-lg ">
-
-		<a href="{{path('app_contact')}}" class="no-underline">
-
-
-			<div class="border-2 border-white  py-3 rounded-lg relative w-52 mx-auto">
-
-				<span class="text-white pl-5">Nous contacter</span>
-				<span class="text-3xl absolute left-1 top-1">
-					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-envelope-fill text-green" viewbox="0 0 16 16">
-						<path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555zM0 4.697v7.104l5.803-3.558L0 4.697zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757zm3.436-.586L16 11.801V4.697l-5.803 3.546z"/>
-					</svg>
-				</span>
-				<span class="text-3xl absolute left-1 bottom-1">
-					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-telephone-fill text-green" viewbox="0 0 16 16">
-						<path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z"/>
-					</svg>
-				</span>
 			</div>
-		</a>
+		</nav>
+
+		<div class="text-gray-600 text-2xl text-right mr-2   z-50 my-2 flex flex-col ">
+			{% if app.user %}Vous êtes connecté<span class="text-green">{{ app.user.username }}</span>
+			{% endif %}
+		</div>
+		<div class="mx-2 "> {% block body %}{% endblock %}
+			</div><!--footer--><div class="bg-gray-700 text-white flex flex-col flex-wrap text-center justify-evenly xl:flex-row"><!--texte--><div class="py-5 ">
+					<h1 class="text-4xl md:text-5xl text-green">Huiles Végétales KA</h1>
+					<p class="text-lg">Les huiles végétales, un véritable elixir</p>
+				</div><!--contact--><div class="py-5 text-lg ">
+					<a href="{{path('app_contact')}}" class="no-underline">
 
 
-	</div>
+						<div class="border-2 border-white  py-3 rounded-lg relative w-52 mx-auto">
 
-	<!--mentions-->
-	<div class="text-lg py-5 ">
-		<a class="text-white text-survol no-underline text-lg" href="{{path('mentions')}}">Mentions légales</a>
-	</div>
-</div>
-{% block javascripts %}
-
-	<script src="/js/main.js"></script>
-{% endblock %}</body></html>
+							<span class="text-white pl-5">Nous contacter</span>
+							<span class="text-3xl absolute left-1 top-1">
+								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-envelope-fill text-green" viewbox="0 0 16 16">
+									<path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555zM0 4.697v7.104l5.803-3.558L0 4.697zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757zm3.436-.586L16 11.801V4.697l-5.803 3.546z"/>
+								</svg>
+							</span>
+							<span class="text-3xl absolute left-1 bottom-1">
+								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-telephone-fill text-green" viewbox="0 0 16 16">
+									<path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z"/>
+								</svg>
+							</span>
+						</div>
+					</a>
+				</div><!--mentions--><div class="text-lg py-5 ">
+					<a class="text-white text-survol no-underline text-lg" href="{{path('mentions')}}">Informations</a>
+				</div>
+			</div>
+			{% block javascripts %}
+				<script src="/js/main.js"></script>
+			{% endblock %}
+		</body>
+	</html>

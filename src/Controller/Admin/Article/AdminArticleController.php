@@ -39,7 +39,7 @@ class AdminArticleController extends AbstractController
 
         return $this->render('home/blog.html.twig', [
             "articles" => $articles,
-            "title" => "Notre blog",
+            "title" => "Le blog",
         ]);
     }
     /**

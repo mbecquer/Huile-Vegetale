@@ -3,11 +3,10 @@
 {% endblock %}
 {% block body %}
 	<!--page de mes produits-->
-	<h1 class="text-center text-green text-4xl">{{message}}</h1>
+	<h1 class="text-center text-green text-4xl">{{title}}</h1>
 	<div class="flex flex-wrap justify-center">
 
 		{% for huile in huiles %}
-
 			<div class="oil-product mt-10 my-20  m-2 cursor-pointer w-96 shadow-2xl rounded-lg">
 				<a href="{{path('huile_read', {id: huile.id, slug:huile.slug})}}">
 					<div class="oil-image my-5 w-80  mx-auto">
@@ -24,7 +23,6 @@
 						{% endif %}
 					</div>
 				</a>
-
 				<div class="oil-description ml-5 mt-5">
 					<span class="font-bold text-3xl md:text-2xl text-green">{{huile.name}}</span>
 

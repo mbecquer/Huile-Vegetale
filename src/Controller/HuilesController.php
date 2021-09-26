@@ -24,8 +24,8 @@ class HuilesController extends AbstractController
 
         $properties = $this->huilesRepository->findAll();
         return $this->render("huile/index.html.twig", [
-            "title" => "Nos produits",
-            "message" => "Nos produits",
+            "title" => "Mes produits",
+            "message" => "Mes produits",
             "huiles" => $properties
         ]);
     }
