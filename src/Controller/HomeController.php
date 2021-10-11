@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\FamilyRepository;
 use App\Repository\HuilesRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -10,9 +11,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class HomeController extends AbstractController
 {
     private $huilesRepository;
-    public function __construct(HuilesRepository $huilesRepository)
+    public function __construct(HuilesRepository $huilesRepository, FamilyRepository $familyRepository)
     {
         $this->huilesRepository = $huilesRepository;
+        $this->familyRepository = $familyRepository;
     }
     /**
      * Undocumented function
@@ -32,11 +34,14 @@ class HomeController extends AbstractController
      */
     public function huiles(): Response
     {
+
         $properties = $this->huilesRepository->findAll();
+        $family = $this->familyRepository->findAll();
         return $this->render("home/huiles.html.twig", [
             "title" => "Nos Huiles",
             "message" => "Nos Huiles",
-            "huiles" => $properties
+            "huiles" => $properties,
+            "famille" => $family
         ]);
     }
 

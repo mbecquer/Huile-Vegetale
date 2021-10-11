@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Huiles;
+use App\Repository\FamilyRepository;
 use App\Repository\HuilesRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -35,7 +36,7 @@ class HuilesController extends AbstractController
     public function read(string $slug, int $id)
     {
         $huile = $this->huilesRepository->find($id);
-
+  
         if ($huile->getSlug() !== $slug) {
             $this->redirectToRoute('huile_read', [
                 "id" => $huile->getId(),
@@ -43,7 +44,8 @@ class HuilesController extends AbstractController
             ]);
         }
         return $this->render('huile/read.html.twig', [
-            'huile' => $huile
+            'huile' => $huile,
+     
         ]);
     }
 }
