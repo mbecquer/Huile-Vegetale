@@ -34,14 +34,15 @@ class HomeController extends AbstractController
      */
     public function huiles(): Response
     {
-
         $properties = $this->huilesRepository->findAll();
         $family = $this->familyRepository->findAll();
+
         return $this->render("home/huiles.html.twig", [
             "title" => "Nos Huiles",
             "message" => "Nos Huiles",
             "huiles" => $properties,
-            "famille" => $family
+            "famille" => $family,
+
         ]);
     }
 

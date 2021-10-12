@@ -1,0 +1,27 @@
+{% extends "base.html.twig" %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+	{% for huile in huiles %}
+		name:{{huile.name}}
+		<br>
+		description:{{huile.description}}<br>
+		capacity:{{huile.capacity}}<br>
+		price:{{huile.price}}<br>
+
+		image:
+		{% if huile.pictures %}
+			<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+				<div class="carousel-inner">
+					{% for picture in huile.pictures %}
+						<div class="carousel-item {% if loop.first %} active {% endif %}">
+							<img class="d-block w-100 rounded-lg object-cover" src="{{vich_uploader_asset(picture, 'imageFile')| imagine_filter('thumb')}}" alt="">
+						</div>
+					{% endfor %}
+				</div>
+			</div>
+		{% endif %}<br>
+		family:{{huile.family.name}}<br>
+	{% endfor %}
+{% endblock %}
