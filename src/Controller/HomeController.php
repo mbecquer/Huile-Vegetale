@@ -30,19 +30,16 @@ class HomeController extends AbstractController
 
     /**
      * Undocumented function
-     *@Route("/huiles", name="huiles")
+     *@Route("/huiles", name="oils")
      */
-    public function huiles(): Response
+    public function oils(): Response
     {
-        $properties = $this->huilesRepository->findAll();
         $family = $this->familyRepository->findAll();
 
-        return $this->render("home/huiles.html.twig", [
+        return $this->render("home/vegetaloils.html.twig", [
             "title" => "Nos Huiles",
             "message" => "Nos Huiles",
-            "huiles" => $properties,
-            "famille" => $family,
-
+            "families" => $family,
         ]);
     }
 
@@ -52,7 +49,6 @@ class HomeController extends AbstractController
      */
     public function mentions(): Response
     {
-
         return $this->render("home/mentions.html.twig", [
             "title" => "Informations"
         ]);

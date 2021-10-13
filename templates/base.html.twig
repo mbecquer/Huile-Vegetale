@@ -41,16 +41,11 @@
 			<a class=" text-gray-600 logo " href="{{path('index')}}" title="Accueil"><img src="{{ asset('/assets/logo-removebg-preview.png') }}"></a>
 
 			<div class="menu-desktop z-50 ">
-				<a class="link text-gray-600  mx-2 no-underline" href="{{path('huiles')}}">Huiles Végétales</a>
+				<a class="link text-gray-600  mx-2 no-underline" href="{{path('oils')}}">Huiles Végétales</a>
 				{% if is_granted("ROLE_ADMIN")%}
 					<a class="link text-gray-600 no-underline mx-2" href="{{path('admin_huiles_index')}}">Admin Huiles</a>
 					<a class="link text-gray-600 no-underline" href="{{path('admin_article_index')}}">Admin Articles</a>
-
-
-					<a class="link text-gray-600  mx-2 no-underline" href="{{path('huile_index')}}">Mes produits</a>
-
 					<a class="link text-gray-600  mx-2 no-underline" href="{{path('blog_index')}}">Le blog</a>
-
 					<a class="link text-gray-600  no-underline" href="{{path('cart')}}">Mon panier</a>
 				{% endif %}
 
@@ -98,12 +93,10 @@
 						</li>
 					{% endif %}
 					<li>
-						<a class="no-underline" href="{{path('huiles')}}">Huiles Végétales</a>
+						<a class="no-underline" href="{{path('oils')}}">Huiles Végétales</a>
 					</li>
 					{% if is_granted("ROLE_ADMIN")%}
-						<li>
-							<a class="no-underline" href="{{path('huile_index')}}">Produits</a>
-						</li>
+						
 						<li>
 							<a class="no-underline" href="{{path('blog_index')}}">Blog</a>
 						</li>

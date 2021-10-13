@@ -11,9 +11,10 @@ use Symfony\Component\Routing\Annotation\Route;
 class HuilesController extends AbstractController
 {
     private $huilesRepository;
-    public function __construct(HuilesRepository $huilesRepository)
+    public function __construct(HuilesRepository $huilesRepository, FamilyRepository $familyRepository)
     {
         $this->huilesRepository = $huilesRepository;
+        $this->familyRepository = $familyRepository;
     }
 
 
@@ -36,18 +37,21 @@ class HuilesController extends AbstractController
         ]);
     }
     /**
-     * @Route("/family/{id}",name="family_huile")
+     * @Route("/family/{slug}-{id}",name="family_huile", requirements={"slug"="[a-z0-9\-]*"})
      */
-    public function family(int $id, FamilyRepository $familyRepository)
+    public function family(string $slug, int $id)
     {
-        $family = $familyRepository->find($id);
+        $family = $this->familyRepository->find($id);
         $huile = $this->huilesRepository->findBy(['family' => $family]);
-
-
-        return $this->render('huile/family.html.twig', [
+        if ($family->getSlug() !== $slug) {
+            $this->redirectToRoute('family_huile', [
+                "id" => $family->getId(),
+                "slug" => $family->getSlug()
+            ]);
+        }
+        return $this->render('huile/index.html.twig', [
             'huiles' => $huile,
             'family' => $family
-
         ]);
     }
 }

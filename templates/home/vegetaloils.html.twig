@@ -13,9 +13,9 @@
 				Familles botaniques
 			</a>
 			<ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-				{% for family in famille %}
+				{% for family in families %}
 					<li>
-						<a class="dropdown-item " href="{{path('family_huile',{'id':family.id})}}">{{family.name}}</a>
+						<a class="dropdown-item " href="{{path('family_huile',{id:family.id, slug:family.slug})}}">{{family.name}}</a>
 					</li>
 				{% endfor %}
 			</ul>

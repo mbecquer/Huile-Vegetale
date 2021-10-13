@@ -2,10 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\FamilyRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use Cocur\Slugify\Slugify;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\FamilyRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity(repositoryClass=FamilyRepository::class)
@@ -24,6 +25,7 @@ class Family
      */
     private $name;
 
+    private $slug;
     /**
      * @ORM\OneToMany(targetEntity=Huiles::class, mappedBy="family")
      */
@@ -79,5 +81,12 @@ class Family
         }
 
         return $this;
+    }
+    /**
+     * Get the value of slug
+     */
+    public function getSlug()
+    {
+        return (new Slugify())->slugify($this->name);
     }
 }
