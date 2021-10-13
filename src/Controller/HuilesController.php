@@ -16,20 +16,7 @@ class HuilesController extends AbstractController
         $this->huilesRepository = $huilesRepository;
     }
 
-    /**
-     * Undocumented function
-     * @Route("/produits", name="huile_index")
-     */
-    public function index()
-    {
 
-        $properties = $this->huilesRepository->findAll();
-        return $this->render("huile/index.html.twig", [
-            "title" => "Mes produits",
-            "message" => "Mes produits",
-            "huiles" => $properties
-        ]);
-    }
     /**
      * @Route("/huile/{slug}-{id}",name="huile_read", requirements={"slug"="[a-z0-9\-]*"})
      */
@@ -59,6 +46,7 @@ class HuilesController extends AbstractController
 
         return $this->render('huile/family.html.twig', [
             'huiles' => $huile,
+            'family' => $family
 
         ]);
     }

@@ -3,25 +3,33 @@
 {% block title %}{% endblock %}
 
 {% block body %}
-	{% for huile in huiles %}
-		name:{{huile.name}}
-		<br>
-		description:{{huile.description}}<br>
-		capacity:{{huile.capacity}}<br>
-		price:{{huile.price}}<br>
 
-		image:
-		{% if huile.pictures %}
-			<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-				<div class="carousel-inner">
-					{% for picture in huile.pictures %}
-						<div class="carousel-item {% if loop.first %} active {% endif %}">
-							<img class="d-block w-100 rounded-lg object-cover" src="{{vich_uploader_asset(picture, 'imageFile')| imagine_filter('thumb')}}" alt="">
-						</div>
-					{% endfor %}
+	<h1 class="text-center text-green text-4xl">Famille des
+		{{family.name}}</h1>
+	<div class="flex flex-wrap justify-center">
+		{% for huile in huiles %}
+			<a href="{{path('huile_read', {id: huile.id, slug:huile.slug})}}" class="no-underline">
+				<div class="oil-product mt-10 my-20  m-2 cursor-pointer w-96 shadow-2xl rounded-lg">
+
+					<div class="oil-image my-5 w-80  mx-auto">
+						{% if huile.pictures %}
+							<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+								<div class="carousel-inner">
+									{% for picture in huile.pictures %}
+										<div class="carousel-item {% if loop.first %} active {% endif %}">
+											<img class="d-block w-100 rounded-lg object-cover" src="{{vich_uploader_asset(picture, 'imageFile')| imagine_filter('thumb')}}" alt="">
+										</div>
+									{% endfor %}
+								</div>
+							</div>
+						{% endif %}
+					</div>
+
+					<div class="oil-description ml-5 mt-5">
+						<span class="font-bold text-3xl md:text-2xl text-green">{{huile.name}}</span>
+					</div>
 				</div>
-			</div>
-		{% endif %}<br>
-		family:{{huile.family.name}}<br>
-	{% endfor %}
+			</a>
+		{% endfor %}
+	</div>
 {% endblock %}
