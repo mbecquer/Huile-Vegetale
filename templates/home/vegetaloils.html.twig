@@ -8,15 +8,15 @@
 
 	<!--description-->
 	<div class="flex flex-col xl:flex-row xl:my-20 xl:mx-52">
-		<div class="dropdown my-10 xl:my-0">
-			<a class="btn btn-success dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-				Familles botaniques
-			</a>
-			<ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+
+		<div class="w-80 mx-auto">
+			<h5 class="text-justify text-green border-green border-2 rounded-lg py-3 px-2">Familles botaniques</h5>
+			<ul class="p-3 bg-gray-100 ">
 				{% for family in families %}
-					<li>
-						<a class="dropdown-item " href="{{path('family_huile',{id:family.id, slug:family.slug})}}">{{family.name}}</a>
+					<li class="border-b-2 border-green py-4 text-green ">
+						<a class=" no-underline text-green uppercase text-xl link" href="{{path('family_huile',{id:family.id, slug:family.slug})}}">{{family.name}}</a>
 					</li>
+
 				{% endfor %}
 			</ul>
 		</div>

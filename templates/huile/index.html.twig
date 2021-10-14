@@ -6,12 +6,12 @@
 
 	<h1 class="text-center text-green text-4xl">Famille des
 		{{family.name}}</h1>
-		
-	<div class="flex flex-wrap justify-center">
+
+	<div class="flex flex-wrap justify-center mx-10 xl:mx-52 ">
 		{% for huile in huiles %}
-			<a href="{{path('huile_read', {id: huile.id, slug:huile.slug})}}" class="no-underline">
-				<div class="oil-product mt-10 my-20  m-2 cursor-pointer w-96 shadow-2xl rounded-lg">
-					<div class="oil-image my-5 w-80  mx-auto">
+			<a href="{{path('huile_read', {id: huile.id, slug:huile.slug})}}" class="no-underline mx-10   mt-10 mb-20 ">
+				<div class="my-10  border-2 h-80 cursor-pointer   rounded-lg  hover:bg-gray-100">
+					<div class="my-5 w-80  ">
 						{% if huile.pictures %}
 							<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
 								<div class="carousel-inner">
@@ -25,9 +25,10 @@
 						{% endif %}
 					</div>
 
-					<div class="oil-description ml-5 mt-5">
-						<span class="font-bold text-3xl md:text-2xl text-green">{{huile.name}}</span>
-					</div>
+
+				</div>
+				<div class="">
+					<span class="font-bold text-xl  text-green">{{huile.name}}</span>
 				</div>
 			</a>
 		{% endfor %}
