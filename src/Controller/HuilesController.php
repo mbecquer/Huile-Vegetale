@@ -49,9 +49,10 @@ class HuilesController extends AbstractController
                 "slug" => $family->getSlug()
             ]);
         }
+       
         return $this->render('huile/index.html.twig', [
             'huiles' => $huile,
-            'family' => $family
+            'family' => $family,
         ]);
     }
 }

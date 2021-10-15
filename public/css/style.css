@@ -121,9 +121,7 @@ color:var(--green);
   .menu-desktop {
     display: none;
   }
-  .logo {
-    width: 40%;
-  }
+
 }
 /*PRODUITS*/
 .oil-button:hover{

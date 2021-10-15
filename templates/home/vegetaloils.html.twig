@@ -10,13 +10,15 @@
 	<div class="flex flex-col xl:flex-row xl:my-20 xl:mx-52">
 
 		<div class="w-80 mx-auto">
-			<h5 class="text-center text-green border-green border-2 rounded-lg py-3 px-2">Familles botaniques</h5>
-			<ul class="p-3 divide-y divide-green-700 bg-gray-50 ">
+			<ul class="p-0 divide-y divide-green-700 bg-gray-50 filter drop-shadow-lg ">
+				<li class="py-3 px-3 text-white bg-green uppercase">
+					<h5>Familles botaniques</h5>
+				</li>
 				{% for family in families %}
-					<li class=" py-4 text-green  ">
-						<a class=" no-underline text-green uppercase text-xl link" href="{{path('family_huile',{id:family.id, slug:family.slug})}}">{{family.name}}</a>
+					<li class="py-3 px-3 text-green hover:bg-gray-200">
+						<a class="no-underline text-green uppercase text-lg link" href="{{path('family_huile',{id:family.id, slug:family.slug })}}">{{family.name}}
+							({{family.huile|length}})</a>
 					</li>
-
 				{% endfor %}
 			</ul>
 		</div>
