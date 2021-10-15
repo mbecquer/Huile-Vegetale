@@ -39,7 +39,6 @@ color:var(--green);
   width: 60px;
   height: 40px;
   cursor: pointer;
-  background: white;
 }
 .menu-btn span {
   content: "";
@@ -70,15 +69,17 @@ color:var(--green);
 
 .menu-btn.open {
   transition: 0.5s;
+ 
 }
 .menu-btn ul {
   position: fixed;
   width:60%;
-  height: 100vh;
+  height: 100%; 
   background: var(--blue);
   top: 0;
   left: -100%;
   transition: all 0.5s;
+ 
 }
 .menu-btn.open ul {
   left: 0;

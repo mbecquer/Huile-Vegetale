@@ -10,7 +10,7 @@
 	<div class="flex flex-wrap justify-center mx-10 xl:mx-52 ">
 		{% for huile in huiles %}
 			<a href="{{path('huile_read', {id: huile.id, slug:huile.slug})}}" class="no-underline mx-10   mt-10 mb-20 ">
-				<div class="my-10  border-2 h-80 cursor-pointer   rounded-lg  hover:bg-gray-100">
+				<div class="my-10  border-2 h-80 cursor-pointer rounded-lg  bg-gray-50 filter drop-shadow-lg  hover:bg-gray-100">
 					<div class="my-5 w-80  ">
 						{% if huile.pictures %}
 							<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
