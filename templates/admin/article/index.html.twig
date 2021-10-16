@@ -2,7 +2,7 @@
 {% block body %}
 
 	<h1 class="text-center">Administration article</h1>
-	<div class="mx-28">
+	<div class="mx-2">
 		{% for message in app.flashes('success')  %}
 			<div class="bg-green-200  text-center text-3xl p-2 mb-2 rounded-lg mx-20">
 				{{message}}
@@ -13,30 +13,31 @@
 				Ajouter un article
 			</button>
 		</a>
-		<table class="w-full my-5  table-striped text-center">
-			<thead class="border-b-2 font-bold text-2xl">
-				<tr class="uppercase">
-					<th>id</th>
-					<th>titre</th>
-					<th>contenu</th>
-					<th>image</th>
-					<th>creation</th>
-					<th>actions</th>
-				</tr>
-			</thead>
-			<tbody>
+
+		<div class="shadow-lg my-10">
+			<div class="">
+				<ul class="flex flex-wrap justify-evenly text-center text-xl uppercase font-semibold">
+					<li class="w-40">id</li>
+					<li class="w-40">titre</li>
+					<li class="w-96">contenu</li>
+					<li class="w-40">image</li>
+					<li class="w-40">creation</li>
+					<li class="w-40">actions</li>
+				</ul>
+			</div>
+			<div>
 				{% for article in articles %}
-					<tr class="cursor-pointer text-xl border-b-2 ">
-						<td>{{article.id}}</td>
-						<td>{{article.title}}</td>
-						<td class="w-96  text-justify">{{article.content}}</td>
-						<td class="w-52">
+					<ul class="flex flex-wrap justify-evenly text-center shadow-lg py-4">
+						<li class="-w-10 lg:w-40 my-auto text-green text-xl font-bold">{{article.id}}</li>
+						<li class="-w-10 lg:w-40 font-semibold text-xl my-auto">{{article.title}}</li>
+						<li class="w-96 my-auto text-lg">{{article.content}}</li>
+						<li class="w-40 font-semibold text-xl my-auto">
 							{% for pictureArticle in article.pictureArticles %}
 								<img class="object-cover rounded-lg " src="{{asset('/images/articles/'~ pictureArticle.name)}}">
 							{% endfor %}
-						</td>
-						<td>{{article.createdAt|date("d/m/Y H:i","Europe/Paris")}}</td>
-						<td class="flex  justify-center">
+						</li>
+						<li class="w-40 font-semibold text-xl my-auto">{{article.createdAt|date("d/m/Y H:i","Europe/Paris")}}</li>
+						<li class="w-40 my-auto">
 							<a href="{{path('admin_article_edit',{'id': article.id})}}">
 								<button class="text-green text-xl border-green border-2 p-3 rounded-lg focus:outline-none mx-2">Modifier</button>
 							</a>
@@ -46,11 +47,12 @@
 								<button class="text-red-500 text-xl border-red-500 border-2 p-3 rounded-lg focus:outline-none">Supprimer</button>
 
 							</form>
-						</td>
-					</tr>
+						</li>
+					</ul>
+
 				{% endfor %}
-			</tbody>
-		</table>
+			</div>
+		</div>
 	</div>
 
 
