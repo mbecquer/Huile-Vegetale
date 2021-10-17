@@ -8,22 +8,24 @@
 		{{family.name}}</h1>
 
 	<div class="flex flex-wrap justify-center mx-10 xl:mx-52 ">
+
+
 		{% for huile in huiles %}
 			{% if huile.active %}
+
 				<a href="{{path('huile_read', {id: huile.id, slug:huile.slug})}}" class="no-underline mx-10 mt-10 mb-20 ">
 					<div class="h-96 cursor-pointer rounded-lg">
-						<div class="w-80">
-							{% if huile.pictures %}
-								<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-									<div class="carousel-inner">
-										{% for picture in huile.pictures %}
-											<div class="carousel-item {% if loop.first %} active {% endif %}">
-												<img class="d-block w-100 rounded-lg object-cover" src="{{vich_uploader_asset(picture, 'imageFile')| imagine_filter('thumb')}}" alt="">
-											</div>
-										{% endfor %}
+						<div id="carouselExampleControls" class="carousel slide w-80" data-bs-ride="carousel">
+							<div class="carousel-inner">
+								{% for picture in huile.pictures %}
+									<div class="carousel-item {% if loop.first %} active {% endif %}">
+										<img class="d-block w-100 rounded-lg object-cover" src="{{vich_uploader_asset(picture, 'imageFile')| imagine_filter('thumb')}}" alt="">
 									</div>
-								</div>
-							{% endif %}
+								{% endfor %}
+								{% if huile.pictures.isempty %}
+									<img class="rounded-lg object-cover" src="{{ asset('/images/huiles/empty.jpg') }}">
+								{% endif %}
+							</div>
 						</div>
 					</div>
 					<div class="">
@@ -34,5 +36,7 @@
 				<div class="h-96"></div>
 			{% endif %}
 		{% endfor %}
+
+
 	</div>
 {% endblock %}

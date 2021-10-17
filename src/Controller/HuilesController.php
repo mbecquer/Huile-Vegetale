@@ -2,11 +2,10 @@
 
 namespace App\Controller;
 
-use App\Entity\Huiles;
 use App\Repository\FamilyRepository;
 use App\Repository\HuilesRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class HuilesController extends AbstractController
 {
@@ -49,6 +48,7 @@ class HuilesController extends AbstractController
                 "slug" => $family->getSlug()
             ]);
         }
+
         return $this->render('huile/index.html.twig', [
             'huiles' => $huile,
             'family' => $family,

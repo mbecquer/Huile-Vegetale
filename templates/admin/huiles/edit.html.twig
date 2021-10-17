@@ -15,7 +15,7 @@
 		<div class="flex flex-wrap my-5">
 			{% for picture in huile.pictures %}
 				<div class="mx-2">
-					<img class="object-cover rounded-lg" src="{{vich_uploader_asset(picture, 'imageFile')| imagine_filter('thumb')}}">
+						<img class="object-cover rounded-lg" src="{{vich_uploader_asset(picture, 'imageFile')| imagine_filter('thumb')}}">
 					<div class="my-2 mx-2">
 						<form method="post" action="{{path('admin_picture_delete',{'id': picture.id})}}" onsubmit="return confirm('Etes vous sûr de vouloir supprimer ?')">
 							<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ picture.id) }}">
