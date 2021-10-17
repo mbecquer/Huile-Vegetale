@@ -6,12 +6,13 @@ use App\Entity\Huiles;
 use App\Form\HuilesType;
 use App\Repository\HuilesRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Liip\ImagineBundle\Imagine\Cache\CacheManager;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Liip\ImagineBundle\Imagine\Cache\CacheManager;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Vich\UploaderBundle\Templating\Helper\UploaderHelper;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class AdminHuilesController extends AbstractController
 {
@@ -91,4 +92,20 @@ class AdminHuilesController extends AbstractController
             return $this->redirectToRoute('admin_huiles_index');
         };
     }
+    /**
+     * Undocumented function
+     *@Route("/admin/activer/{id}", name="active")
+     */
+    public function active(Huiles $huile)
+    {
+        $huile->setActive(($huile->getActive()) ? false : true);
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($huile);
+        $em->flush();
+
+        return new Response("true");
+    }
 }
+
+
+

@@ -17,7 +17,7 @@
 				{% for family in families %}
 					<li class="py-3 px-3 text-green hover:bg-gray-200">
 						<a class="no-underline text-green uppercase text-lg link" href="{{path('family_huile',{id:family.id, slug:family.slug })}}">{{family.name}}
-							({{family.huile|length}})</a>
+						</a>
 					</li>
 				{% endfor %}
 			</ul>

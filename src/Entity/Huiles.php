@@ -68,6 +68,11 @@ class Huiles
      */
     private $family;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $active;
+
 
 
 
@@ -221,6 +226,18 @@ class Huiles
     public function setFamily(?Family $family): self
     {
         $this->family = $family;
+
+        return $this;
+    }
+
+    public function getActive(): ?bool
+    {
+        return $this->active;
+    }
+
+    public function setActive(bool $active): self
+    {
+        $this->active = $active;
 
         return $this;
     }
