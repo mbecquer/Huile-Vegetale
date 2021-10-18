@@ -58,7 +58,7 @@ class Huiles
 
     /**
      * @Assert\All(
-     *      @Assert\Image(mimeTypes="image/jpeg")
+     *      @Assert\Image(mimeTypes={"image/jpeg", "image/png"})
      * )
      */
     private $pictureFiles;

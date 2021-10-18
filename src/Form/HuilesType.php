@@ -37,7 +37,9 @@ class HuilesType extends AbstractType
             ->add('pictureFiles', FileType::class, [
                 'required' => false,
                 'label' => 'Image',
-                'multiple' => true
+                'multiple' => true,
+
+
             ]);
     }
 
