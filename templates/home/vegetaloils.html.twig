@@ -15,10 +15,12 @@
 					<h5>Familles botaniques</h5>
 				</li>
 				{% for family in families %}
-					<li class="py-3 px-3 text-green hover:bg-gray-200">
-						<a class="no-underline text-green uppercase text-lg link" href="{{path('family_huile',{id:family.id, slug:family.slug })}}">{{family.name}}
-						</a>
-					</li>
+					{% if family.active %}
+						<li class="py-3 px-3 text-green hover:bg-gray-200">
+							<a class="no-underline text-green uppercase text-lg link" href="{{path('family_huile',{id:family.id, slug:family.slug })}}">{{family.name}}
+							</a>
+						</li>
+					{% endif %}
 				{% endfor %}
 			</ul>
 		</div>

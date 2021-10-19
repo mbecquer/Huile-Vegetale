@@ -31,6 +31,11 @@ class Family
      */
     private $huile;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $active;
+
     public function __construct()
     {
         $this->huile = new ArrayCollection();
@@ -88,5 +93,17 @@ class Family
     public function getSlug()
     {
         return (new Slugify())->slugify($this->name);
+    }
+
+    public function getActive(): ?bool
+    {
+        return $this->active;
+    }
+
+    public function setActive(bool $active): self
+    {
+        $this->active = $active;
+
+        return $this;
     }
 }

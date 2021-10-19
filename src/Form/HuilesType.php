@@ -35,11 +35,9 @@ class HuilesType extends AbstractType
             ])
             ->add('price', NumberType::class)
             ->add('pictureFiles', FileType::class, [
-                'required' => false,
+                'required' => true,
                 'label' => 'Image',
                 'multiple' => true,
-
-
             ]);
     }
 

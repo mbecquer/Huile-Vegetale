@@ -2,8 +2,10 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Family;
 use App\Entity\Huiles;
 use App\Form\HuilesType;
+use App\Repository\FamilyRepository;
 use App\Repository\HuilesRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,9 +20,10 @@ class AdminHuilesController extends AbstractController
 {
     private $huilesRepository;
     private $em;
-    public function __construct(HuilesRepository $huilesRepository, EntityManagerInterface $em)
+    public function __construct(HuilesRepository $huilesRepository, EntityManagerInterface $em, FamilyRepository $familiesRepository)
     {
         $this->huilesRepository = $huilesRepository;
+        $this->familiesRepository = $familiesRepository;
         $this->em = $em;
     }
     /**
@@ -30,8 +33,10 @@ class AdminHuilesController extends AbstractController
     {
 
         $huiles = $this->huilesRepository->findAll();
+        $families = $this->familiesRepository->findAll();
         return $this->render('admin/huiles/index.html.twig', [
-            "huiles" => $huiles
+            "huiles" => $huiles,
+            "families" => $families
         ]);
     }
 
@@ -64,6 +69,7 @@ class AdminHuilesController extends AbstractController
 
         $form = $this->createForm(HuilesType::class, $huile);
         $form->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid()) {
 
             if ($huile->getPictures() instanceof UploadedFile) {
@@ -105,7 +111,17 @@ class AdminHuilesController extends AbstractController
 
         return new Response("true");
     }
+    /**
+     * Undocumented function
+     *@Route("/admin/activer/family/{id}", name="activeFamily")
+     */
+    public function activeFamily(Family $family)
+    {
+        $family->setActive(($family->getActive()) ? false : true);
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($family);
+        $em->flush();
+
+        return new Response("true");
+    }
 }
-
-
-

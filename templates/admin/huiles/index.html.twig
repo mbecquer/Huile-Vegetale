@@ -59,6 +59,13 @@
 
 				{% endfor %}
 			</div>
+			{% for family in families %}
+				{{family.name}}
+				<label class="switch">
+					<input type="checkbox" {{(family.active) ? 'checked' : ''}} data-id="{{family.id}}">
+					<span class="slider"></span>
+				</label>
+			{% endfor %}
 		</div>
 	</div>
 
@@ -75,6 +82,17 @@ bouton.addEventListener("click", function () {
 let xmlhttp = new XMLHttpRequest;
 
 xmlhttp.open("get", `/admin/activer/${
+this.dataset.id
+}`);
+xmlhttp.send();
+})
+}
+
+for (let boutonFamily of activer) {
+boutonFamily.addEventListener("click", function () {
+let xmlhttp = new XMLHttpRequest;
+
+xmlhttp.open("get", `/admin/activer/family/${
 this.dataset.id
 }`);
 xmlhttp.send();
