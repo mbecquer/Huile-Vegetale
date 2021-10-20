@@ -15,9 +15,32 @@
 				Ajouter
 			</button>
 		</a>
-
 		<div class="shadow-lg my-10">
-			<div class="">
+			<h1 class="text-center">Familles</h1>
+			<div>
+				<ul class="flex flex-wrap justify-evenly text-center text-xl uppercase font-semibold">
+					<li class="w-40">nom famille</li>
+					<li class="w-40">active</li>
+				</ul>
+			</div>
+			<div>
+				{% for family in families %}
+					<ul class="flex flex-wrap justify-evenly text-center shadow-lg py-4">
+						<li class="w-40 font-semibold text-xl my-auto">
+							{{family.name}}</li>
+						<li class="w-40 font-semibold text-xl my-auto">
+							<label class="switch">
+								<input type="checkbox" {{(family.active) ? 'checked' : ''}} data-id="{{family.id}}">
+								<span class="slider"></span>
+							</label>
+						</li>
+					</ul>
+				{% endfor %}
+			</div>
+		</div>
+		<div class="shadow-lg my-10">
+			<h1 class="text-center">Huiles</h1>
+			<div>
 				<ul class="flex flex-wrap justify-evenly text-center text-xl uppercase font-semibold">
 					<li class="w-40">id</li>
 					<li class="w-40">nom</li>
@@ -29,7 +52,9 @@
 				</ul>
 			</div>
 			<div>
+
 				{% for huile in huiles %}
+
 					<ul class="flex flex-wrap justify-evenly text-center shadow-lg py-4">
 						<li class="-w-10 lg:w-40 my-auto text-green text-xl font-bold">{{huile.id}}</li>
 						<li class="-w-10 lg:w-40 font-semibold text-xl my-auto">{{huile.name}}</li>
@@ -59,13 +84,7 @@
 
 				{% endfor %}
 			</div>
-			{% for family in families %}
-				{{family.name}}
-				<label class="switch">
-					<input type="checkbox" {{(family.active) ? 'checked' : ''}} data-id="{{family.id}}">
-					<span class="slider"></span>
-				</label>
-			{% endfor %}
+
 		</div>
 	</div>
 
