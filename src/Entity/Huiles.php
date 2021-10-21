@@ -7,7 +7,6 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\HuilesRepository;
-use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
@@ -57,15 +56,17 @@ class Huiles
     private $pictures;
 
     /**
-     * @Assert\All(
-     *      @Assert\Image(mimeTypes={"image/jpeg", "image/png"},
-     *      mimeTypesMessage="non valid")
+     * @Assert\All({
+     *      @Assert\Image(
+     *          mimeTypes = {"image/jpeg", "image/png"},
+     *          mimeTypesMessage = "le fichier {{ name }} n'est pas de type {{ types }}"
      * )
+     * })
      */
     private $pictureFiles;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Family::class, inversedBy="huile")
+     * @ORM\ManyToOne(targetEntity=Family::class, inversedBy="huile",cascade={"persist"})
      */
     private $family;
 
@@ -73,10 +74,6 @@ class Huiles
      * @ORM\Column(type="boolean")
      */
     private $active;
-
-
-
-
 
 
     public function __construct()

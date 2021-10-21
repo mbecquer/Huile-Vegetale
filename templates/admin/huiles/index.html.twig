@@ -10,11 +10,13 @@
 				{{message}}
 			</div>
 		{% endfor %}
+
 		<a href="{{path('admin_huiles_create')}}">
 			<button class="text-green text-xl border-green border-2 p-3 rounded-lg focus:outline-none ">
 				Ajouter
 			</button>
 		</a>
+
 		<div class="shadow-lg my-10">
 			<h1 class="text-center">Familles</h1>
 			<div>
@@ -47,6 +49,7 @@
 					<li class="w-96">description</li>
 					<li class="w-40">capacité</li>
 					<li class="w-40">prix</li>
+					<li class="w-40">famille</li>
 					<li class="w-40">active</li>
 					<li class="w-40">actions</li>
 				</ul>
@@ -63,6 +66,10 @@
 							ml</li>
 						<li class="w-40 font-semibold text-xl my-auto">{{huile.price}}
 							€</li>
+						<li class="w-40 font-semibold text-xl my-auto">{{huile.family.name}}
+
+
+						</li>
 						<li class="w-40 font-semibold text-xl my-auto">
 							<label class="switch">
 								<input type="checkbox" {{(huile.active) ? 'checked' : ''}} data-id="{{huile.id}}">
@@ -87,10 +94,7 @@
 
 		</div>
 	</div>
-
-
 {% endblock %}
-
 {% block javascripts %}
 	<script>
 		window.onload = () => {
@@ -119,5 +123,4 @@ xmlhttp.send();
 }
 }
 	</script>
-
 {% endblock %}

@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Family;
 use App\Entity\Huiles;
+use App\Entity\Picture;
 use App\Form\HuilesType;
 use App\Repository\FamilyRepository;
 use App\Repository\HuilesRepository;
@@ -34,6 +35,7 @@ class AdminHuilesController extends AbstractController
 
         $huiles = $this->huilesRepository->findAll();
         $families = $this->familiesRepository->findAll();
+
         return $this->render('admin/huiles/index.html.twig', [
             "huiles" => $huiles,
             "families" => $families
@@ -71,6 +73,8 @@ class AdminHuilesController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            //on récupère les images transmises
+
 
             if ($huile->getPictures() instanceof UploadedFile) {
                 $cacheManager->remove($uploaderHelper->asset($huile, 'imageFile'));

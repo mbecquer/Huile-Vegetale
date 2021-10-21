@@ -29,8 +29,6 @@ class Picture
 
     /**
      * @var File|null
-     * @Assert\Image(
-     * mimeTypes="image/jpeg"),
      * @Vich\UploadableField(mapping="huile_image", fileNameProperty="filename")
      */
     private $imageFile;
