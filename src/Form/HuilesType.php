@@ -47,6 +47,13 @@ class HuilesType extends AbstractType
             ->add('active', CheckboxType::class, [
                 'required' => true,
 
+            ])
+            ->add('family', EntityType::class, [
+                'class' => Family::class,
+                'multiple' => true,
+                'expanded' => true,
+                'choice_label' => 'name',
+                'label' => 'Famille'
             ]);
     }
 
