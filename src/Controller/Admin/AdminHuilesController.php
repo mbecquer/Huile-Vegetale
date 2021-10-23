@@ -45,9 +45,9 @@ class AdminHuilesController extends AbstractController
     /**
      * @Route("/admin/create", name="admin_huiles_create")
      */
-    public function create(Request $request)
+    public function create(Request $request, FamilyRepository $familyRepository)
     {
-
+        $families = $familyRepository->findAll();
         $huile = new Huiles();
         $form = $this->createForm(HuilesType::class, $huile);
         $form->handleRequest($request);
@@ -62,16 +62,17 @@ class AdminHuilesController extends AbstractController
         }
 
         return $this->render("admin/huiles/create.html.twig", [
-            "form" => $form->createView()
+            "form" => $form->createView(),
+            'families' => $families
         ]);
     }
 
     /**
      * @Route("/admin/edit/{id}", name="admin_huiles_edit")
      */
-    public function edit(Huiles $huile, Request $request, CacheManager $cacheManager, UploaderHelper $uploaderHelper)
+    public function edit(Huiles $huile, Request $request, CacheManager $cacheManager, UploaderHelper $uploaderHelper, FamilyRepository $familyRepository)
     {
-
+        $families = $familyRepository->findAll();
         $form = $this->createForm(HuilesType::class, $huile);
         $form->handleRequest($request);
 
@@ -89,7 +90,8 @@ class AdminHuilesController extends AbstractController
         }
         return $this->render('admin/huiles/edit.html.twig', [
             "form" => $form->createView(),
-            'huile' => $huile
+            'huile' => $huile,
+            'families' => $families
 
         ]);
     }
