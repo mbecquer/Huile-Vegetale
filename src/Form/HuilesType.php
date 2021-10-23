@@ -19,8 +19,11 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class HuilesType extends AbstractType
 {
+
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+
         $builder
             ->add('name', TextType::class, [
                 "required" => true,
@@ -50,10 +53,26 @@ class HuilesType extends AbstractType
             ])
             ->add('family', EntityType::class, [
                 'class' => Family::class,
-                'multiple' => true,
-                'expanded' => true,
                 'choice_label' => 'name',
-                'label' => 'Famille'
+                'choice_value' => function (Family $family = null) {
+                    if ($family) {
+                        return $family->getId();
+                    }
+                },
+                'group_by' => function (Family $family, $key, $value) {
+                    if (!is_null($family->getName())) {
+                        return  'name';
+                    } else {
+                        return 'no';
+                    }
+                },
+                'query_builder' => function (FamilyRepository $repo) {
+                    return $repo->createQueryBuilder('f')
+                        ->where('f.id > :id')
+                        ->setParameter('id', 0);
+                },
+                'expanded'  => false,
+                'multiple'  => true,
             ]);
     }
 
