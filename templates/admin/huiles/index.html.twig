@@ -66,9 +66,10 @@
 							ml</li>
 						<li class="w-40 font-semibold text-xl my-auto">{{huile.price}}
 							€</li>
-						<li class="w-40 font-semibold text-xl my-auto">{{huile.family.name}}
-
-
+						<li class="w-40 font-semibold text-xl my-auto">
+							{% if  huile.family %}
+								{{huile.family.name}}
+							{% endif %}
 						</li>
 						<li class="w-40 font-semibold text-xl my-auto">
 							<label class="switch">
