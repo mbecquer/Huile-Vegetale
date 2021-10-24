@@ -43,11 +43,12 @@ class HuilesType extends AbstractType
             ->add('price', NumberType::class)
 
             ->add('pictureFiles', FileType::class, [
-                'required' => true,
+                'required' => false,
                 'label' => 'Image',
                 'multiple' => true,
             ])
             ->add('active', CheckboxType::class, [
+                
                 'required' => true,
 
             ])
@@ -55,7 +56,9 @@ class HuilesType extends AbstractType
                 'class' => Family::class,
                 'choice_label' => function ($family) {
                     return $family->getName();
-                }
+                },
+                'expanded' => true,
+                'label' => 'Famille'
             ]);
     }
 
