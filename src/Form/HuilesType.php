@@ -51,7 +51,12 @@ class HuilesType extends AbstractType
                 'required' => true,
 
             ])
-           ;
+            ->add('family', EntityType::class, [
+                'class' => Family::class,
+                'choice_label' => function ($family) {
+                    return $family->getName();
+                }
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)
