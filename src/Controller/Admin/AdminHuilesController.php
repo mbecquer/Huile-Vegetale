@@ -5,7 +5,6 @@ namespace App\Controller\Admin;
 use App\Entity\Family;
 use App\Entity\Huiles;
 use App\Entity\Images;
-use App\Entity\Picture;
 use App\Form\HuilesType;
 use App\Repository\FamilyRepository;
 use App\Repository\HuilesRepository;

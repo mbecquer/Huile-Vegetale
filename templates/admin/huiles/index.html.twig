@@ -13,16 +13,21 @@
 
 		<a href="{{path('admin_huiles_create')}}">
 			<button class="text-green text-xl border-green border-2 p-3 rounded-lg focus:outline-none ">
-				Ajouter
+				Ajouter Huile
 			</button>
 		</a>
-
+		<a href="{{path('admin_famille_create')}}">
+			<button class="text-green text-xl border-green border-2 p-3 rounded-lg focus:outline-none ">
+				Ajouter Famille
+			</button>
+		</a>
 		<div class="shadow-lg my-10">
 			<h1 class="text-center">Familles</h1>
 			<div>
 				<ul class="flex flex-wrap justify-evenly text-center text-xl uppercase font-semibold">
 					<li class="w-40">nom famille</li>
 					<li class="w-40">active</li>
+					<li class="w-40">actions</li>
 				</ul>
 			</div>
 			<div>
@@ -35,6 +40,13 @@
 								<input type="checkbox" {{(family.active) ? 'checked' : ''}} data-id="{{family.id}}">
 								<span class="slider"></span>
 							</label>
+						</li>
+						<li class="w-40">
+							<form method="post" action="{{path('admin_family_delete',{id:family.id})}}" onsubmit="return confirm('Etes vous sûr de vouloir supprimer {{family.name }}?')">
+								<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ family.id) }}">
+								<input type="hidden" name="_method" value="DELETE">
+								<button class="text-red-500 text-xl border-red-500 border-2 p-3 rounded-lg focus:outline-none">Supprimer</button>
+							</form>
 						</li>
 					</ul>
 				{% endfor %}
@@ -124,4 +136,5 @@ xmlhttp.send();
 }
 }
 	</script>
+	<script src="{{asset('js/main.js')}}"></script>
 {% endblock %}

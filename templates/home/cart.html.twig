@@ -42,11 +42,9 @@
 				<!--image du panier-->
 				<div class=" shadow-lg rounded-lg my-5">
 					<div class="flex flex-wrap p-5 xl:float-left">
-						{% for picture in item.huile.pictures %}
-							<img class="object-cover mx-2" src="{{vich_uploader_asset(picture, 'imageFile')| imagine_filter('thumb')}}" alt="">
-
+						{% for image in huile.images %}
+							<img src="{{ asset('/uploads/'~ image.name)}}" alt="Image" width="150">
 						{% endfor %}
-
 					</div>
 
 					<!--information des articles du panier-->
