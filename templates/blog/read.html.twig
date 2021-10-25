@@ -21,7 +21,7 @@
 			<div class="image-article ">
 
 				{% for pictureArticle in article.pictureArticles %}
-					<img class="object-cover rounded-lg w-52" src="{{asset('/images/articles/'~ pictureArticle.name)}}">
+					<img class="object-cover rounded-lg w-52" src="{{asset('/uploads/'~ pictureArticle.name)}}">
 				{% endfor %}
 
 			</div>

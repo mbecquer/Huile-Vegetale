@@ -33,7 +33,7 @@
 						<li class="w-96 my-auto text-lg">{{article.content}}</li>
 						<li class="w-40 font-semibold text-xl my-auto">
 							{% for pictureArticle in article.pictureArticles %}
-								<img class="object-cover rounded-lg " src="{{asset('/images/articles/'~ pictureArticle.name)}}">
+								<img class="object-cover rounded-lg " src="{{asset('/uploads/'~ pictureArticle.name)}}">
 							{% endfor %}
 						</li>
 						<li class="w-40 font-semibold text-xl my-auto">{{article.createdAt|date("d/m/Y H:i","Europe/Paris")}}</li>

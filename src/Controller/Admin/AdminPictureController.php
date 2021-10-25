@@ -20,6 +20,10 @@ class AdminPictureController extends AbstractController
         $huilesId = $picture->getHuiles()->getId();
 
         if ($this->isCsrfTokenValid('delete' . $picture->getId(), $request->get('_token'))) {
+            $nom = $picture->getFilename();
+            //on supprime le fichier
+            unlink($this->getParameter('images_directory') . '/' . $nom);
+            //on supprime l'image de la base de données
             $em = $this->getDoctrine()->getManager();
             $em->remove($picture);
             $em->flush();

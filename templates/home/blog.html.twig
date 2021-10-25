@@ -16,7 +16,7 @@
 				<!--image article-->
 				<div class="image-article w-60  my-5">
 					{% for pictureArticle in article.pictureArticles %}
-						<img class="object-cover rounded-lg " src="{{asset('/images/articles/'~ pictureArticle.name)}}">
+						<img class="object-cover rounded-lg " src="{{asset('/uploads/'~ pictureArticle.name)}}">
 					{% endfor %}
 				</div>
 				<!--text article-->

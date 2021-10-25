@@ -17,12 +17,12 @@
 					<div class="h-96 cursor-pointer rounded-lg">
 						<div id="carouselExampleControls" class="carousel slide w-80" data-bs-ride="carousel">
 							<div class="carousel-inner">
-								{% for picture in huile.pictures %}
+								{% for image in huile.images %}
 									<div class="carousel-item {% if loop.first %} active {% endif %}">
-										<img class="d-block w-100 rounded-lg object-cover" src="{{vich_uploader_asset(picture, 'imageFile')| imagine_filter('thumb')}}" alt="">
+										<img src="{{ asset('/uploads/'~ image.name)}}" alt="Image" width="150">
 									</div>
 								{% endfor %}
-								{% if huile.pictures.isempty %}
+								{% if huile.images.isempty %}
 									<div class="border-2 border-black rounded-lg text-center text-black uppercase font-semibold text-xl py-3 bg-gray-100">
 										<span>Image non disponible</span>
 										<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" fill="currentcolor" class="bi bi-image mx-auto" viewbox="0 0 16 16">

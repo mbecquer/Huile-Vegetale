@@ -9,13 +9,13 @@
 
 	<div class="flex justify-evenly flex-wrap text-xl my-5">
 		<div class="flex">
-			{% for picture in huile.pictures %}
+			{% for image in huile.images %}
 				<div class="mx-1">
-					<img class="object-cover mx-auto" src="{{vich_uploader_asset(picture, 'imageFile')| imagine_filter('thumb')}}" alt="">
+					<img src="{{ asset('/uploads/'~ image.name)}}" alt="Image" width="150">
 				</div>
 
 			{% endfor %}
-			{% if huile.pictures.isempty %}
+			{% if huile.images.isempty %}
 				<div class="border-2 h-60 border-black rounded-lg text-center text-black uppercase font-semibold text-xl px-3 py-2 bg-gray-100">
 					<span>Image non disponible</span>
 					<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" fill="currentcolor" class="bi bi-image mx-auto" viewbox="0 0 16 16">

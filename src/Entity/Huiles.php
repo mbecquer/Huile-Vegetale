@@ -7,13 +7,10 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\HuilesRepository;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints as Assert;
-use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass=HuilesRepository::class)
- * @Vich\Uploadable()
  */
 class Huiles
 {
@@ -51,21 +48,6 @@ class Huiles
     private $quantity;
 
     /**
-     * @ORM\OneToMany(targetEntity=Picture::class, mappedBy="huiles", orphanRemoval=true, cascade={"persist"})
-     */
-    private $pictures;
-
-    /**
-     * @Assert\All({
-     *      @Assert\Image(
-     *          mimeTypes = {"image/jpeg", "image/png"},
-     *          mimeTypesMessage = "le fichier {{ name }} n'est pas de type {{ types }}"
-     * )
-     * })
-     */
-    private $pictureFiles;
-
-    /**
      * @ORM\ManyToOne(targetEntity=Family::class, inversedBy="huile",cascade={"persist"})
      */
     private $family;
@@ -75,10 +57,15 @@ class Huiles
      */
     private $active;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Images::class, mappedBy="huile", orphanRemoval=true, cascade={"persist"})
+     */
+    private $images;
+
 
     public function __construct()
     {
-        $this->pictures = new ArrayCollection();
+        $this->images = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -156,67 +143,6 @@ class Huiles
         return (new Slugify())->slugify($this->name);
     }
 
-    /**
-     * @return Collection|Picture[]
-     */
-    public function getPictures(): Collection
-    {
-        return $this->pictures;
-    }
-
-    public function addPicture(Picture $picture): self
-    {
-        if (!$this->pictures->contains($picture)) {
-            $this->pictures[] = $picture;
-            $picture->setHuiles($this);
-        }
-
-        return $this;
-    }
-
-    public function removePicture(Picture $picture): self
-    {
-        if ($this->pictures->removeElement($picture)) {
-            // set the owning side to null (unless already changed)
-            if ($picture->getHuiles() === $this) {
-                $picture->setHuiles(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * Get )
-     *
-     * @return  arrayCollection|null
-     */
-    public function getPictureFiles()
-    {
-        return $this->pictureFiles;
-    }
-
-    /**
-     * Set )
-     *
-     * @param  mixed $pictureFiles
-     *
-     * @return  Huiles
-     */
-    public function setPictureFiles($pictureFiles)
-    {
-        foreach ($pictureFiles as $pictureFile) {
-
-            $picture = new Picture();
-            $picture->setImageFile($pictureFile);
-            $this->addPicture($picture);
-        }
-
-        $this->pictureFiles = $pictureFiles;
-        return $this;
-    }
-
-
     public function getFamily(): ?Family
     {
         return $this->family;
@@ -237,6 +163,36 @@ class Huiles
     public function setActive(bool $active): self
     {
         $this->active = $active;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Images[]
+     */
+    public function getImages(): Collection
+    {
+        return $this->images;
+    }
+
+    public function addImage(Images $image): self
+    {
+        if (!$this->images->contains($image)) {
+            $this->images[] = $image;
+            $image->setHuile($this);
+        }
+
+        return $this;
+    }
+
+    public function removeImage(Images $image): self
+    {
+        if ($this->images->removeElement($image)) {
+            // set the owning side to null (unless already changed)
+            if ($image->getHuile() === $this) {
+                $image->setHuile(null);
+            }
+        }
 
         return $this;
     }
