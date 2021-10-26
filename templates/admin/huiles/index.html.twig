@@ -58,14 +58,14 @@
 			<h1 class="text-center">Huiles</h1>
 			<div>
 				<ul class="flex flex-wrap justify-evenly text-center text-xl uppercase font-semibold">
-					<li class="w-40">id</li>
-					<li class="w-40">nom</li>
+
+					<li class="w-36">nom</li>
 					<li class="w-96">description</li>
-					<li class="w-40">capacité</li>
-					<li class="w-40">prix</li>
-					<li class="w-40">famille</li>
-					<li class="w-40">active</li>
-					<li class="w-40">actions</li>
+					<li class="w-36">capacité</li>
+					<li class="w-36">prix</li>
+					<li class="w-36">famille</li>
+					<li class="w-36">active</li>
+					<li class="w-36">actions</li>
 				</ul>
 			</div>
 			<div>
@@ -73,25 +73,25 @@
 				{% for huile in huiles|sort((a, b) => a.name <=> b.name) %}
 
 					<ul class="flex flex-wrap justify-evenly text-center shadow-lg py-4">
-						<li class="-w-10 lg:w-40 my-auto text-green text-xl font-bold">{{huile.id}}</li>
-						<li class="-w-10 lg:w-40 font-semibold text-xl my-auto">{{huile.name}}</li>
+
+						<li class="-w-10 lg:w-36 font-semibold text-xl my-auto">{{huile.name}}</li>
 						<li class="w-96 my-auto text-lg">{{huile.description}}</li>
-						<li class="w-40 font-semibold text-xl my-auto">{{huile.capacity}}
+						<li class="w-36 font-semibold text-xl my-auto">{{huile.capacity}}
 							ml</li>
-						<li class="w-40 font-semibold text-xl my-auto">{{huile.price}}
+						<li class="w-36 font-semibold text-xl my-auto">{{huile.price}}
 							€</li>
-						<li class="w-40 font-semibold text-xl my-auto">
+						<li class="w-36 font-semibold text-xl my-auto">
 							{% if  huile.family %}
 								{{huile.family.name}}
 							{% endif %}
 						</li>
-						<li class="w-40 font-semibold text-xl my-auto">
+						<li class="w-36 font-semibold text-xl my-auto">
 							<label class="switch">
 								<input type="checkbox" {{(huile.active) ? 'checked' : ''}} data-id="{{huile.id}}">
 								<span class="slider"></span>
 							</label>
 						</li>
-						<li class="w-40 my-auto">
+						<li class="w-36 my-auto">
 							<a href="{{path('admin_huiles_edit', { id: huile.id })}}">
 								<button class="text-green text-xl border-green border-2 p-3 rounded-lg focus:outline-none mx-2">Modifier</button>
 							</a>

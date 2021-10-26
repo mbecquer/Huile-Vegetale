@@ -52,9 +52,9 @@ class HuilesType extends AbstractType
                 'choice_label' => function ($family) {
                     return $family->getName();
                 },
-                'expanded' => true,
+                'expanded' => false,
                 'label' => 'Famille',
-      
+
             ]);
     }
 
