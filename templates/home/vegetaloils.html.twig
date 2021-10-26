@@ -14,7 +14,7 @@
 				<li class="py-3 px-3 text-white bg-green uppercase">
 					<h5>Familles botaniques</h5>
 				</li>
-				{% for family in families %}
+				{% for family in families|sort((a, b) => a.name <=> b.name) %}
 					{% if family.active %}
 						<li class="py-3 px-3 text-green hover:bg-gray-200">
 							<a class="no-underline text-green uppercase text-lg link" href="{{path('family_huile',{id:family.id, slug:family.slug })}}">{{family.name}}
@@ -25,13 +25,13 @@
 			</ul>
 		</div>
 		<div class="text-justify xl:ml-20">
-			<h1>Huiles végétales de germe de graines et oléagineux activés</h1>
+			<h1>Parties utilisées: Graines et oléagineux graines</h1>
 			<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempora cupiditate totam sequi reprehenderit blanditiis iusto praesentium eos laboriosam omnis sunt porro odit, assumenda perspiciatis placeat, ipsam accusantium fuga earum nisi.</p>
 
 			<h1>Pré-traitement: Germination des graines et activation des oléagineux</h1>
 			<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempora cupiditate totam sequi reprehenderit blanditiis iusto praesentium eos laboriosam omnis sunt porro odit, assumenda perspiciatis placeat, ipsam accusantium fuga earum nisi.</p>
 
-			<h1>Méthode d’extraction: Presse hydraulique</h1>
+			<h1>Méthode d’extraction mécanique: Presse hydraulique</h1>
 			<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempora cupiditate totam sequi reprehenderit blanditiis iusto praesentium eos laboriosam omnis sunt porro odit, assumenda perspiciatis placeat, ipsam accusantium fuga earum nisi.</p>
 		</div>
 

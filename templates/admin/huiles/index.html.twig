@@ -10,17 +10,19 @@
 				{{message}}
 			</div>
 		{% endfor %}
+		<div class="flex flex-col">
+			<a href="{{path('admin_huiles_create')}}">
+				<button class="text-green text-xl border-green border-2 p-3 rounded-lg outline-none">
+					Ajouter Huile
+				</button>
+			</a>
 
-		<a href="{{path('admin_huiles_create')}}">
-			<button class="text-green text-xl border-green border-2 p-3 rounded-lg focus:outline-none ">
-				Ajouter Huile
-			</button>
-		</a>
-		<a href="{{path('admin_famille_create')}}">
-			<button class="text-green text-xl border-green border-2 p-3 rounded-lg focus:outline-none ">
-				Ajouter Famille
-			</button>
-		</a>
+			<a href="{{path('admin_famille_create')}}">
+				<button class="text-green text-xl border-green border-2 p-3 rounded-lg outline-none ">
+					Ajouter Famille
+				</button>
+			</a>
+		</div>
 		<div class="shadow-lg my-10">
 			<h1 class="text-center">Familles</h1>
 			<div>
@@ -31,7 +33,7 @@
 				</ul>
 			</div>
 			<div>
-				{% for family in families %}
+				{% for family in families|sort((a, b) => a.name <=> b.name)%}
 					<ul class="flex flex-wrap justify-evenly text-center shadow-lg py-4">
 						<li class="w-40 font-semibold text-xl my-auto">
 							{{family.name}}</li>
@@ -68,7 +70,7 @@
 			</div>
 			<div>
 
-				{% for huile in huiles %}
+				{% for huile in huiles|sort((a, b) => a.name <=> b.name) %}
 
 					<ul class="flex flex-wrap justify-evenly text-center shadow-lg py-4">
 						<li class="-w-10 lg:w-40 my-auto text-green text-xl font-bold">{{huile.id}}</li>

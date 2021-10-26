@@ -2,15 +2,18 @@
 
 {% block body %}
 	<h1 class="text-center">Ajout d'un nouvel article</h1>
-	<div class=" flex w-96 mx-auto p-5 shadow-lg rounded-lg">
-		{{ form_start(form) }}
-		{{form_row(form.title)}}
-		{{form_row(form.content)}}
-		{{form_row(form.image)}}
-		{{form_row(form.created_at)}}
+	<div class="flex justify-center">
+		<div class=" p-5 shadow-lg rounded-lg">
+			{{ form_start(form) }}
+			{{form_row(form.title)}}
+			{{form_row(form.content)}}
+			{{form_row(form.image)}}
+			{{form_row(form.created_at)}}
 
-		<button class="text-green  text-xl border-green border-2 p-3 rounded-lg focus:outline-none my-5" type="submit">Enregistrer</button>
+			<button class="text-green  text-xl border-green border-2 p-3 rounded-lg focus:outline-none my-5" type="submit">Enregistrer</button>
 
-		{{form_end(form)}}</div>
+			{{form_end(form)}}</div>
+	</div>
+
 
 {% endblock %}

@@ -10,7 +10,7 @@
 	<div class="flex flex-wrap justify-center mx-10 xl:mx-52 ">
 
 
-		{% for huile in huiles %}
+		{% for huile in huiles|sort((a, b) => a.name <=> b.name) %}
 			{% if huile.active %}
 
 				<a href="{{path('huile_read', {id: huile.id, slug:huile.slug})}}" class="no-underline mx-10 mt-10 mb-20 ">

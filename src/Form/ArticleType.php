@@ -16,15 +16,30 @@ class ArticleType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title', TextType::class)
-            ->add('content', TextareaType::class)
+            ->add('title', TextType::class, [
+                'attr' => [
+                    'style' => "width:200px"
+                ]
+            ])
+            ->add('content', TextareaType::class, [
+                'attr' => [
+                    'style' => "width:200px"
+                ]
+            ])
             ->add('image', FileType::class, [
                 "required" => false,
                 "mapped" => false,
                 'label' => false,
-                'multiple' => true
+                'multiple' => true,
+                'attr' => [
+                    'style' => "width:200px"
+                ]
             ])
-            ->add('created_at', DateType::class);
+            ->add('created_at', DateType::class, [
+                'attr' => [
+                    'style' => "width:200px"
+                ]
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

@@ -17,7 +17,8 @@ class FamilyType extends AbstractType
             ->add('name', TextType::class, [
                 'required' => true,
                 "attr" => [
-                    'placeholder' => "Enter the name of the family"
+                    'placeholder' => "Enter family",
+                    'style' => 'width: 200px'
                 ]
             ])
             ->add('active', CheckboxType::class, [

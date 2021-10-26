@@ -1,17 +1,17 @@
 {% extends "base.html.twig" %}
 {% block body %}
 	<h1 class="text-center">Ajouter une nouvelle famille</h1>
-	<div class="mx-auto w-96">
+	<div class="flex justify-center ">
 
 
-		<div class="flex w-96 p-5 shadow-lg rounded-lg">
+		<div class="p-5 shadow-lg rounded-lg">
 			{{form_start(form) }}
 			{{form_row(form.name)}}
 			{{form_row(form.active)}}
-
 			<button class="text-green  text-xl border-green border-2 p-3 rounded-lg focus:outline-none my-5" type="submit">Enregistrer</button>
 
-			{{form_end(form)}}</div>
+			{{form_end(form)}}
+		</div>
 
 
 	</div>

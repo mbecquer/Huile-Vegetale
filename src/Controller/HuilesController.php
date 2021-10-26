@@ -41,6 +41,7 @@ class HuilesController extends AbstractController
     public function family(string $slug, int $id)
     {
         $family = $this->familyRepository->find($id);
+
         $huile = $this->huilesRepository->findBy(['family' => $family]);
         if ($family->getSlug() !== $slug) {
             $this->redirectToRoute('family_huile', [
