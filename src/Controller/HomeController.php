@@ -32,14 +32,20 @@ class HomeController extends AbstractController
      * Undocumented function
      *@Route("/huiles", name="oils")
      */
-    public function oils(): Response
+    public function oils()
     {
         $family = $this->familyRepository->findAll();
-    
+        $huile = $this->huilesRepository->findBy(['family' => $family]);
+
+
+
+
+
         return $this->render("home/vegetaloils.html.twig", [
             "title" => "Nos Huiles",
             "message" => "Méthode de production",
             "families" => $family,
+            "huiles" => $huile
         ]);
     }
 

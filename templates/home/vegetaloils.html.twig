@@ -7,16 +7,16 @@
 	<h1 class="text-center text-green text-4xl">{{message}}</h1>
 
 	<!--description-->
-	<div class="flex flex-col xl:flex-row xl:my-20 xl:mx-52">
+	<div
+		class="flex flex-col xl:flex-row xl:my-20 xl:mx-52">
+		<!--familles botaniques-->
 
-		<div class="w-80 mx-auto">
-			<ul class="p-0 divide-y divide-green-700 bg-gray-50 filter drop-shadow-lg ">
-				<li class="py-3 px-3 text-white bg-green uppercase">
-					<h5>Familles botaniques</h5>
-				</li>
+		<h5 class="px-3 pt-3 text-white bg-green uppercase h-96">Familles botaniques</h5>
+		<div class="w-80 mx-auto overflow-y-auto h-96 bg-gray-50">
+			<ul class="p-0 divide-y divide-green-700">
 				{% for family in families|sort((a, b) => a.name <=> b.name) %}
 					{% if family.active %}
-						<li class="py-3 px-3 text-green hover:bg-gray-200">
+						<li class="py-3 px-3 text-green hover:bg-gray-200  ">
 							<a class="no-underline text-green uppercase text-lg link" href="{{path('family_huile',{id:family.id, slug:family.slug })}}">{{family.name}}
 							</a>
 						</li>
@@ -24,6 +24,9 @@
 				{% endfor %}
 			</ul>
 		</div>
+
+
+		<!--fin familles botaniques-->
 		<div class="text-justify xl:ml-20">
 			<h1>Parties utilisées: Graines et oléagineux graines</h1>
 			<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempora cupiditate totam sequi reprehenderit blanditiis iusto praesentium eos laboriosam omnis sunt porro odit, assumenda perspiciatis placeat, ipsam accusantium fuga earum nisi.</p>
@@ -36,4 +39,6 @@
 		</div>
 
 	</div>
+	<!---->
+
 {% endblock %}
