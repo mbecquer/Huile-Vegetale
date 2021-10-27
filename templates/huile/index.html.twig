@@ -7,7 +7,7 @@
 	<h1 class="text-center text-green text-4xl">Famille des
 		{{family.name}}</h1>
 
-	<div class="flex flex-wrap justify-center  xl:mx-52">
+	<div class="flex flex-wrap justify-center xl:mx-52">
 
 
 		{% for huile in huiles|sort((a, b) => a.name <=> b.name) %}
@@ -18,7 +18,7 @@
 						<div class="carousel-inner">
 							{% for image in huile.images %}
 								<div class="carousel-item {% if loop.first %} active {% endif %}">
-									<img src="{{ asset('/uploads/'~ image.name)}}" alt="Image" width="150">
+									<img src="{{ asset('/uploads/'~ image.name)}}" alt="Image">
 								</div>
 							{% endfor %}
 							{% if huile.images.isempty %}
@@ -31,8 +31,7 @@
 						<span class="font-bold text-xl  text-green">{{huile.name}}</span>
 					</div>
 				</a>
-			{% else %}
-				<div class="h-96"></div>
+
 			{% endif %}
 		{% endfor %}
 

@@ -11,12 +11,12 @@
 		class="flex flex-col xl:flex-row xl:my-20 xl:mx-52">
 		<!--familles botaniques-->
 
-		<h5 class="px-3 pt-3 text-white bg-green uppercase h-96">Familles botaniques</h5>
+		<h5 class="px-3 pt-3 text-white bg-green uppercase w-80 xl:w-52 h-14 xl:h-96 mx-auto">Familles botaniques</h5>
 		<div class="w-80 mx-auto overflow-y-auto h-96 bg-gray-50">
-			<ul class="p-0 divide-y divide-green-700">
+			<ul class="p-0 divide-y divide-green-700 ">
 				{% for family in families|sort((a, b) => a.name <=> b.name) %}
 					{% if family.active %}
-						<li class="py-3 px-3 text-green hover:bg-gray-200  ">
+						<li class="py-3 px-3 text-green hover:bg-gray-200 font-semibold">
 							<a class="no-underline text-green uppercase text-lg link" href="{{path('family_huile',{id:family.id, slug:family.slug })}}">{{family.name}}
 							</a>
 						</li>

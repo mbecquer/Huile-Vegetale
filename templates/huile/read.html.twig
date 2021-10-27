@@ -8,40 +8,44 @@
 
 
 	<div class="flex justify-evenly flex-wrap text-xl my-20">
-		<div class="my-auto">
-			{% for image in huile.images %}
-				<img src="{{ asset('/uploads/'~ image.name)}}" alt="Image" width="150">
-			{% endfor %}
-			{% if huile.images.isempty %}
-				<div class="flex flex-col border-2 border-black rounded-lg text-center text-black uppercase font-semibold text-xl py-3 bg-gray-100">
-					<span>Image non disponible</span>
-					<span class="text-7xl">X</span>
+		<div id="carouselExampleControls" class="carousel slide xl:w-80 mx-auto" data-bs-ride="carousel">
+			<div class="carousel-inner">
+				{% for image in huile.images %}
+					<div class="carousel-item {% if loop.first %} active {% endif %}">
+						<img src="{{ asset('/uploads/'~ image.name)}}" alt="Image">
+					</div>
+				{% endfor %}
+				{% if huile.images.isempty %}
+					<div class="flex flex-col border-2 border-black rounded-lg text-center text-black uppercase font-semibold text-xl py-3 bg-gray-100">
+						<span>Image non disponible</span>
+						<span class="text-7xl">X</span>
+					</div>
+				{% endif %}
+			</div>
+
+
+			<div class="w-96">
+				<p class="font-bold text-2xl text-green">{{huile.name}}</p>
+				<p>
+					<span class="font-bold">Prix :</span>
+					{{huile.price}}
+					€</p>
+				<p>
+					<span class="font-bold">Capacité :</span>
+					{{huile.capacity}}
+					ml</p>
+				<hr>
+				<p class="font-bold">Description :</p>
+
+				<p class="text-justify">{{huile.description}}</p>
+
+				<div class="flex mt-5 "><!--{% if is_granted("ROLE_USER")%}-->
+					<!--<a href="{{path('cart_add',{'id':huile.id})}}" ><button class="text-green text-xl border-green border-2 p-3 rounded-lg focus:outline-none my-3">Ajouter au panier</button></a>-->
+					<!--{% else %}-->
+					<!--<a href="{{path('app_login')}}" ><button class="text-green text-xl border-green border-2 p-3 rounded-lg focus:outline-none my-3">Ajouter au panier</button></a>-->
+					<!--{% endif %}-->
 				</div>
-			{% endif %}
-		</div>
-
-		<div class="w-96">
-			<p class="font-bold text-2xl text-green">{{huile.name}}</p>
-			<p>
-				<span class="font-bold">Prix :</span>
-				{{huile.price}}
-				€</p>
-			<p>
-				<span class="font-bold">Capacité :</span>
-				{{huile.capacity}}
-				ml</p>
-			<hr>
-			<p class="font-bold">Description :</p>
-
-			<p class="text-justify">{{huile.description}}</p>
-
-			<div class="flex mt-5 "><!--{% if is_granted("ROLE_USER")%}-->
-				<!--<a href="{{path('cart_add',{'id':huile.id})}}" ><button class="text-green text-xl border-green border-2 p-3 rounded-lg focus:outline-none my-3">Ajouter au panier</button></a>-->
-				<!--{% else %}-->
-				<!--<a href="{{path('app_login')}}" ><button class="text-green text-xl border-green border-2 p-3 rounded-lg focus:outline-none my-3">Ajouter au panier</button></a>-->
-				<!--{% endif %}-->
 			</div>
 		</div>
 	</div>
-
 {% endblock %}

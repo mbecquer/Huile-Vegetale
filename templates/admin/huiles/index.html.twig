@@ -61,8 +61,7 @@
 
 					<li class="w-36">nom</li>
 					<li class="w-96">description</li>
-					<li class="w-36">capacité</li>
-					<li class="w-36">prix</li>
+					<li class="w-36">capacité et prix</li>
 					<li class="w-36">famille</li>
 					<li class="w-36">active</li>
 					<li class="w-36">actions</li>
@@ -77,9 +76,11 @@
 						<li class="-w-10 lg:w-36 font-semibold text-xl my-auto">{{huile.name}}</li>
 						<li class="w-96 my-auto text-lg">{{huile.description}}</li>
 						<li class="w-36 font-semibold text-xl my-auto">{{huile.capacity}}
-							ml</li>
-						<li class="w-36 font-semibold text-xl my-auto">{{huile.price}}
-							€</li>
+							ml et
+							{{huile.price}}
+							€
+						</li>
+
 						<li class="w-36 font-semibold text-xl my-auto">
 							{% if  huile.family %}
 								{{huile.family.name}}
