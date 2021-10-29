@@ -32,11 +32,9 @@
 			</ul>
 		</div>
 		<div class="shadow-lg xl:mx-60 xl:overflow-y-auto xl:h-96">
-
-
 			<div>
 				{% for family in families|sort((a, b) => a.name <=> b.name)%}
-					<ul class="flex flex-wrap justify-between text-center shadow-lg py-4">
+					<ul class="flex flex-wrap justify-between text-center shadow-lg ">
 						<li class="w-40 font-semibold text-xl my-auto">
 							{{family.name}}</li>
 						<li class="w-40 font-semibold text-xl my-auto">
@@ -46,6 +44,9 @@
 							</label>
 						</li>
 						<li class="w-40">
+							<a href="{{path('admin_family_edit', { id: family.id })}}">
+							<button class="text-green text-xl border-green border-2 p-3 rounded-lg focus:outline-none mx-2">Modifier</button>
+						</a>
 							<form method="post" action="{{path('admin_family_delete',{id:family.id})}}" onsubmit="return confirm('Etes vous sûr de vouloir supprimer {{family.name }}?')">
 								<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ family.id) }}">
 								<input type="hidden" name="_method" value="DELETE">
@@ -56,25 +57,18 @@
 				{% endfor %}
 			</div>
 		</div>
-		<h1 class="text-center">Huiles</h1>
+		<h1 class="text-center my-10">Huiles</h1>
 		<div>
 			<ul class="flex flex-wrap justify-around text-center text-xl uppercase font-semibold">
-
 				<li class="w-40">nom huile</li>
 				<li class="w-40">active</li>
 				<li class="w-40">actions</li>
 			</ul>
 		</div>
-		<div class="shadow-lg my-10 xl:mx-60 xl:overflow-y-auto xl:h-96">
-
-
+		<div class="shadow-lg xl:mx-60 xl:overflow-y-auto xl:h-96">
 			{% for huile in huiles|sort((a, b) => a.name <=> b.name) %}
-
-				<ul class="flex flex-wrap justify-between text-center shadow-lg py-4">
-
-					<li class="-w-10 lg:w-40 font-semibold text-xl my-auto">{{huile.name}}</li>
-
-
+				<ul class="flex flex-wrap justify-between text-center shadow-lg">
+					<li class=" lg:w-40 font-semibold text-xl my-auto">{{huile.name}}</li>
 					<li class="w-40 font-semibold text-xl my-auto">
 						<label class="switch">
 							<input type="checkbox" {{(huile.active) ? 'checked' : ''}} data-id="{{huile.id}}">
@@ -89,14 +83,10 @@
 							<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ huile.id) }}">
 							<input type="hidden" name="_method" value="DELETE">
 							<button class="text-red-500 text-xl border-red-500 border-2 p-3 rounded-lg focus:outline-none">Supprimer</button>
-
 						</form>
 					</li>
 				</ul>
-
 			{% endfor %}
-
-
 		</div>
 	</div>
 {% endblock %}

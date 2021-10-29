@@ -1,6 +1,6 @@
 {% extends "base.html.twig" %}
 
-{% block title %}Edition
+{% block title %}Edition Huile
 {% endblock %}
 
 {% block body %}
@@ -23,15 +23,14 @@
 
 			{{form_end(form)}}</div>
 		<!---->
-		<div>
-			{% for image in huile.images %}
-				<div>
-					<img src="{{ asset('/uploads/'~ image.name)}}" alt="Image" width="150">
-					<a href="{{ path('huile_delete_image', {'id': image.id}) }} " data-delete data-token="{{ csrf_token('delete' ~ image.id) }}">Supprimer</a>
-				</div>
-			{% endfor %}
 
-		</div>
+		{% for image in huile.images %}
+			<div>
+				<img src="{{ asset('/uploads/'~ image.name)}}" alt="Image" width="150">
+				<a href="{{ path('huile_delete_image', {'id': image.id}) }} " data-delete data-token="{{ csrf_token('delete' ~ image.id) }}">Supprimer</a>
+			</div>
+		{% endfor %}
+
 
 		<!---->
 	</div>

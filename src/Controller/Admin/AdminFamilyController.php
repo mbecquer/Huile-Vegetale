@@ -38,6 +38,28 @@ class AdminFamilyController extends AbstractController
         ]);
     }
     /**
+     * @Route("/admin/edit/{id}", name="admin_family_edit")
+     */
+    public function edit(Family $family, Request $request)
+    {
+
+        $form = $this->createForm(FamilyType::class, $family);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+
+
+            $this->addFlash("success", "Famille modifiée avec succès");
+            $this->em->flush();
+            return $this->redirectToRoute("admin_huiles_index");
+        }
+        return $this->render('admin/family/edit.html.twig', [
+            "form" => $form->createView(),
+            'huile' => $family,
+        ]);
+    }
+    /**
      * @Route("/admin/family/delete/{id}", name="admin_family_delete", methods={"DELETE"})
      */
     public function delete(Family $family, Request $request)

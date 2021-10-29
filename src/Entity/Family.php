@@ -27,7 +27,7 @@ class Family
 
     private $slug;
     /**
-     * @ORM\OneToMany(targetEntity=Huiles::class, mappedBy="family")
+     * @ORM\OneToMany(targetEntity=Huiles::class, mappedBy="family",orphanRemoval=true)
      */
     private $huile;
 
