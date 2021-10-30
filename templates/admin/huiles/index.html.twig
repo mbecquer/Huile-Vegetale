@@ -45,9 +45,9 @@
 						</li>
 						<li class="w-40">
 							<a href="{{path('admin_family_edit', { id: family.id })}}">
-							<button class="text-green text-xl border-green border-2 p-3 rounded-lg focus:outline-none mx-2">Modifier</button>
-						</a>
-							<form method="post" action="{{path('admin_family_delete',{id:family.id})}}" onsubmit="return confirm('Etes vous sûr de vouloir supprimer {{family.name }}?')">
+								<button class="text-green text-xl border-green border-2 p-3 rounded-lg focus:outline-none mx-2">Modifier</button>
+							</a>
+							<form method="post" action="{{path('admin_family_delete',{id:family.id})}}" onsubmit="return confirm('Etes vous sûr de vouloir supprimer {{family.name }}?  Cela entrainera la suppression des huiles associées !')">
 								<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ family.id) }}">
 								<input type="hidden" name="_method" value="DELETE">
 								<button class="text-red-500 text-xl border-red-500 border-2 p-3 rounded-lg focus:outline-none">Supprimer</button>

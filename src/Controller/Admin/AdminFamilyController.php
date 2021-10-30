@@ -38,7 +38,7 @@ class AdminFamilyController extends AbstractController
         ]);
     }
     /**
-     * @Route("/admin/edit/{id}", name="admin_family_edit")
+     * @Route("/admin/edit/family/{id}", name="admin_family_edit")
      */
     public function edit(Family $family, Request $request)
     {

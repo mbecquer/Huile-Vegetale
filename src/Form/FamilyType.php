@@ -22,7 +22,7 @@ class FamilyType extends AbstractType
                 ]
             ])
             ->add('active', CheckboxType::class, [
-                'required' => true
+                'required' => false
             ]);
     }
 

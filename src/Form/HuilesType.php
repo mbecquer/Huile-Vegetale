@@ -30,22 +30,25 @@ class HuilesType extends AbstractType
                 "attr" => [
                     'rows' => 15,
                     'cols' => 20,
-                    'placeholder' => 'Saisir description'
+                    'placeholder' => 'Saisir description',
+                    'required' => false
                 ]
             ])
             ->add('capacity', NumberType::class, [
-                'attr' => []
+                'help' => 'Préciser la capacité en millilitre'
             ])
-            ->add('price', NumberType::class)
+            ->add('price', NumberType::class, [
+                'help' => 'Préciser le prix en euros'
+            ])
 
             ->add('images', FileType::class, [
-                'label' => 'images',
+                'label' => 'Images',
                 'multiple' => true,
                 'mapped' => false,
                 'required' => false
             ])
             ->add('active', CheckboxType::class, [
-                'required' => true,
+                'required' => false,
             ])
             ->add('family', EntityType::class, [
                 'class' => Family::class,
