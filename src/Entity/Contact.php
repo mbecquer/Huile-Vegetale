@@ -26,9 +26,8 @@ class Contact
      * Undocumented variable
      *
      * @var string|null
-     * @Assert\NotBlank()
      * @Assert\Regex(
-     * pattern = "/[0-9]{10}/")
+     * pattern = "/[0-9]{10}/", match="false",message="Le numéro de téléphone doit contenir 10 chiffres sans espaces ni tirets")
      */
     private $phone;
 

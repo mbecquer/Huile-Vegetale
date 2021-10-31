@@ -35,7 +35,7 @@
 			<div>
 				{% for family in families|sort((a, b) => a.name <=> b.name)%}
 					<ul class="flex flex-wrap justify-between text-center shadow-lg ">
-						<li class="w-40 font-semibold text-xl my-auto">
+						<li class="w-40 font-semibold text-xl my-auto uppercase">
 							{{family.name}}</li>
 						<li class="w-40 font-semibold text-xl my-auto">
 							<label class="switch">

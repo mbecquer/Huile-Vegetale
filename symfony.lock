@@ -138,6 +138,9 @@
             "./config/packages/sensio_framework_extra.yaml"
         ]
     },
+    "snilius/twig-sort-by-field": {
+        "version": "v0.1.5"
+    },
     "swiftmailer/swiftmailer": {
         "version": "v6.2.7"
     },

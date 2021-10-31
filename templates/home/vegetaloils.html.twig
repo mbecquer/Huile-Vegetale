@@ -17,7 +17,7 @@
 				{% for family in families|sort((a, b) => a.name <=> b.name) %}
 					{% if family.active %}
 						<li class="py-3 px-3 text-green hover:bg-gray-200 font-semibold">
-							<a class="no-underline text-green uppercase text-lg link" href="{{path('family_huile',{id:family.id, slug:family.slug })}}">{{family.name}}
+							<a class="no-underline text-green uppercase  text-lg link" href="{{path('family_huile',{id:family.id, slug:family.slug })}}">{{family.name}}
 							</a>
 						</li>
 					{% endif %}

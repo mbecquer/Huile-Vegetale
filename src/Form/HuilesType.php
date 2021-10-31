@@ -4,9 +4,10 @@ namespace App\Form;
 
 use App\Entity\Family;
 use App\Entity\Huiles;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use App\Repository\FamilyRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -57,6 +58,13 @@ class HuilesType extends AbstractType
                 },
                 'expanded' => false,
                 'label' => 'Famille',
+                'query_builder' => function (FamilyRepository $er) {
+                    return $er->createQueryBuilder('f')
+                        ->orderBy('f.name', 'ASC');
+                },
+                'attr' => [
+                    'class' => 'text-uppercase'
+                ]
 
             ]);
     }

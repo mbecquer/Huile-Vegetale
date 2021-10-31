@@ -6,18 +6,20 @@
 
 	<div class="mx-auto xl:w-96  p-5 shadow-lg rounded-lg ">
 		<h1 class="text-green text-center text-4xl">Contactez-nous</h1>
-		{{form_start(form)}}
+		<div class="form-control">
 
-		{{form_row(form.firstname)}}
-		{{form_row(form.lastname)}}
-		{{form_row(form.phone)}}
-		{{form_row(form.email)}}
-		{{form_row(form.message)}}
+			{{form_start(form)}}
+			{{form_row(form.firstname)}}
+			{{form_row(form.lastname)}}
+			{{form_row(form.phone)}}
+			{{form_row(form.email)}}
+			{{form_row(form.message)}}
 
+			<button class="text-green text-xl border-green border-2 p-3 rounded-lg focus:outline-none my-5" type="submit">Envoyer</button>
+			<div class="text-red-500">
+				Les champs en rouge sont obligatoire !</div>
+			{{form_end(form)}}</div>
 
-		<button class="text-green text-xl border-green border-2 p-3 rounded-lg focus:outline-none my-5" type="submit">Envoyer</button>
-
-		{{form_end(form)}}
 	</div>
 
 {% endblock %}
