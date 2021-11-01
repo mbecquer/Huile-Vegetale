@@ -17,9 +17,7 @@
 		<div class="shadow-lg my-10">
 			<div class="">
 				<ul class="flex flex-wrap justify-evenly text-center text-xl uppercase font-semibold">
-					<li class="w-40">id</li>
 					<li class="w-40">titre</li>
-					<li class="w-96">contenu</li>
 					<li class="w-40">image</li>
 					<li class="w-40">creation</li>
 					<li class="w-40">actions</li>
@@ -28,9 +26,7 @@
 			<div>
 				{% for article in articles %}
 					<ul class="flex flex-wrap justify-evenly text-center shadow-lg py-4">
-						<li class="-w-10 lg:w-40 my-auto text-green text-xl font-bold">{{article.id}}</li>
 						<li class="-w-10 lg:w-40 font-semibold text-xl my-auto">{{article.title}}</li>
-						<li class="w-96 my-auto text-lg">{{article.content}}</li>
 						<li class="w-40 font-semibold text-xl my-auto">
 							{% for pictureArticle in article.pictureArticles %}
 								<img class="object-cover rounded-lg " src="{{asset('/uploads/'~ pictureArticle.name)}}">

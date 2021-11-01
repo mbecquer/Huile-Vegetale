@@ -17,12 +17,15 @@ class ArticleType extends AbstractType
     {
         $builder
             ->add('title', TextType::class, [
+                'required'=>true,
                 'attr' => [
                     'style' => "width:200px"
                 ]
             ])
             ->add('content', TextareaType::class, [
                 'attr' => [
+                    'rows' => 15,
+                    'cols' => 20,
                     'style' => "width:200px"
                 ]
             ])
@@ -35,11 +38,7 @@ class ArticleType extends AbstractType
                     'style' => "width:200px"
                 ]
             ])
-            ->add('created_at', DateType::class, [
-                'attr' => [
-                    'style' => "width:200px"
-                ]
-            ]);
+         ;
     }
 
     public function configureOptions(OptionsResolver $resolver)

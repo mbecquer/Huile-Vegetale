@@ -58,6 +58,7 @@ class AdminArticleController extends AbstractController
     public function create(Request $request)
     {
         $article = new Article();
+        $article->setCreatedAt(new \DateTime());
         $form = $this->createForm(ArticleType::class, $article);
         $form->handleRequest($request);
 
@@ -100,6 +101,7 @@ class AdminArticleController extends AbstractController
     {
 
         $form = $this->createForm(ArticleType::class, $article);
+        $article->setCreatedAt(new \DateTime());
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             //on récupère les images transmises
