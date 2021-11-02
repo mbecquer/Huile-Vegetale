@@ -23,13 +23,15 @@ class HuilesController extends AbstractController
     public function read(string $slug, int $id)
     {
         $huile = $this->huilesRepository->find($id);
-
+        $family = $this->familyRepository->find($id);
+    
         if ($huile->getSlug() !== $slug) {
             $this->redirectToRoute('huile_read', [
                 "id" => $huile->getId(),
                 "slug" => $huile->getSlug()
             ]);
         }
+
         return $this->render('huile/read.html.twig', [
             'huile' => $huile,
 
@@ -43,6 +45,12 @@ class HuilesController extends AbstractController
         $family = $this->familyRepository->find($id);
 
         $huile = $this->huilesRepository->findBy(['family' => $family]);
+        if ($family->getActive() == false) {
+            return $this->render('home/index.html.twig', [
+                $this->addFlash("success", "Famille non disponible"),
+                'title' => 'Huile végétale AK'
+            ]);
+        }
         if ($family->getSlug() !== $slug) {
             $this->redirectToRoute('family_huile', [
                 "id" => $family->getId(),
@@ -53,6 +61,7 @@ class HuilesController extends AbstractController
         return $this->render('huile/index.html.twig', [
             'huiles' => $huile,
             'family' => $family,
+
         ]);
     }
 }

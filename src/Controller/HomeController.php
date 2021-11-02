@@ -37,10 +37,6 @@ class HomeController extends AbstractController
         $family = $this->familyRepository->findAll();
         $huile = $this->huilesRepository->findBy(['family' => $family]);
 
-
-
-
-
         return $this->render("home/vegetaloils.html.twig", [
             "title" => "Nos Huiles",
             "message" => "Méthode de production",
