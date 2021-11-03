@@ -24,7 +24,7 @@ class HuilesController extends AbstractController
     {
         $huile = $this->huilesRepository->find($id);
         $family = $this->familyRepository->find($id);
-    
+
         if ($huile->getSlug() !== $slug) {
             $this->redirectToRoute('huile_read', [
                 "id" => $huile->getId(),
@@ -45,12 +45,14 @@ class HuilesController extends AbstractController
         $family = $this->familyRepository->find($id);
 
         $huile = $this->huilesRepository->findBy(['family' => $family]);
+
         if ($family->getActive() == false) {
             return $this->render('home/index.html.twig', [
                 $this->addFlash("success", "Famille non disponible"),
-                'title' => 'Huile végétale AK'
+                'title' => 'Huile végétale KA'
             ]);
         }
+
         if ($family->getSlug() !== $slug) {
             $this->redirectToRoute('family_huile', [
                 "id" => $family->getId(),
