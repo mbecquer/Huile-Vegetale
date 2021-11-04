@@ -58,14 +58,13 @@
 					<!-- fin info user-->
 					<hr>
 					<!--comment user-->
-					<div class="my-5">
+					<div class="my-5" >
 						<p class="text-lg">{{comment.content}}</p>
 						{% if is_granted('ROLE_USER') %}
 							<a href="#ajout-commentaire" data-reply data-id="{{comment.id}}" data-bs-toggle="modal" data-bs-target="#exampleModal">
 								<button class="text-green text-xl border-green border-2 p-3 rounded-lg focus:outline-none float-right">Répondre</button>
 							</a>
 						{% endif %}
-
 					</div>
 					<!--fin comment user-->
 					<!--on affiche les réponses-->
@@ -86,6 +85,7 @@
 						</div>
 						<div>
 							<p class="text-lg">{{reply.content}}</p>
+						
 						</div>
 					{% endfor %}
 					<!--fin comment user reply-->
@@ -97,8 +97,9 @@
 
 
 		<!--encart connexion pour commenter-->
-			<div
-			class=" p-5 w-full my-5 rounded-lg shadow-lg text-center flex flex-col items-center "> <!--text-->
+		<div
+			class=" p-5 w-full my-5 rounded-lg shadow-lg text-center flex flex-col items-center ">
+			<!--text-->
 			<p class=" text-lg">Vous voulez participer au forum ? Connectez-vous !</p>
 			<!--bouton connexion inscription-->
 			<div class="flex">
@@ -134,7 +135,6 @@
 							</div>
 							<div class="modal-footer">
 								<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-
 							</div>
 						</div>
 					</div>
