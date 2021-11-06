@@ -6,56 +6,59 @@
 
 {% block body %}
 
+	<div class="flex flex-wrap justify-evenly text-xl my-10 xl:mx-96 shadow-lg py-4 rounded-lg">
 
-	<div class="flex xl:flex-col flex-wrap text-xl my-20 bg-gray-200 py-10">
-
-		<div id="carouselExampleControls" class="carousel slide xl:w-80 mx-auto" data-bs-ride="carousel">
-
-			<div class="carousel-inner px-5">
+		<div id="carouselExampleControls" class="carousel slide xl:w-96 " data-bs-ride="carousel">
+			<div class="carousel-inner">
 				{% for image in huile.images %}
 					<div class="carousel-item {% if loop.first %} active {% endif %}">
-						<img src="{{ asset('/uploads/'~ image.name)}}" alt="Image" style="height:300px; width:300px; object-fit:cover">
+						<a type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+							<img src="{{ asset('/uploads/'~ image.name)}}" alt="Image" style="height:600px; width:100%; object-fit:cover"></a>
 					</div>
 				{% endfor %}
 
 			</div>
+			<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+				<span class="carousel-control-prev-icon bg-green-500 rounded-full" aria-hidden="true"></span>
+				<span class="visually-hidden">Previous</span>
+			</button>
+			<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+				<span class="carousel-control-next-icon bg-green-500 rounded-full" aria-hidden="true"></span>
+				<span class="visually-hidden">Next</span>
+			</button>
+
 			{% if huile.images.isempty %}
-				<div class="flex flex-col border-2 border-black rounded-lg text-center text-black uppercase font-semibold text-xl py-3 bg-gray-100">
+				<div class="flex flex-col  rounded-lg text-center text-black uppercase font-semibold text-xl py-3 bg-gray-100">
 					<span>Image non disponible</span>
 					<span class="text-5xl">X</span>
 				</div>
 			{% endif %}
-			<div class="xl:w-96 px-5">
-				<p class="font-bold text-2xl text-green">{{huile.name}}</p>
-				<p>
-					<span class="font-bold">Prix :</span>
-					{{huile.price}}
-					€</p>
-				<p>
-					<span class="font-bold">Capacité :</span>
-					{{huile.capacity}}
-					ml</p>
+		</div>
 
-				<p class="font-bold">Description :</p>
 
-				<p class="text-justify">{{huile.description}}</p>
+		<div class="xl:w-96  ">
+			<p class="font-bold text-2xl text-green">{{huile.name}}</p>
+			<p>
+				<span class="font-bold">Prix :</span>
+				{{huile.price}}
+				€</p>
+			<p>
+				<span class="font-bold">Capacité :</span>
+				{{huile.capacity}}
+				ml</p>
 
-				<div class="flex mt-5 "><!--{% if is_granted("ROLE_USER")%}-->
-					<!--<a href="{{path('cart_add',{'id':huile.id})}}" ><button class="text-green text-xl border-green border-2 p-3 rounded-lg focus:outline-none my-3">Ajouter au panier</button></a>-->
-					<!--{% else %}-->
-					<!--<a href="{{path('app_login')}}" ><button class="text-green text-xl border-green border-2 p-3 rounded-lg focus:outline-none my-3">Ajouter au panier</button></a>-->
-					<!--{% endif %}-->
-				</div>
+			<p class="font-bold">Description :</p>
 
+			<p class="text-justify">{{huile.description}}</p>
+
+			<div class="flex mt-5 "><!--{% if is_granted("ROLE_USER")%}-->
+				<!--<a href="{{path('cart_add',{'id':huile.id})}}" ><button class="text-green text-xl border-green border-2 p-3 rounded-lg focus:outline-none my-3">Ajouter au panier</button></a>-->
+				<!--{% else %}-->
+				<!--<a href="{{path('app_login')}}" ><button class="text-green text-xl border-green border-2 p-3 rounded-lg focus:outline-none my-3">Ajouter au panier</button></a>-->
+				<!--{% endif %}-->
 			</div>
-		</div>
-		<div class="flex flex-col xl:flex-row mx-auto">
-			{% for image in huile.images %}
-				<div class="">
-					<img src="{{ asset('/uploads/'~ image.name)}}" alt="Image" style="height:200px; width:200px; object-fit:cover">
-				</div>
-			{% endfor %}
-		</div>
 
+		</div>
 	</div>
+
 {% endblock %}
