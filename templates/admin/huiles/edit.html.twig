@@ -4,38 +4,37 @@
 {% endblock %}
 
 {% block body %}
-	<h1 class="text-center">Modifier l'huile :
-		<span class="text-green">{{huile.name}}</span>
-	</h1>
+  <h1 class="text-center">Modifier l'huile :
+    <span class="text-green">{{huile.name}}</span>
+  </h1>
 
+  <div class="flex flex-wrap justify-evenly ">
+    <div class=" flex w-96 p-5 shadow-lg rounded-lg">
+      {{ form_start(form) }}
+      {{form_row(form.name)}}
+      {{form_row(form.description)}}
+      {{form_row(form.capacity)}}
+      {{form_row(form.price)}}
+      {{form_row(form.active)}}
+      {{form_row(form.family)}}
+      {{form_row(form.images)}}
+      <button class="text-green  text-xl border-green border-2 p-3 rounded-lg focus:outline-none my-5" type="submit">Enregistrer</button>
 
-	<div class="flex flex-wrap justify-evenly ">
-		<div class=" flex w-96 p-5 shadow-lg rounded-lg">
-			{{ form_start(form) }}
-			{{form_row(form.name)}}
-			{{form_row(form.description)}}
-			{{form_row(form.capacity)}}
-			{{form_row(form.price)}}
-			{{form_row(form.active)}}
-			{{form_row(form.family)}}
-			{{form_row(form.images)}}
-			<button class="text-green  text-xl border-green border-2 p-3 rounded-lg focus:outline-none my-5" type="submit">Enregistrer</button>
+      {{form_end(form)}}</div>
+    <!---->
 
-			{{form_end(form)}}</div>
-		<!---->
+    {% for image in huile.images %}
+      <div>
+        <img src="{{ asset('/uploads/'~ image.name)}}" alt="Image" width="150">
+        <a href="{{ path('huile_delete_image', {'id': image.id}) }} " data-delete="data-delete" data-token="{{ csrf_token('delete' ~ image.id) }}">Supprimer</a>
+      </div>
+    {% endfor %}
 
-		{% for image in huile.images %}
-			<div>
-				<img src="{{ asset('/uploads/'~ image.name)}}" alt="Image" width="150">
-				<a href="{{ path('huile_delete_image', {'id': image.id}) }} " data-delete data-token="{{ csrf_token('delete' ~ image.id) }}">Supprimer</a>
-			</div>
-		{% endfor %}
-
-
-		<!---->
-	</div>
+    <!---->
+  </div>
 
 {% endblock %}
 {% block javascripts %}
-	<script src="{{asset('js/images.js')}}"></script>
+  <script src="{{asset('js/main.js')}}"></script>
+  <script src="{{asset('js/images.js')}}"></script>
 {% endblock %}
