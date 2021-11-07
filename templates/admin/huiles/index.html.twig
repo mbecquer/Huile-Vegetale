@@ -6,8 +6,9 @@
 	<h1 class="text-center">Administration</h1>
 	<div class="mx-2">
 		{% for message in app.flashes('success')  %}
-			<div class="bg-green-200  text-center text-3xl p-2 mb-2 rounded-lg mx-20">
+			<div class="alert alert-dismissible fade show bg-green-200  text-center text-3xl p-2 mb-2 rounded-lg mx-20" role="alert">
 				{{message}}
+				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 			</div>
 		{% endfor %}
 		<div class="flex flex-col">

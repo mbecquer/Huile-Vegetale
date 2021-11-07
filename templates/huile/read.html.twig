@@ -12,8 +12,8 @@
 			<div class="carousel-inner">
 				{% for image in huile.images %}
 					<div class="carousel-item {% if loop.first %} active {% endif %}">
-						<a type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
-							<img src="{{ asset('/uploads/'~ image.name)}}" alt="Image" style="height:600px; width:100%; object-fit:cover"></a>
+
+						<img src="{{ asset('/uploads/'~ image.name)}}" alt="Image" style="height:600px; width:100%; object-fit:cover">
 					</div>
 				{% endfor %}
 

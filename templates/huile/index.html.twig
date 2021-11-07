@@ -3,41 +3,50 @@
 {% block title %}{% endblock %}
 
 {% block body %}
+	<div class="flex flex-wrap justify-center">
+		<h1 class="text-center text-green text-4xl mx-5">Famille des
+			{{family.name}}
 
-	<h1 class="text-center text-green text-4xl">Famille des
-		{{family.name}}</h1>
-	<div class="w-96 mx-auto border-2 border-black">
-		<h1>histoire botanique</h1>
-		<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Totam tempore soluta consectetur vel voluptatibus? Qui tempore, laudantium a quasi commodi doloribus ullam nesciunt facilis porro ratione sapiente explicabo accusamus facere.</p>
+		</h1>
+		<a class="btn btn-success" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+			Histoire botanique
+		</a>
+	</div>
+	<div class="collapse" id="collapseExample">
+		<div class="card card-body text-lg">
+			Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
+		</div>
 	</div>
 	<div class="flex flex-wrap justify-center xl:mx-52">
-
 
 		{% for huile in huiles|sort((a, b) => a.name <=> b.name) %}
 			{% if huile.active %}
 
-				<a href="{{path('huile_read', {id: huile.id, slug:huile.slug})}}" class="no-underline w-72 xl:w-96 mx-auto  mt-10 xl:mb-20">
-					<div id="carouselExampleControls" class="carousel slide xl:w-80 mx-auto" data-bs-ride="carousel">
+				<div class="card mx-10 my-10" style="width:18rem;">
+					<div id="carouselExampleControls" class="carousel slide " data-bs-ride="carousel">
 						<div class="carousel-inner">
 							{% for image in huile.images %}
 								<div class="carousel-item {% if loop.first %} active {% endif %}">
-									<img src="{{ asset('/uploads/'~ image.name)}}" alt="Image">
+									<img src="{{ asset('/uploads/'~ image.name)}}" alt="Image" class="card-img-top" style="height:200px;">
 								</div>
 							{% endfor %}
 							{% if huile.images.isempty %}
-								<div class="flex flex-col border-2 border-black rounded-lg text-center text-black uppercase font-semibold text-xl py-3 bg-gray-100">
+								<div class="flex flex-col text-center text-black uppercase font-semibold text-xl py-5 bg-gray-100" style="height:200px">
 									<span>Image non disponible</span>
 									<span class="text-7xl">X</span>
 								</div>
 							{% endif %}
 						</div>
-						<span class="font-bold text-xl  text-green">{{huile.name}}</span>
 					</div>
-				</a>
+					<div class="card-body">
+						<h5 class="card-title">{{huile.name}}</h5>
+						<a href="{{path('huile_read', {id: huile.id, slug:huile.slug})}}" class="btn btn-success">Voir le produit</a>
+					</div>
+
+				</div>
 
 			{% endif %}
 		{% endfor %}
-
-
 	</div>
+
 {% endblock %}
