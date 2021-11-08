@@ -3,20 +3,24 @@
 {% block title %}{% endblock %}
 
 {% block body %}
+
 	<div class="flex flex-wrap justify-center">
+
 		<h1 class="text-center text-green text-4xl mx-5">Famille des
 			{{family.name}}
-
 		</h1>
-		<a class="btn btn-success" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-			Histoire botanique
-		</a>
+		{% if family.story %}
+			<a class=" no-underline text-green border-green border-2 rounded-lg p-2 my-2" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+				Histoire botanique
+			</a>
+		{% endif %}
 	</div>
 	<div class="collapse" id="collapseExample">
 		<div class="card card-body text-lg">
-			Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
+			{{family.story}}
 		</div>
 	</div>
+
 	<div class="flex flex-wrap justify-center xl:mx-52">
 
 		{% for huile in huiles|sort((a, b) => a.name <=> b.name) %}
@@ -40,9 +44,11 @@
 					</div>
 					<div class="card-body">
 						<h5 class="card-title">{{huile.name}}</h5>
-						<a href="{{path('huile_read', {id: huile.id, slug:huile.slug})}}" class="btn btn-success">Voir le produit</a>
-					</div>
 
+					</div>
+					<div class="card-body bg-white">
+						<a href="{{path('huile_read', {id: huile.id, slug:huile.slug})}}" class=" no-underline text-green border-green border-2 rounded-lg p-2 my-2">Voir le produit</a>
+					</div>
 				</div>
 
 			{% endif %}

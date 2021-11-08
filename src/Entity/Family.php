@@ -38,6 +38,11 @@ class Family
      */
     private $active;
 
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $story;
+
     public function __construct()
     {
         $this->huile = new ArrayCollection();
@@ -105,6 +110,18 @@ class Family
     public function setActive(bool $active): self
     {
         $this->active = $active;
+
+        return $this;
+    }
+
+    public function getStory(): ?string
+    {
+        return $this->story;
+    }
+
+    public function setStory(?string $story): self
+    {
+        $this->story = $story;
 
         return $this;
     }

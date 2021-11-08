@@ -6,11 +6,11 @@ use App\Entity\Family;
 use App\Repository\FamilyRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Validator\Constraints\Regex;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Validator\Constraints\Regex;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class FamilyType extends AbstractType
 {
@@ -20,13 +20,23 @@ class FamilyType extends AbstractType
             ->add('name', TextType::class, [
 
                 'required' => true,
+                'help' => 'Saisir en majuscules',
                 "attr" => [
-                    'placeholder' => "Enter family",
+                    'placeholder' => "Entrer la famille",
+
                     'style' => 'width: 200px',
                 ]
             ])
             ->add('active', CheckboxType::class, [
                 'required' => false
+            ])
+            ->add('story', TextareaType::class, [
+                "attr" => [
+                    'rows' => 15,
+                    'cols' => 20,
+                    'placeholder' => 'Saisir l\'histoire de la famille',
+                    'required' => false
+                ]
             ]);
     }
 
