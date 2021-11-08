@@ -3,7 +3,7 @@
 	{{title}}
 {% endblock %}
 {% block body %}
-	<h1 class="text-center text-green text-4xl">Huiles vegetales de graines germees et des oléagineux activés</h1>
+	<h1 class="text-center text-green text-6xl title">Huiles vegetales de graines germees et des oléagineux activés</h1>
 
 
 	<!--description-->
@@ -12,12 +12,12 @@
 		class="flex flex-col xl:flex-row xl:my-20 xl:mx-52">
 		<!--familles botaniques-->
 
-		<h5 class="px-3 pt-3 text-white bg-green uppercase w-80 xl:w-52 h-14 xl:h-96 mx-auto">Familles botaniques</h5>
+		<h5 class="px-3 pt-3 text-white bg-green uppercase w-80 xl:w-52 h-14 xl:h-96 mx-auto text">Familles botaniques</h5>
 		<div class="w-80 mx-auto overflow-y-auto h-96 bg-gray-50 ">
-			<ul class="p-0 divide-y divide-green-700 ">
+			<ul class="p-0 divide-y divide-green-700 text">
 				{% for family in families|sort((a, b) => a.name <=> b.name) %}
 					{% if family.active %}
-						<li class="py-3 px-3 text-green hover:bg-gray-200 font-semibold">
+						<li class="py-3 px-3 text-green hover:bg-gray-200 ">
 							<a class="no-underline text-green uppercase  text-lg link" href="{{path('family_huile',{id:family.id, slug:family.slug })}}">{{family.name}}
 							</a>
 						</li>
@@ -28,18 +28,23 @@
 
 
 		<!--fin familles botaniques-->
-		<div class="text-justify xl:ml-20 ">
-			<h1 class="text-center text-green text-4xl">{{message}}</h1>
-			<h1>Parties utilisées: Graines et oléagineux
-			</h1>
-			<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempora cupiditate totam sequi reprehenderit blanditiis iusto praesentium eos laboriosam omnis sunt porro odit, assumenda perspiciatis placeat, ipsam accusantium fuga earum nisi.</p>
+		<div class="card text-justify xl:ml-20">
+			<div class="card-title">
+				<h1 class="text-center text-green text-4xl subtitle">{{message}}</h1>
+			</div>
+			<div class="card-body">
+				<h1 class="subtitle text-blue">Parties utilisées: Graines et oléagineux
+				</h1>
+				<p class="text-lg">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempora cupiditate totam sequi reprehenderit blanditiis iusto praesentium eos laboriosam omnis sunt porro odit, assumenda perspiciatis placeat, ipsam accusantium fuga earum nisi.</p>
 
-			<h1>Pré-traitement: Germination des graines et activation des oléagineux</h1>
-			<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempora cupiditate totam sequi reprehenderit blanditiis iusto praesentium eos laboriosam omnis sunt porro odit, assumenda perspiciatis placeat, ipsam accusantium fuga earum nisi.</p>
+				<h1 class="subtitle text-blue">Pré-traitement: Germination des graines et activation des oléagineux</h1>
+				<p class="text-lg">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempora cupiditate totam sequi reprehenderit blanditiis iusto praesentium eos laboriosam omnis sunt porro odit, assumenda perspiciatis placeat, ipsam accusantium fuga earum nisi.</p>
 
-			<h1>Méthode d’extraction mécanique: Presse hydraulique</h1>
-			<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempora cupiditate totam sequi reprehenderit blanditiis iusto praesentium eos laboriosam omnis sunt porro odit, assumenda perspiciatis placeat, ipsam accusantium fuga earum nisi.</p>
+				<h1 class="subtitle text-blue">Méthode d’extraction mécanique: Presse hydraulique</h1>
+				<p class="text-lg">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempora cupiditate totam sequi reprehenderit blanditiis iusto praesentium eos laboriosam omnis sunt porro odit, assumenda perspiciatis placeat, ipsam accusantium fuga earum nisi.</p>
+			</div>
 		</div>
+
 
 	</div>
 	<!---->

@@ -2,7 +2,8 @@
 
 :root {
   --green: #4a894c;
-  --blue: #374151;
+  --blue: #2F4858;
+  --textblue:#00646B;
 }
 .text-green{
   color:var(--green);
@@ -13,6 +14,22 @@ border-color:var(--green);
 .bg-green{
   background:var(--green);
 }
+.background-blue{
+  background:var(--blue);
+}
+.text-blue{
+  color:var(--textblue);
+}
+.title{
+  font-family: 'Sacramento', cursive;
+}
+.subtitle{
+  font-family: 'Hind Vadodara', sans-serif;
+}
+.text{
+  font-family: 'Nunito Sans', sans-serif;
+}
+
 
 .btn{
 border:2px solid var(--green);

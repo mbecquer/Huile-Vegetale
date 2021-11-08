@@ -6,17 +6,17 @@
 
 	<div class="flex flex-wrap justify-center">
 
-		<h1 class="text-center text-green text-4xl mx-5">Famille des
+		<h1 class="text-center text-green text-6xl mx-5 title">Famille des
 			{{family.name}}
 		</h1>
 		{% if family.story %}
-			<a class=" no-underline text-green border-green border-2 rounded-lg p-2 my-2" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+			<a class="subtitle no-underline text-green border-green border-2 rounded-lg p-2 my-2" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
 				Histoire botanique
 			</a>
 		{% endif %}
 	</div>
 	<div class="collapse" id="collapseExample">
-		<div class="card card-body text-lg">
+		<div class="card card-body text-xl text text-blue ">
 			{{family.story}}
 		</div>
 	</div>
@@ -43,7 +43,7 @@
 						</div>
 					</div>
 					<div class="card-body">
-						<h5 class="card-title">{{huile.name}}</h5>
+						<h5 class="card-title text text-blue">{{huile.name}}</h5>
 
 					</div>
 					<div class="card-body bg-white">

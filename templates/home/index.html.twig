@@ -1,109 +1,110 @@
 {% extends "base.html.twig" %}
 {% block title %}
-  {{title}}
+	{{title}}
 {% endblock %}
 
 {% block body %}
 
-  {% for message in app.flashes('success') %}
-    <div class="bg-green-200  text-center text-3xl p-2 mb-2 rounded-lg mx-20">
-      {{message}}
-    </div>
-  {% endfor %}
-  <!--content-->
-  <div class=" flex flex-wrap justify-evenly xl:flex-nowrap ">
-    <!--texte-->
-    <div class="xl:w-full">
-      <div id="carouselExampleSlidesOnly" class="carousel slide " data-bs-ride="carousel">
-        <div class="carousel-inner ">
-          <div class="carousel-item active">
-            <img class="object-cover w-full opacity-50 rounded-lg h-96 d-block" src="{{ asset('/assets/PageACC.jpg') }}">
-          </div>
-          <div class="carousel-item">
-            <img class="object-cover w-full opacity-50 rounded-lg h-96 d-block" src="{{ asset('/assets/Page Ac.jpg') }}" >
-          </div>
-          <div class="carousel-item">
-            <img class="object-cover w-full opacity-50 rounded-lg h-96 d-block" src="{{ asset('/assets/banner_oil.jpg') }}" >
-          </div>
-        </div>
-      </div>
+	{% for message in app.flashes('success') %}
+		<div class="bg-green-200  text-center text-3xl p-2 mb-2 rounded-lg mx-20">
+			{{message}}
+		</div>
+	{% endfor %}
+	<!--content-->
+	<div
+		class=" flex flex-wrap justify-evenly xl:flex-nowrap ">
+		<!--texte-->
+		<div class="xl:w-full">
+			<div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+				<div class="carousel-inner ">
+					<div class="carousel-item active">
+						<img class="object-cover w-full opacity-50 rounded-lg h-96 d-block" src="{{ asset('/assets/PageACC.jpg') }}">
+					</div>
+					<div class="carousel-item">
+						<img class="object-cover w-full opacity-50 rounded-lg h-96 d-block" src="{{ asset('/assets/Page Ac.jpg') }}">
+					</div>
+					<div class="carousel-item">
+						<img class="object-cover w-full opacity-50 rounded-lg h-96 d-block" src="{{ asset('/assets/banner_oil.jpg') }}">
+					</div>
+				</div>
+			</div>
 
-    </div>
+		</div>
 
-    <div class="my-5 md:flex md:flex-col">
+		<div class="my-5 md:flex md:flex-col">
 
-      <h1 class="text-green text-center text-4xl mb-3 ">Elixirs de jouvence</h1>
-      <p class="font-bold text-lg text-justify sm:mx-5 md:w-96">Son activité principale est la production des huiles végétales vierges première pression à froid à partir des graines germées. Sur ce projet, elle adopte des principes :</p>
+			<h1 class="text-green text-center text-6xl mb-3  title">Elixirs de jouvence</h1>
+			<p class=" text-lg text-justify sm:mx-5 md:w-96 subtitle text-gray-700">Son activité principale est la production des huiles végétales vierges première pression à froid à partir des graines germées. Sur ce projet, elle adopte des principes :</p>
 
-      <ul class="text-lg text-justify md:w-96">
-        <li>
-          - De croire en des producteurs agricoles porteurs des valeurs sur la nourriture saine</li>
+			<ul class="text-lg text-justify md:w-96 text text-blue">
+				<li>
+					- De croire en des producteurs agricoles porteurs des valeurs sur la nourriture saine</li>
 
-        <li>
-          - Du bien être de nos clients consommateurs qui est notre préoccupation quotidienne</li>
+				<li>
+					- Du bien être de nos clients consommateurs qui est notre préoccupation quotidienne</li>
 
-        <li>- De la gestion des ressources de l’environnement au plus près des besoins de nos consommateurs clients et dans le respect de la biodiversité</li>
+				<li>- De la gestion des ressources de l’environnement au plus près des besoins de nos consommateurs clients et dans le respect de la biodiversité</li>
 
-        <li>
-          - De transformer des issues de l’agriculture biologique en respectant les valeurs nutritionnelles</li>
+				<li>
+					- De transformer des issues de l’agriculture biologique en respectant les valeurs nutritionnelles</li>
 
-        <li>- De promouvoir le partage des ressources naturelles et d’éviter le gaspillage</li>
+				<li>- De promouvoir le partage des ressources naturelles et d’éviter le gaspillage</li>
 
-      </ul>
-    </div>
-    <!--image-->
-    <div class="">
-      <img class="object-cover w-80 rounded-lg sm:w-96 md:my-14" src="{{ asset('/assets/Page Ac.jpg') }}"></div>
+			</ul>
+		</div>
+		<!--image-->
+		<div class="">
+			<img class="object-cover w-80 rounded-lg sm:w-96 md:my-14" src="{{ asset('/assets/Page Ac.jpg') }}"></div>
 
-  </div>
-  <!--qui sommes nous-->
+	</div>
+	<!--qui sommes nous-->
 
-  <div class="xl:mx-52 relative">
-    <div class=" lg:absolute z-40 lg:top-1/2 lg:left-1/2 lg:transform lg:-translate-x-1/2 lg:-translate-y-1/2">
+	<div class="xl:mx-52 relative">
+		<div class=" lg:absolute z-40 lg:top-1/2 lg:left-1/2 lg:transform lg:-translate-x-1/2 lg:-translate-y-1/2">
 
-      <p class=" text-justify sm:mx-5 md:w-96 md:mx-auto xl:my-5 absolute z-50 ">
-        <h1 class="text-green text-4xl mb-3 ">
-          Qui sommes nous ?</h1>
-        <span class="text-5xl text-green lg:text-6xl">"</span>
-        <span class="text-xl">HuilesVégétales_AK» tirent ses ressources d’exploitation des végétaux existant dans leur milieu naturel sur les cinq continents. cette démarche éco-responsable et éco-solidaire impose de restituer à l’état pur les huiles vierges offrant la meilleure garantie de qualité pour une meilleure efficience de ces «elixirs de jouvence.</span>
+			<p class=" text-justify sm:mx-5 md:w-96 md:mx-auto xl:my-5 absolute z-50 ">
+				<h1 class="text-green text-6xl mb-3 title ">
+					Qui sommes nous ?</h1>
+				<span class="text-5xl text-green lg:text-6xl text">"</span>
+				<span class="text-xl text text-blue">HuilesVégétales_AK» tirent ses ressources d’exploitation des végétaux existant dans leur milieu naturel sur les cinq continents. cette démarche éco-responsable et éco-solidaire impose de restituer à l’état pur les huiles vierges offrant la meilleure garantie de qualité pour une meilleure efficience de ces «elixirs de jouvence.</span>
 
-        <span class="text-5xl text-green absolute right-0 -bottom-10 lg:text-6xl lg:absolute lg:right-0 lg:-bottom-14 ">
-          "</span>
-      </p>
-    </div>
-    <img class="w-80 my-3 mx-auto object-cover rounded-lg lg:w-full opacity-30  " src="{{ asset('/assets/Marché.jpg') }}">
-  </div>
+				<span class="text-5xl text-green absolute right-0 -bottom-10 lg:text-6xl lg:absolute lg:right-0 lg:-bottom-14 text">
+					"</span>
+			</p>
+		</div>
+		<img class="w-80 my-3 mx-auto object-cover rounded-lg lg:w-full opacity-30  " src="{{ asset('/assets/Marché.jpg') }}">
+	</div>
 
-  <!--valeurs et engagements-->
-  <div class="flex flex-col justify-evenly lg:flex-row">
-    <div class="">
-      <h1 class="text-green text-center text-4xl mb-3 ">
-        Nos valeurs et nos engagements</h1>
-      <ul class="text-lg md:w-96 md:mx-auto text-justify">
+	<!--valeurs et engagements-->
+	<div class="flex flex-col justify-evenly lg:flex-row">
+		<div class="">
+			<h1 class="text-green text-center text-6xl mb-3 title">
+				Nos valeurs et nos engagements</h1>
+			<ul class="text-lg md:w-96 md:mx-auto text-justify text text-blue ">
 
-        <li>
-          - Satisfaire vos besoins</li>
+				<li>
+					- Satisfaire vos besoins</li>
 
-        <li>
+				<li>
 
-          - Partager vos valeurs d’éco-responsable, de solidarité et votre éthique</li>
+					- Partager vos valeurs d’éco-responsable, de solidarité et votre éthique</li>
 
-        <li>
+				<li>
 
-          - Faire respecter et rendre transparent nos engagements qualités : Origine des produits biologique, produire en France à partir des graines germées</li>
+					- Faire respecter et rendre transparent nos engagements qualités : Origine des produits biologique, produire en France à partir des graines germées</li>
 
-        <li>
+				<li>
 
-          - Produire les huiles vierges de première pression à froid à partir de pesse mécanique</li>
+					- Produire les huiles vierges de première pression à froid à partir de pesse mécanique</li>
 
-        <li>
+				<li>
 
-          - Oeuvrer pour une gestion raisonnée des ressources naturelles et la protection de l’environnement</li>
-      </ul>
-    </div>
-    <div>
-      <img class=" w-80 mx-auto my-3 object-cover rounded-lg sm:w-96" src="{{ asset('/assets/Presse hydraulique.jpg') }}"></div>
+					- Oeuvrer pour une gestion raisonnée des ressources naturelles et la protection de l’environnement</li>
+			</ul>
+		</div>
+		<div>
+			<img class=" w-80 mx-auto my-3 object-cover rounded-lg sm:w-96" src="{{ asset('/assets/Presse hydraulique.jpg') }}"></div>
 
-  </div>
+	</div>
 
 {% endblock %}
