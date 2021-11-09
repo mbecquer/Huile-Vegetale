@@ -60,9 +60,10 @@
 		</div>
 		<h1 class="text-center my-10">Huiles</h1>
 		<div>
-			<ul class="flex flex-wrap justify-around text-center text-xl uppercase font-semibold">
+			<ul class="flex flex-wrap justify-evenly text-center text-xl uppercase font-semibold">
 				<li class="w-40">nom huile</li>
 				<li class="w-40">active</li>
+				<li class="w-40">date</li>
 				<li class="w-40">actions</li>
 			</ul>
 		</div>
@@ -76,6 +77,8 @@
 							<span class="slider"></span>
 						</label>
 					</li>
+					<li class="w-40 my-auto font-semibold">
+						{{huile.createdAt|date("d/m/Y H:i","Europe/Paris")}}</li>
 					<li class="w-40 my-auto">
 						<a href="{{path('admin_huiles_edit', { id: huile.id })}}">
 							<button class="text-green text-xl border-green border-2 p-3 rounded-lg focus:outline-none mx-2">Modifier</button>

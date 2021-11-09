@@ -12,8 +12,9 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Validator\Constraints\DateTime;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class AdminHuilesController extends AbstractController
 {
@@ -47,7 +48,7 @@ class AdminHuilesController extends AbstractController
     {
         $families = $familyRepository->findAll();
         $huile = new Huiles();
-
+        $huile->setCreatedAt(new \DateTime());
         $form = $this->createForm(HuilesType::class, $huile);
         $form->handleRequest($request);
 
@@ -91,6 +92,7 @@ class AdminHuilesController extends AbstractController
     {
         $families = $familyRepository->findAll();
         $form = $this->createForm(HuilesType::class, $huile);
+        $huile->setCreatedAt(new \DateTime());
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -114,7 +116,7 @@ class AdminHuilesController extends AbstractController
                 $huile->addImage($img);
             }
 
-          
+
 
             $this->addFlash("success", "Huile modifiée avec succès");
             $this->em->flush();
@@ -158,9 +160,8 @@ class AdminHuilesController extends AbstractController
             $this->addFlash("success", "Image supprimée avec succès");
             //on répond en json
             return new JsonResponse(['success' => 1]);
-        }
-        else{
-            return new JsonResponse(['error'=> 'Token  invalide'], 400);
+        } else {
+            return new JsonResponse(['error' => 'Token  invalide'], 400);
         };
     }
     /**

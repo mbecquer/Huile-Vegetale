@@ -7,32 +7,75 @@
 
 
 	<!--description-->
-
 	<div
-		class="flex flex-col xl:flex-row xl:my-20 xl:mx-52">
-		<!--familles botaniques-->
-
-		<h5 class="px-3 pt-3 text-white bg-green uppercase w-80 xl:w-52 h-14 xl:h-96 mx-auto text">Familles botaniques</h5>
-		<div class="w-80 mx-auto overflow-y-auto h-96 bg-gray-50 ">
-			<ul class="p-0 divide-y divide-green-700 text">
-				{% for family in families|sort((a, b) => a.name <=> b.name) %}
-					{% if family.active %}
-						<li class="py-3 px-3 text-green hover:bg-gray-200 ">
-							<a class="no-underline text-green uppercase  text-lg link" href="{{path('family_huile',{id:family.id, slug:family.slug })}}">{{family.name}}
-							</a>
-						</li>
-					{% endif %}
-				{% endfor %}
-			</ul>
-		</div>
-
-
-		<!--fin familles botaniques-->
-		<div class="card text-justify xl:ml-20">
+		class="container-fluid flex flex-wrap justify-evenly my-10">
+		<!--famille-->
+		<div class="card w-96">
 			<div class="card-title">
-				<h1 class="text-center text-green text-4xl subtitle">{{message}}</h1>
+				<h1 class="text-center text-green text-4xl subtitle">Familles botaniques</h1>
 			</div>
 			<div class="card-body">
+				<div class="overflow-y-auto h-96 bg-gray-50 ">
+					<ul class=" divide-y divide-green-700 text ">
+						{% for family in families|sort((a, b) => a.name <=> b.name) %}
+							{% if family.active %}
+								<li class="py-2 text-green hover:bg-gray-200 ">
+									<a class="no-underline text-green uppercase  text-lg link" href="{{path('family_huile',{id:family.id, slug:family.slug })}}">{{family.name}}
+									</a>
+								</li>
+							{% endif %}
+						{% endfor %}
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!--nouveautés-->
+		<div class="card w-96">
+			<div class="card-title">
+				<h1 class="text-center text-green text-4xl subtitle">Nos nouveautés</h1>
+			</div>
+			<div class="card-body">
+				{% for huile in huiles %}
+					{% if huile.createdAt < date("2months") %}
+						{% if huile.active %}
+							<div class="card mx-auto my-5" style="width:18rem;">
+								<div id="carouselExampleControls" class="carousel slide " data-bs-ride="carousel">
+									<div class="carousel-inner">
+										{% for image in huile.images %}
+											<div class="carousel-item {% if loop.first %} active {% endif %}">
+												<img src="{{ asset('/uploads/'~ image.name)}}" alt="Image" class="card-img-top" style="height:200px;">
+											</div>
+										{% endfor %}
+										{% if huile.images.isempty %}
+											<div class="flex flex-col text-center text-black uppercase font-semibold text-xl py-5 bg-gray-100" style="height:200px">
+												<span>Image non disponible</span>
+												<span class="text-7xl">X</span>
+											</div>
+										{% endif %}
+									</div>
+								</div>
+								<div class="card-body">
+									<h5 class="card-title text text-blue">{{huile.name}}</h5>
+
+								</div>
+								<div class="card-body bg-white">
+									<a href="{{path('huile_read', {id: huile.id, slug:huile.slug})}}" class=" no-underline text-green border-green border-2 rounded-lg p-2 my-2">Voir le produit</a>
+								</div>
+							</div>
+						{% endif %}
+
+					{% endif %}
+				{% endfor %}
+
+
+			</div>
+		</div>
+		<!--méthode de production-->
+		<div class="card w-96">
+			<div class="card-title">
+				<h1 class="text-center text-green text-4xl subtitle">Méthode de production</h1>
+			</div>
+			<div class="card-body ">
 				<h1 class="subtitle text-blue">Parties utilisées: Graines et oléagineux
 				</h1>
 				<p class="text-lg">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempora cupiditate totam sequi reprehenderit blanditiis iusto praesentium eos laboriosam omnis sunt porro odit, assumenda perspiciatis placeat, ipsam accusantium fuga earum nisi.</p>
@@ -42,11 +85,9 @@
 
 				<h1 class="subtitle text-blue">Méthode d’extraction mécanique: Presse hydraulique</h1>
 				<p class="text-lg">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempora cupiditate totam sequi reprehenderit blanditiis iusto praesentium eos laboriosam omnis sunt porro odit, assumenda perspiciatis placeat, ipsam accusantium fuga earum nisi.</p>
+
 			</div>
 		</div>
-
-
 	</div>
-	<!---->
 
 {% endblock %}

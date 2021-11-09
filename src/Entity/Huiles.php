@@ -28,7 +28,7 @@ class Huiles
 
     private $slug;
     /**
-     * @ORM\Column(type="text", length=1000)
+     * @ORM\Column(type="text", length=1000, nullable=true)
      */
     private $description;
 
@@ -61,6 +61,11 @@ class Huiles
      * @ORM\OneToMany(targetEntity=Images::class, mappedBy="huile", orphanRemoval=true, cascade={"persist"})
      */
     private $images;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $created_at;
 
 
     public function __construct()
@@ -193,6 +198,18 @@ class Huiles
                 $image->setHuile(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->created_at;
+    }
+
+    public function setCreatedAt(\DateTimeInterface $created_at): self
+    {
+        $this->created_at = $created_at;
 
         return $this;
     }

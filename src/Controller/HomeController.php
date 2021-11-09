@@ -18,13 +18,13 @@ class HomeController extends AbstractController
     }
     /**
      * Undocumented function
-     *@Route("/", name="index")
+     * @Route("/", name="index")
      */
     public function index(): Response
     {
         return $this->render("home/index.html.twig", [
             "title" => "Huiles Végétales KA",
-            "image" => "/public/assets/868321CA-CD1B-4D1E-A829-5F07E8325A60.jpeg"
+            "image" => "/public/assets/868321CA-CD1B-4D1E-A829-5F07E8325A60.jpeg",
         ]);
     }
 
