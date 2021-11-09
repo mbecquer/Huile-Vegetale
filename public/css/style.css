@@ -4,6 +4,7 @@
   --green: #4a894c;
   --blue: #2F4858;
   --textblue:#00646B;
+  --lightblue:#00646B;
 }
 .text-green{
   color:var(--green);
@@ -16,6 +17,9 @@ border-color:var(--green);
 }
 .background-blue{
   background:var(--blue);
+}
+.bg-lightblue{
+background-color: var(--lightblue);  
 }
 .text-blue{
   color:var(--textblue);
