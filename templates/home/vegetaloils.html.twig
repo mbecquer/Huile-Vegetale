@@ -7,14 +7,14 @@
 
 
 	<!---->
-	<div class="grid xl:grid-cols-2 ">
+	<div class=" xl:grid xl:grid-cols-2 ">
 		<div class="bg-green">
 			<div class="p-10">
 				<h1 class="subtitle text-7xl text-white">Découvrez nos nouvelles huiles</h1>
 				<p class="text-xl  font-semibold text-justify">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ullam non atque quod est modi voluptas illo nesciunt molestiae perferendis, dignissimos minus accusantium. In vitae facere praesentium sit cumque a alias.</p>
 			</div>
 		</div>
-		<div class="background-blue">
+		<div class="background-blue ">
 			<div class="flex justify-evenly p-10">
 				{% for huile in huiles %}
 					{% if huile.createdAt < date("2months") and huile.active %}
@@ -37,11 +37,12 @@
 								<a href="{{path('huile_read', {id: huile.id, slug:huile.slug})}}" class=" no-underline text-green text-xl font-semibold ">{{huile.name}}</a>
 							</div>
 						</div>
+
 					{% endif %}
 
 				{% endfor %}
 			</div>
-			<div class="p-10">
+			<div class="px-32 py-5">
 				<button class=" no-underline text-green border-2 border-green  rounded-lg p-4 text-xl font-semibold">Découvrir</button>
 			</div>
 		</div>

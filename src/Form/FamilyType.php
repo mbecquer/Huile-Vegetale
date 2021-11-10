@@ -23,7 +23,6 @@ class FamilyType extends AbstractType
                 'help' => 'Saisir en majuscules',
                 "attr" => [
                     'placeholder' => "Entrer la famille",
-
                     'style' => 'width: 200px',
                 ]
             ])
@@ -31,11 +30,12 @@ class FamilyType extends AbstractType
                 'required' => false
             ])
             ->add('story', TextareaType::class, [
+                'required' => false,
                 "attr" => [
                     'rows' => 15,
                     'cols' => 20,
                     'placeholder' => 'Saisir l\'histoire de la famille',
-                    'required' => false
+
                 ]
             ]);
     }

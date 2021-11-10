@@ -3,6 +3,7 @@
 {% block title 'Administration'%}
 
 {% block body %}
+
 	<h1 class="text-center">Administration</h1>
 	<div class="mx-2">
 		{% for message in app.flashes('success')  %}
@@ -11,87 +12,72 @@
 				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 			</div>
 		{% endfor %}
-		<div class="flex flex-col">
-			<a href="{{path('admin_huiles_create')}}">
+		<div class="flex my-5">
+			<a href="{{path('admin_huiles_create')}}" class="mr-2">
 				<button class="text-green text-xl border-green border-2 p-3 rounded-lg outline-none">
 					Ajouter Huile
 				</button>
 			</a>
-
-			<a href="{{path('admin_famille_create')}}">
+			<a href="{{path('admin_famille_create')}}" class="mr-2">
 				<button class="text-green text-xl border-green border-2 p-3 rounded-lg outline-none ">
 					Ajouter Famille
 				</button>
 			</a>
+			<button class="text-green text-xl border-green border-2 p-3 rounded-lg outline-none" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">Afficher les huiles des familles
+			</button>
 		</div>
-		<h1 class="text-center">Familles</h1>
-		<div>
-			<ul class="flex flex-wrap justify-around text-center text-xl uppercase font-semibold">
-				<li class="w-40">nom famille</li>
-				<li class="w-40">active</li>
-				<li class="w-40">actions</li>
-			</ul>
-		</div>
-		<div class="shadow-lg xl:mx-60 xl:overflow-y-auto xl:h-96">
-			<div>
-				{% for family in families|sort((a, b) => a.name <=> b.name)%}
-					<ul class="flex flex-wrap justify-between text-center shadow-lg ">
-						<li class="w-40 font-semibold text-xl my-auto uppercase">
-							{{family.name}}</li>
-						<li class="w-40 font-semibold text-xl my-auto">
+
+		<ul class="flex flex-wrap justify-between text-center text-xl uppercase font-semibold shadow-lg">
+			<li class="w-40 my-auto">Nom</li>
+			<li class="w-40 my-auto">Active</li>
+			<li class="w-40 my-auto">Actions</li>
+		</ul>
+		<div class=" xl:overflow-y-auto " style=" height:600px">
+			{% for family in families|sort((a, b) => a.name <=> b.name) %}
+				<ul class="flex flex-wrap justify-between text-center text-xl uppercase font-semibold shadow-lg bg-green-50 sticky top-0 z-10">
+					<li class="w-40 my-auto ">{{family.name}}</li>
+					<li class="w-40 my-auto">
+						<label class="switch">
+							<input type="checkbox" {{(family.active) ? 'checked' : ''}} data-id="{{family.id}}">
+							<span class="slider"></span>
+						</label>
+					</li>
+					<li class="w-40 my-auto">
+						<a href="{{path('admin_family_edit', { id: family.id })}}">
+							<button class="text-green text-xl border-green border-2 p-3 rounded-lg focus:outline-none mx-2 ">Modifier</button>
+						</a>
+						<form method="post" action="{{path('admin_family_delete',{id:family.id})}}" onsubmit="return confirm('Etes vous sûr de vouloir supprimer {{family.name }}?  Cela entrainera la suppression des huiles associées !')">
+							<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ family.id) }}">
+							<input type="hidden" name="_method" value="DELETE">
+							<button class="text-red-500 text-xl border-red-500 border-2 p-3 rounded-lg focus:outline-none ">Supprimer</button>
+						</form>
+					</li>
+				</ul>
+				{% for huile in family.huile|sort((a, b) => a.name <=> b.name) %}
+					<ul class="collapse flex flex-wrap justify-between  text-center text-xl uppercase font-semibold  shadow-lg " id="collapseExample">
+						<li class="w-40 my-auto">{{huile.name}}</li>
+						<li class="w-40 my-auto">
 							<label class="switch">
-								<input type="checkbox" {{(family.active) ? 'checked' : ''}} data-id="{{family.id}}">
+								<input type="checkbox" {{(huile.active) ? 'checked' : ''}} data-id="{{huile.id}}">
 								<span class="slider"></span>
 							</label>
 						</li>
-						<li class="w-40">
-							<a href="{{path('admin_family_edit', { id: family.id })}}">
+						<li class="w-40 my-auto">
+							<a href="{{path('admin_huiles_edit', { id: huile.id })}}">
 								<button class="text-green text-xl border-green border-2 p-3 rounded-lg focus:outline-none mx-2">Modifier</button>
 							</a>
-							<form method="post" action="{{path('admin_family_delete',{id:family.id})}}" onsubmit="return confirm('Etes vous sûr de vouloir supprimer {{family.name }}?  Cela entrainera la suppression des huiles associées !')">
-								<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ family.id) }}">
+							<form method="post" action="{{path('admin_huiles_delete',{id:huile.id})}}" onsubmit="return confirm('Etes vous sûr de vouloir supprimer {{huile.name }}?')">
+								<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ huile.id) }}">
 								<input type="hidden" name="_method" value="DELETE">
 								<button class="text-red-500 text-xl border-red-500 border-2 p-3 rounded-lg focus:outline-none">Supprimer</button>
 							</form>
 						</li>
 					</ul>
 				{% endfor %}
-			</div>
-		</div>
-		<h1 class="text-center my-10">Huiles</h1>
-		<div>
-			<ul class="flex flex-wrap justify-evenly text-center text-xl uppercase font-semibold">
-				<li class="w-40">nom huile</li>
-				<li class="w-40">active</li>
-				<li class="w-40">date</li>
-				<li class="w-40">actions</li>
-			</ul>
-		</div>
-		<div class="shadow-lg xl:mx-60 xl:overflow-y-auto xl:h-96">
-			{% for huile in huiles|sort((a, b) => a.name <=> b.name) %}
-				<ul class="flex flex-wrap justify-between text-center shadow-lg">
-					<li class=" lg:w-40 font-semibold text-xl my-auto">{{huile.name}}</li>
-					<li class="w-40 font-semibold text-xl my-auto">
-						<label class="switch">
-							<input type="checkbox" {{(huile.active) ? 'checked' : ''}} data-id="{{huile.id}}">
-							<span class="slider"></span>
-						</label>
-					</li>
-					<li class="w-40 my-auto font-semibold">
-						{{huile.createdAt|date("d/m/Y H:i","Europe/Paris")}}</li>
-					<li class="w-40 my-auto">
-						<a href="{{path('admin_huiles_edit', { id: huile.id })}}">
-							<button class="text-green text-xl border-green border-2 p-3 rounded-lg focus:outline-none mx-2">Modifier</button>
-						</a>
-						<form method="post" action="{{path('admin_huiles_delete',{id:huile.id})}}" onsubmit="return confirm('Etes vous sûr de vouloir supprimer {{huile.name }}?')">
-							<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ huile.id) }}">
-							<input type="hidden" name="_method" value="DELETE">
-							<button class="text-red-500 text-xl border-red-500 border-2 p-3 rounded-lg focus:outline-none">Supprimer</button>
-						</form>
-					</li>
-				</ul>
 			{% endfor %}
+
 		</div>
+
 	</div>
 {% endblock %}
 {% block javascripts %}

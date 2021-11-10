@@ -20,10 +20,10 @@ class AdminHuilesController extends AbstractController
 {
     private $huilesRepository;
     private $em;
-    public function __construct(HuilesRepository $huilesRepository, EntityManagerInterface $em, FamilyRepository $familiesRepository)
+    public function __construct(HuilesRepository $huilesRepository, EntityManagerInterface $em, FamilyRepository $familyRepository)
     {
         $this->huilesRepository = $huilesRepository;
-        $this->familiesRepository = $familiesRepository;
+        $this->familyRepository = $familyRepository;
         $this->em = $em;
     }
     /**
@@ -32,12 +32,14 @@ class AdminHuilesController extends AbstractController
     public function index()
     {
 
-        $huiles = $this->huilesRepository->findAll();
-        $families = $this->familiesRepository->findAll();
 
+
+        $family = $this->familyRepository->findAll();
+        $huile = $this->huilesRepository->findBy(['family' => $family]);
+     
         return $this->render('admin/huiles/index.html.twig', [
-            "huiles" => $huiles,
-            "families" => $families
+            "huiles" => $huile,
+            "families" => $family,
         ]);
     }
 
