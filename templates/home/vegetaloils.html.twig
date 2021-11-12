@@ -3,50 +3,80 @@
 	{{title}}
 {% endblock %}
 {% block body %}
-	<h1 class="text-center text-green text-6xl title">Huiles vegetales de graines germees et des oléagineux activés</h1>
+	<h1>Huiles vegetales de graines germees et des oléagineux activés</h1>
+	<div
+		class="container-vegetaloils">
+		<!--nouveautés-->
+		<div class="news">
+			<h3>Nouveautés</h3>
+			<div class="container-card">
+				{% for huile in huiles %}
+					{% if huile.createdAt < date('2months') %}
+						<div class="card">
+							<div class="card-img">
+								{% for image in huile.images %}
+									<div class="carousel-item {% if loop.first %} active {% endif %}">
+										<img src="{{ asset('/uploads/'~ image.name)}}" alt="Image" class="card-img-top">
+									</div>
+								{% endfor %}
+								{% if huile.images.isempty %}
+									<div class="flex flex-col text-center text-black uppercase font-semibold text-xl py-5 bg-gray-100">
+										<span>Image non disponible</span>
+									</div>
+								{% endif %}
+							</div>
+							<div class="card-body">
+								<div class="card-title">
+									<h3>{{huile.name}}</h3>
+								</div>
+								<div class="card-link">
+									<button>
+										<a href="{{path('huile_read', {id: huile.id, slug:huile.slug})}}">Voir le produit</a>
+									</button>
+								</div>
+							</div>
+						</div>
+					{% endif %}
+				{% endfor %}
+			</div>
+		</div>
+		<!--familles botaniques-->
+		<div class="familles">
+			<h3>Familles botaniques</h3>
+			<div class="container-card">
+				<div class="card">
+					<div class="card-img"></div>
+					<div class="card-body">
+						<div class="card-title"></div>
+						<div class="card-link"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--méthodes de production-->
+		<div class="methodeProduction">
+			<h3>Méthodes de production</h3>
+			<div class="container-card">
+				<div class="card">
+					<div class="card-img"></div>
+					<div class="card-body">
+						<div class="card-title"></div>
+						<div class="card-link"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
 
 	<div
 		class="container-fluid flex flex-wrap justify-evenly my-10">
-		<!--nouveautés-->
 
-		<div class="overflow-y-auto h-96">
-			{% for huile in huiles|sort((a, b) => a.name <=> b.name) %}
-				{% if huile.createdAt < date('2months') %}
-
-					<div class="card mx-10 my-10 " style="width:18rem;">
-						<div id="carouselExampleControls" class="carousel slide " data-bs-ride="carousel">
-							<div class="carousel-inner">
-								{% for image in huile.images %}
-									<div class="carousel-item {% if loop.first %} active {% endif %}">
-										<img src="{{ asset('/uploads/'~ image.name)}}" alt="Image" class="card-img-top" style="height:200px;">
-									</div>
-								{% endfor %}
-								{% if huile.images.isempty %}
-									<div class="flex flex-col text-center text-black uppercase font-semibold text-xl py-5 bg-gray-100" style="height:200px">
-										<span>Image non disponible</span>
-										<span class="text-7xl">X</span>
-									</div>
-								{% endif %}
-							</div>
-						</div>
-						<div class="card-body">
-							<h5 class="card-title text text-blue">{{huile.name}}</h5>
-
-						</div>
-						<div class="card-body bg-white">
-							<a href="{{path('huile_read', {id: huile.id, slug:huile.slug})}}" class=" no-underline text-green border-green border-2 rounded-lg p-2 my-2">Voir le produit</a>
-						</div>
-					</div>
-
-				{% endif %}
-			{% endfor %}
-		</div>
 
 		<!--famille-->
 		<div class="card w-96 h-full">
 			<div class="card-title">
-				<h1 class="text-center text-green text-4xl subtitle">Familles botaniques</h1>
+				<h2>Familles botaniques</h2>
 			</div>
 			<div class="card-body">
 				<div class="overflow-y-auto h-96 bg-gray-50 ">
@@ -66,18 +96,18 @@
 		<!--méthode de production-->
 		<div class="card w-96">
 			<div class="card-title">
-				<h1 class="text-center text-green text-4xl subtitle">Méthode de production</h1>
+				<h2 class="text-center text-green text-4xl subtitle">Méthode de production</h2>
 			</div>
 			<div class="card-body ">
-				<h1 class="subtitle text-blue">Parties utilisées: Graines et oléagineux
-				</h1>
-				<p class="text-lg">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempora cupiditate totam sequi reprehenderit blanditiis iusto praesentium eos laboriosam omnis sunt porro odit, assumenda perspiciatis placeat, ipsam accusantium fuga earum nisi.</p>
+				<h3>Parties utilisées: Graines et oléagineux
+				</h3>
+				<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempora cupiditate totam sequi reprehenderit blanditiis iusto praesentium eos laboriosam omnis sunt porro odit, assumenda perspiciatis placeat, ipsam accusantium fuga earum nisi.</p>
 
-				<h1 class="subtitle text-blue">Pré-traitement: Germination des graines et activation des oléagineux</h1>
-				<p class="text-lg">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempora cupiditate totam sequi reprehenderit blanditiis iusto praesentium eos laboriosam omnis sunt porro odit, assumenda perspiciatis placeat, ipsam accusantium fuga earum nisi.</p>
+				<h3>Pré-traitement: Germination des graines et activation des oléagineux</h3>
+				<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempora cupiditate totam sequi reprehenderit blanditiis iusto praesentium eos laboriosam omnis sunt porro odit, assumenda perspiciatis placeat, ipsam accusantium fuga earum nisi.</p>
 
-				<h1 class="subtitle text-blue">Méthode d’extraction mécanique: Presse hydraulique</h1>
-				<p class="text-lg">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempora cupiditate totam sequi reprehenderit blanditiis iusto praesentium eos laboriosam omnis sunt porro odit, assumenda perspiciatis placeat, ipsam accusantium fuga earum nisi.</p>
+				<h3>Méthode d’extraction mécanique: Presse hydraulique</h3>
+				<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempora cupiditate totam sequi reprehenderit blanditiis iusto praesentium eos laboriosam omnis sunt porro odit, assumenda perspiciatis placeat, ipsam accusantium fuga earum nisi.</p>
 
 			</div>
 		</div>

@@ -1,52 +1,216 @@
+/* -------------------------------------------------------------------------- */
+/*                               HTML * et root                               */
+/* -------------------------------------------------------------------------- */
+html,*{
+  margin:0;
+  padding:0;
+  box-sizing: border-box;
+}
+html{
+  border:2px solid red;
+}
 :root {
+/* -------------------------------------------------------------------------- */
+/*                              background color                              */
+/* -------------------------------------------------------------------------- */
   --green: #4a894c;
-  --blue: #2F4858;
-  --textblue:#00646B;
+  --darkblue: #2F4858;
   --lightblue:#00646B;
+  --white:#fff;
+  /* -------------------------------------------------------------------------- */
+  /*                                    font                                    */
+  /* -------------------------------------------------------------------------- */
+  --sacramento:'Sacramento', cursive;
+  --hindVadodara:'Hind Vadodara', sans-serif;
+  --nunitoSans:'Nunito Sans', sans-serif;
+/* -------------------------------------------------------------------------- */
+/*                              font size mobile                              */
+/* -------------------------------------------------------------------------- */
+--fontSizeTitleMobile: 3em;
+--fontSizeSubtitleMobile:2em;
+--fontSizeTextMobile:20px;
+/* -------------------------------------------------------------------------- */
+/*                             font size tablet                               */
+/* -------------------------------------------------------------------------- */
+--fontSizeTitleTablet
+--fontSizeSubtitleTablet
+--fontSizeTextTablet:100px;
+/* -------------------------------------------------------------------------- */
+/*                              font size desktop                             */
+/* -------------------------------------------------------------------------- */
+--fontSizeTitleDesktop
+--fontSizeSubtitleDesktop
+--fontSizeTextDesktop:20px;
+/* -------------------------------------------------------------------------- */
+/*                                   shadow                                   */
+/* -------------------------------------------------------------------------- */
+--shadow:0px 0px 15px rgba(0,0,0, 0.5);
 }
-.text-green{
+  
+/* -------------------------------------------------------------------------- */
+/*                                   titres                                   */
+/* -------------------------------------------------------------------------- */
+
+h1{
   color:var(--green);
+  text-align: center;
+  font-family: var(--sacramento);
+  font-size:var(--fontSizeTitleMobile);
 }
-.border-green{
-border-color:var(--green);
+h2{
+  color:var(--green);
+  text-align: center;
+  font-family: var(--hindVadodara);
+  font-size:var(--fontSizeSubtitleMobile);
 }
-.bg-green{
-  background:var(--green);
-}
-.background-blue{
-  background:var(--blue);
-}
-.bg-lightblue{
-background-color: var(--lightblue);  
-}
-.text-blue{
-  color:var(--textblue);
-}
-.title{
-  font-family: 'Sacramento', cursive;
-}
-.subtitle{
-  font-family: 'Hind Vadodara', sans-serif;
-}
-.text{
-  font-family: 'Nunito Sans', sans-serif;
+h3{
+  color:var(--green);
+  font-family: var(--hindVadodara);
+  font-size:var(--fontSizeTextMobile);
 }
 
+/* -------------------------------------------------------------------------- */
+/*                                    lien                                    */
+/* -------------------------------------------------------------------------- */
+a{
+  color:var(--lightblue);
+  font-weight: 700;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-family:var(--hindVadodara);
+  font-size:var(--fontSizeTextMobile);
+  }
+/* -------------------------------------------------------------------------- */
+/*                                   button                                   */
+/* -------------------------------------------------------------------------- */
+button{
+  border:2px solid var(--green);
+  color:var(--green);
+  background-color:var(--white);
+  font-weight: 700;
+  border-radius:10px;
+  padding: 10px;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-family:var(--hindVadodara);
 
-.btn{
-border:2px solid var(--green);
-font-weight: bold;
-color:black;
-border-radius:20px;
 }
-.btn:hover{
-  color:white;
-  background:var(--green);
+/* -------------------------------------------------------------------------- */
+/*                                 paragraphe                                 */
+/* -------------------------------------------------------------------------- */
+p{
+  color:var(--lightblue);
+  font-size:var(--fontSizeTextMobile);
 }
-.link:hover{
-color:var(--green);
+/* -------------------------------------------------------------------------- */
+/*                                   images                                   */
+/* -------------------------------------------------------------------------- */
+img{
+  width:100%;
+  height:200px;
+  object-fit: cover;
 }
+/* -------------------------------------------------------------------------- */
+/*                                     nav                                    */
+/* -------------------------------------------------------------------------- */
+nav{
+  display: flex;
+  position:sticky;
+  top:0;
+  z-index:9;
+  justify-content: space-around;
+  align-items: center;
+  background-color:var(--white);
+  box-shadow:0px 0px 15px rgba(0,0,0, 0.5);
+}
+/* -------------------------------------------------------------------------- */
+/*                                    body                                    */
+/* -------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+/*                            Page huiles végétales                           */
+/* -------------------------------------------------------------------------- */
+.container-vegetaloils{
+  display:flex;
+  flex-direction: column;
+}
+/* -------------------------------------------------------------------------- */
+/*                                    card                                    */
+/* -------------------------------------------------------------------------- */
+.container-card{
+  overflow-y: auto;
+  height:400px;
+}
+.card{
+box-shadow: var(--shadow);
+  width:18rem;
+  margin:2em 0;
+}
+.card-img{
 
+}
+.card-body{
+
+
+}
+.card-title{
+
+}
+.card-link{
+
+}
+/* -------------------------------------------------------------------------- */
+/*                                   footer                                   */
+/* -------------------------------------------------------------------------- */
+footer{
+  background-color:var(--darkblue);
+  display:flex;
+  flex-direction: column;
+  justify-content:space-around;
+}
+footer div{
+ margin:2em 0;
+}
+footer a{
+  color:var(--white);
+  font-family:var(--nunitoSans);
+  font-size:var(--fontSizeTextMobile);
+}
+footer span{
+  color:var(--white);
+  font-family:var(--hindVadodara);
+  font-size:var(--fontSizeTextMobile);
+}
+/* -------------------------------------------------------------------------- */
+/*                                media queries                               */
+/* -------------------------------------------------------------------------- */
+
+
+/* -------------------------------------------------------------------------- */
+/*                                   tablet                                   */
+/* -------------------------------------------------------------------------- */
+@media screen and (min-width: 426px){
+  h1{
+    font-size:  var(--fontSizeTitleMobile);
+    color:blue;
+  }
+  a{
+    color:var(--lightblue);
+    font-weight: 700;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-family:var(--hindVadodara);
+    font-size:var(--fontSizeTextTablet);
+    }
+}
+/* -------------------------------------------------------------------------- */
+/*                                   desktop                                  */
+/* -------------------------------------------------------------------------- */
+@media screen and (min-width: 1024px){
+  h1{
+    font-size:  var(--fontSizeTitleMobile);
+    color:gold;
+  }
+}
 
 
 /* MENU MOBILE */
@@ -64,7 +228,7 @@ color:var(--green);
   position: absolute;
   height: 5px;
   width: 100%;
-  background: black;
+  background-color:var(--lightblue) ;
   transition: all 0.5s ease-in-out;
 }
 .menu-btn::before {
@@ -73,7 +237,7 @@ color:var(--green);
   position: absolute;
   height: 5px;
   width: 100%;
-  background: black;
+  background-color:var(--lightblue) ;
   transition: all 0.5s ease-in-out;
 }
 .menu-btn::after {
@@ -82,7 +246,7 @@ color:var(--green);
   position: absolute;
   height: 5px;
   width: 100%;
-  background: black;
+  background-color:var(--lightblue) ;
   transition: all 0.5s ease-in-out;
 }
 
@@ -94,7 +258,7 @@ color:var(--green);
   position: fixed;
   width:60%;
   height: 100vh; 
-  background: var(--blue);
+  background: var(--darkblue);
   top: 0;
   left: -100%;
   transition: all 0.5s;

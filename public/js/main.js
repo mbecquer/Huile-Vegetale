@@ -1,17 +1,17 @@
-const menuBtn = document.querySelector('.menu-btn');
+const menuBtn = document.querySelector(".menu-btn");
 
-$(window).scroll(function () {
-  $('.arrow').css('display', 'inline');
-});
+// $(window).scroll(function () {
+//   $('.arrow').css('display', 'inline');
+// });
 
 let menuOpen = false;
-menuBtn.addEventListener('click', () => {
+menuBtn.addEventListener("click", () => {
   if (!menuOpen) {
-    menuBtn.classList.add('open');
+    menuBtn.classList.add("open");
     menuOpen = true;
     // console.log('open');
   } else {
-    menuBtn.classList.remove('open');
+    menuBtn.classList.remove("open");
     menuOpen = false;
     // console.log('close');
   }
