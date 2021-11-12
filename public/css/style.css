@@ -137,16 +137,30 @@ nav{
 /*                                    card                                    */
 /* -------------------------------------------------------------------------- */
 .container-card{
+
   overflow-y: auto;
   height:400px;
+  border:6px solid rgba(0, 0, 0, 0.50);
+}
+
+.news span{
+  display:flex;
+  justify-content: center;
+  font-size:var(--fontSizeTextMobile);
+  color:var(--lightblue)
 }
 .card{
-box-shadow: var(--shadow);
-  width:18rem;
+  display:flex;
+  margin:auto;
+  justify-content:center;
+  flex-direction: column;
   margin:2em 0;
+  border:1px solid grey;
+  padding:10px 0;
+  border-radius: 10px;
 }
 .card-img{
-
+margin:auto;
 }
 .card-body{
 
