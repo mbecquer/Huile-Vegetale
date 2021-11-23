@@ -4,55 +4,66 @@
 
 {% block body %}
 
-	<div class="flex flex-wrap justify-center">
-
-		<h1 class="text-center text-green text-6xl mx-5 title">Famille des
+	<section class="section">
+		<h1 class="section-title">Famille des
 			{{family.name}}
 		</h1>
+	</section>
+	<section>
 		{% if family.story %}
-			<a class="subtitle no-underline text-green border-green border-2 rounded-lg p-2 my-2" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-				Histoire botanique
-			</a>
+			<details>
+				<summary>Histoire botanique</summary>
+				{{family.story}}
+			</details>
 		{% endif %}
-	</div>
-	<div class="collapse" id="collapseExample">
-		<div class="card card-body text-xl text text-blue ">
-			{{family.story}}
-		</div>
-	</div>
+	</section>
 
-	<div class="flex flex-wrap justify-center xl:mx-52">
 
+	<!---->
+	<div class="product-container">
 		{% for huile in huiles|sort((a, b) => a.name <=> b.name) %}
 			{% if huile.active %}
+				<section class="section-product">
 
-				<div class="card mx-10 my-10" style="width:18rem;">
-					<div id="carouselExampleControls" class="carousel slide " data-bs-ride="carousel">
-						<div class="carousel-inner">
-							{% for image in huile.images %}
-								<div class="carousel-item {% if loop.first %} active {% endif %}">
-									<img src="{{ asset('/uploads/'~ image.name)}}" alt="Image" class="card-img-top" style="height:200px;">
+					<div class="product-content container grid">
+						<a href="{{path('huile_read', {id: huile.id, slug:huile.slug})}}">
+							<div class="product">
+								{% for image in huile.images %}
+									<div class="product-img">
+										<img src="{{ asset('/assets/Marché.JPG')}}"/>
+									</div>
+								{% endfor %}
+								{% if huile.images.isempty %}
+									<div class="product-img">
+										<img src="{{ asset('/assets/Marché.JPG')}}"/>
+										<span>Image non disponible</span>
+									</div>
+								{% endif %}
+								<div class="product-info">
+									<div class="product-description">
+										<h3 class="product-title">{{huile.name}}</h3>
+
+										<div class="container-price">
+											<p class="product-size">Black - L</p>
+											<div class="product-icon-stars">
+												<i class="fa fa-star" aria-hidden="true"></i>
+												<i class="fa fa-star" aria-hidden="true"></i>
+												<i class="fa fa-star" aria-hidden="true"></i>
+												<i class="fa fa-star" aria-hidden="true"></i>
+												<i class="fa fa-star" aria-hidden="true"></i>
+											</div>
+										</div>
+									</div>
 								</div>
-							{% endfor %}
-							{% if huile.images.isempty %}
-								<div class="flex flex-col text-center text-black uppercase font-semibold text-xl py-5 bg-gray-100" style="height:200px">
-									<span>Image non disponible</span>
-									<span class="text-7xl">X</span>
-								</div>
-							{% endif %}
-						</div>
+							</div>
+						</a>
 					</div>
-					<div class="card-body">
-						<h5 class="card-title text text-blue">{{huile.name}}</h5>
 
-					</div>
-					<div class="card-body bg-white">
-						<a href="{{path('huile_read', {id: huile.id, slug:huile.slug})}}" class=" no-underline text-green border-green border-2 rounded-lg p-2 my-2">Voir le produit</a>
-					</div>
-				</div>
-
+				</section>
 			{% endif %}
 		{% endfor %}
 	</div>
+	<!---->
+
 
 {% endblock %}
