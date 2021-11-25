@@ -1,155 +1,160 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-  <!--page-->
-  <div class="xl:mx-52">
-    <!--message flash-->
-    <div class="xl:mx-28">
-      {% for message in app.flashes('message') %}
-        <div class="bg-green-200  text-center text-3xl p-2 mb-2 rounded-lg mx-20">
-          {{message}}
-        </div>
-      {% endfor %}
-    </div>
-    <!--message flash-->
-    <!--##########################-->
-    <!--article-->
-    <div class="flex flex-wrap my-5 rounded-lg shadow-lg p-5 w-full ">
-      <!--image-->
-      <div class="image-article ">
+	<div class="section"></div>
+	<!--page-->
+	<div
+		class="xl:mx-52">
+		<!--message flash-->
+		<div class="xl:mx-28">
+			{% for message in app.flashes('message') %}
+				<div class="bg-green-200  text-center text-3xl p-2 mb-2 rounded-lg mx-20">
+					{{message}}
+				</div>
+			{% endfor %}
+		</div>
+		<!--message flash-->
+		<!--##########################-->
+		<!--article-->
+		<div
+			class="flex flex-wrap my-5 rounded-lg shadow-lg p-5 w-full ">
+			<!--image-->
+			<div class="image-article ">
 
-        {% for pictureArticle in article.pictureArticles %}
-          <img class="object-cover rounded-lg w-52" src="{{asset('/uploads/'~ pictureArticle.name)}}">
-        {% endfor %}
+				{% for pictureArticle in article.pictureArticles %}
+					<img class="object-cover rounded-lg w-52" src="{{asset('/uploads/'~ pictureArticle.name)}}">
+				{% endfor %}
 
-      </div>
-      <!--content-->
-      <div class="text-article xl:mx-20  ">
-        <h2>{{article.title}}</h2>
-        <p class="text-green">{{article.createdAt|date("d/m/Y")}}</p>
-        <p class="text-lg xl:w-96">{{article.content}}</p>
-      </div>
+			</div>
+			<!--content-->
+			<div class="text-article xl:mx-20  ">
+				<h2>{{article.title}}</h2>
+				<p class="text-green">{{article.createdAt|date("d/m/Y")}}</p>
+				<p class="text-lg xl:w-96">{{article.content}}</p>
+			</div>
 
-    </div>
-    <!--article-->
-    <!--##########################-->
+		</div>
+		<!--article-->
+		<!--##########################-->
 
-    <h2>Liste des commentaires (
-      {{commentaires|length}}
-      )</h2>
-    <!--##########################-->
-    <!--bloc commentaire-->
+		<h2>Liste des commentaires (
+			{{commentaires|length}}
+			)</h2>
+		<!--##########################-->
+		<!--bloc commentaire-->
 
-    {% for comment in article.comments %}
+		{% for comment in article.comments %}
 
-      {% if comment.parent == null %}
+			{% if comment.parent == null %}
 
-        <div class="p-5 shadow-lg rounded-lg my-5 ">
+				<div
+					class="p-5 shadow-lg rounded-lg my-5 ">
 
-          <!--info user-->
-          <div class="flex justify-between">
-            <h2 class="text-green">{{comment.nickname}}</h2>
-            <span class="text-green">{{comment.createdAt|date("d/m/Y H:i","Europe/Paris")}}</span>
-          </div>
-          <!-- fin info user-->
-          <hr>
-          <!--comment user-->
-          <div class="my-5">
-            <p class="text-lg">{{comment.content}}</p>
-            {% if is_granted('ROLE_USER') %}
-              <a href="#ajout-commentaire" data-reply="data-reply" data-id="{{comment.id}}" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                <button class="text-green text-xl border-green border-2 p-3 rounded-lg focus:outline-none float-right">Répondre</button>
-              </a>
-            {% endif %}
-          </div>
-          <!--fin comment user-->
-          <!--on affiche les réponses-->
-          {% for reply in comment.replies %}
-            <!--info user reply-->
-            <div class="flex justify-between mt-32">
-              <h2 class="text-green">{{reply.nickname}}</h2>
-              <span class="text-green mr-5">{{reply.createdAt|date("d/m/Y H:i","Europe/Paris")}}</span>
-            </div>
-            <!-- fin info user reply-->
-            <hr>
-            <!--comment user reply-->
-            <div class="shadow-lg rounded-lg xl:mx-20 p-2 px-5 my-3 border-l-4 border-gray-500 bg-gray-100">
-              <h2 class="my-2">Citation de
-                <span class="text-green">{{comment.nickname}}</span>
-              </h2>
-              <p>{{comment.content}}</p>
-            </div>
-            <div>
-              <p class="text-lg">{{reply.content}}</p>
+					<!--info user-->
+					<div class="flex justify-between">
+						<h2 class="text-green">{{comment.nickname}}</h2>
+						<span class="text-green">{{comment.createdAt|date("d/m/Y H:i","Europe/Paris")}}</span>
+					</div>
+					<!-- fin info user-->
+					<hr>
+					<!--comment user-->
+					<div class="my-5">
+						<p class="text-lg">{{comment.content}}</p>
+						{% if is_granted('ROLE_USER') %}
+							<a href="#ajout-commentaire" data-reply="data-reply" data-id="{{comment.id}}" data-bs-toggle="modal" data-bs-target="#exampleModal">
+								<button class="text-green text-xl border-green border-2 p-3 rounded-lg focus:outline-none float-right">Répondre</button>
+							</a>
+						{% endif %}
+					</div>
+					<!--fin comment user-->
+					<!--on affiche les réponses-->
+					{% for reply in comment.replies %}
+						<!--info user reply-->
+						<div class="flex justify-between mt-32">
+							<h2 class="text-green">{{reply.nickname}}</h2>
+							<span class="text-green mr-5">{{reply.createdAt|date("d/m/Y H:i","Europe/Paris")}}</span>
+						</div>
+						<!-- fin info user reply-->
+						<hr>
+						<!--comment user reply-->
+						<div class="shadow-lg rounded-lg xl:mx-20 p-2 px-5 my-3 border-l-4 border-gray-500 bg-gray-100">
+							<h2 class="my-2">Citation de
+								<span class="text-green">{{comment.nickname}}</span>
+							</h2>
+							<p>{{comment.content}}</p>
+						</div>
+						<div>
+							<p class="text-lg">{{reply.content}}</p>
 
-            </div>
-          {% endfor %}
-          <!--fin comment user reply-->
-        </div>
-      {% endif %}
-    {% else %}
-      <p class="text-lg">Il n'y a pas de commentaire, publiez le premier !</p>
-    {% endfor %}
+						</div>
+					{% endfor %}
+					<!--fin comment user reply-->
+				</div>
+			{% endif %}
+		{% else %}
+			<p class="text-lg">Il n'y a pas de commentaire, publiez le premier !</p>
+		{% endfor %}
 
-    <!--encart connexion pour commenter-->
-    <div class=" p-5 w-full my-5 rounded-lg shadow-lg text-center flex flex-col items-center ">
-      <!--text-->
-      <p class=" text-lg">Vous voulez participer au forum ? Connectez-vous !</p>
-      <!--bouton connexion inscription-->
-      <div class="flex">
-        <a href="{{path('app_login')}}" class="mr-5">
-          <button class="text-green text-xl border-green border-2 p-3 rounded-lg focus:outline-none ">Connexion</button>
-        </a>
-        <!--<a href="{{path('app_register')}}" class="ml-5"><button class="text-green text-xl border-green border-2 p-3 rounded-lg focus:outline-none ">Inscription</button></a> -->
-      </div>
-      <p>Vous êtes déjà inscrit ou connecté ?</p>
-      {% if is_granted('ROLE_USER') %}
-        <button type="button" class="text-green text-xl border-green border-2 p-3 rounded-lg focus:outline-none float-right" data-bs-toggle="modal" data-bs-target="#exampleModal">
-          Poster un commentaire
-        </button>
-        <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Bonjour
-                  {% if app.user %}
-                    <span class="text-green">{{app.user.username}}</span>
-                  {% endif %}
-                  écrivez votre message !</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-                {{form_start(form)}}
-                {{form_row(form.nickname)}}
-                {{form_row(form.content)}}
-                {{form_row(form.rgpd)}}
-                <button class="text-green text-xl border-green border-2 p-3 rounded-lg focus:outline-none my-5 px-5" type="submit">Poster</button>
-                {{form_end(form)}}
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      {% endif %}
+		<!--encart connexion pour commenter-->
+		<div
+			class=" p-5 w-full my-5 rounded-lg shadow-lg text-center flex flex-col items-center ">
+			<!--text-->
+			<p class=" text-lg">Vous voulez participer au forum ? Connectez-vous !</p>
+			<!--bouton connexion inscription-->
+			<div class="flex">
+				<a href="{{path('app_login')}}" class="mr-5">
+					<button class="text-green text-xl border-green border-2 p-3 rounded-lg focus:outline-none ">Connexion</button>
+				</a>
+				<!--<a href="{{path('app_register')}}" class="ml-5"><button class="text-green text-xl border-green border-2 p-3 rounded-lg focus:outline-none ">Inscription</button></a> -->
+			</div>
+			<p>Vous êtes déjà inscrit ou connecté ?</p>
+			{% if is_granted('ROLE_USER') %}
+				<button type="button" class="text-green text-xl border-green border-2 p-3 rounded-lg focus:outline-none float-right" data-bs-toggle="modal" data-bs-target="#exampleModal">
+					Poster un commentaire
+				</button>
+				<!-- Modal -->
+				<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="exampleModalLabel">Bonjour
+									{% if app.user %}
+										<span class="text-green">{{app.user.username}}</span>
+									{% endif %}
+									écrivez votre message !</h5>
+								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+							</div>
+							<div class="modal-body">
+								{{form_start(form)}}
+								{{form_row(form.nickname)}}
+								{{form_row(form.content)}}
+								{{form_row(form.rgpd)}}
+								<button class="text-green text-xl border-green border-2 p-3 rounded-lg focus:outline-none my-5 px-5" type="submit">Poster</button>
+								{{form_end(form)}}
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			{% endif %}
 
-    </div>
-    <!-- fin encart connexion pour commenter-->
-  </div>
-  <!--fin page-->
+		</div>
+		<!-- fin encart connexion pour commenter-->
+	</div>
+	<!--fin page-->
 {% endblock %}
 {% block javascripts %}
-  <script src="{{asset('js/main.js')}}"></script>
-  <script>
-    window.onload = () => {
-      document.querySelectorAll("[data-reply]").forEach((element) => {
-        element.addEventListener("click", function () {
-          document.querySelector("#comment_parent").value = this.dataset.id;
-        });
-      });
-    };
-  </script>
+	<script src="{{asset('js/main.js')}}"></script>
+	<script>
+		window.onload = () => {
+document.querySelectorAll("[data-reply]").forEach((element) => {
+element.addEventListener("click", function () {
+document.querySelector("#comment_parent").value = this.dataset.id;
+});
+});
+};
+	</script>
 
 {% endblock %}

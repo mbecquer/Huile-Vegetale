@@ -5,14 +5,15 @@
 
 {% block body %}
 
-	{% for message in app.flashes('success') %}
-		<div class="bg-green-200  text-center text-3xl p-2 mb-2 rounded-lg mx-20">
-			{{message}}
-		</div>
-	{% endfor %}
 
 	<main
 		id="home">
+		<!--TODO: a redefinir en style-->
+		{% for message in app.flashes('success') %}
+			<div class="bg-green-200  text-center text-3xl p-2 mb-2 rounded-lg mx-20 z-50">
+				{{message}}
+			</div>
+		{% endfor %}
 		<!--présentation huile vegetale-->
 		<section>
 			<img src="{{asset('/assets/Marché.JPG')}}" class="home-img"/>
@@ -33,13 +34,7 @@
 			<div class="elixir-container container grid">
 				<div class="elixir-info">
 					<h2 class="section-title elixir-title">Elixir de jouvence</h2>
-					<ul class="elixir-description">
-						<li>fesf</li>
-						<li>fsdfsg</li>
-						<li>gsdfsfs</li>
-						<li>gsdfsfs</li>
-						<li>gsdfsdfd</li>
-					</ul>
+					<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusamus aspernatur nulla, consequatur, deserunt dolores quasi voluptatem sequi assumenda ratione quisquam iste tenetur ipsam. Tempore blanditiis molestiae, quis provident repellat dolorem!</p>
 				</div>
 				<div class="elixir-img">
 					<div class="elixir-img-overlay">
@@ -53,23 +48,18 @@
 			<div class="qui-container container">
 				<h2 class="section-title">Qui sommes nous</h2>
 				<div class="qui-info">
-					<ul class="qui-description">
-						<li>fesf</li>
-						<li>fsdfsg</li>
-						<li>gsdfsfs</li>
-						<li>gsdfsfs</li>
-						<li>gsdfsdfd</li>
-					</ul>
+					<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusamus aspernatur nulla, consequatur, deserunt dolores quasi voluptatem sequi assumenda ratione quisquam iste tenetur ipsam. Tempore blanditiis molestiae, quis provident repellat dolorem!</p>
+
 				</div>
 				<div class="qui-img">
 					<div class="qui-img-overlay">
-						<img class="qui-img-one" src="{{asset('/assets/Page Ac.JPG')}}"/>
+						<img class="elixir-img-two" src="{{asset('/assets/Image JPEG 9.jpeg')}}"/>
 					</div>
 					<div class="qui-img-overlay">
-						<img class="qui-img-two" src="{{asset('/assets/Page Ac.JPG')}}"/>
+						<img class="elixir-img-two" src="{{asset('/assets/Image JPEG 10.jpeg')}}"/>
 					</div>
 					<div class="qui-img-overlay">
-						<img class="qui-img-two" src="{{asset('/assets/Page Ac.JPG')}}"/>
+						<img class="elixir-img-two" src="{{asset('/assets/oilbg.jpeg')}}"/>
 					</div>
 				</div>
 			</div>
@@ -81,22 +71,39 @@
 					<h2 class="section-title valeur-title">
 						Nos valeurs et nos engagements
 					</h2>
-					<ul class="valeur-description">
-						<li>fesf</li>
-						<li>fsdfsg</li>
-						<li>gsdfsfs</li>
-						<li>gsdfsfs</li>
-						<li>gsdfsdfd</li>
-					</ul>
+					<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusamus aspernatur nulla, consequatur, deserunt dolores quasi voluptatem sequi assumenda ratione quisquam iste tenetur ipsam. Tempore blanditiis molestiae, quis provident repellat dolorem!</p>
+
 				</div>
 				<div class="valeur-liste">
-					<ul>
-						<li>blkblbllb</li>
-						<li>fdsfsdgsf</li>
-						<li>sdggsfsdfs</li>
-						<li>ggsfsdfdsdf</li>
-						<li>gsdgsfsdfd</li>
-					</ul>
+					<img class="elixir-img-two" src="{{asset('/assets/Presse hydraulique.JPG')}}">
+				</div>
+			</div>
+		</section>
+		<!-- contact -->
+		<section>
+			<div class="contact-bg">
+				<div class="contact-container ">
+					<h2 class="section-title contact-title">Contact</h2>
+					<p class="contact-description">
+						Contactez nous pour avoir plus d'informations sur nos produits
+					</p>
+
+					<div class="contact-form">
+						{{form_start(form)}}
+						<div class="contact-input">
+							{{ form_row(form.firstname) }}</div>
+						<div class="contact-input">
+							{{ form_row(form.lastname) }}</div>
+						<div class="contact-input">
+							{{ form_row(form.phone) }}</div>
+						<div class="contact-input">
+							{{ form_row(form.email) }}</div>
+						<div class="contact-input">
+							{{ form_row(form.message) }}</div>
+
+						<button class="button submit" type="submit">Envoyer</button>
+						{{form_end(form)}}
+					</div>
 				</div>
 			</div>
 		</section>

@@ -17,31 +17,43 @@ class ContactType extends AbstractType
     {
         $builder
             ->add('firstname', TextType::class, [
+                'label' => false,
                 'required' => true,
                 'attr' => [
-                    'class' => 'ring-2 ring-red-300'
+                    'placeholder' => 'Prénom',
                 ]
+
             ])
             ->add('lastname', TextType::class, [
+                'label' => false,
                 'required' => true,
                 'attr' => [
-                    'class' => 'ring-2 ring-red-300'
+                    'placeholder' => 'Nom',
                 ]
+
             ])
             ->add('phone', TelType::class, [
+                'label' => false,
                 'required' => false,
+                'attr' => [
+                    'placeholder' => 'Téléphone',
+                ]
             ])
             ->add('email', EmailType::class, [
+                'label' => false,
                 'required' => true,
                 'attr' => [
-                    'class' => 'ring-2 ring-red-300'
+                    'placeholder' => 'Email',
                 ]
+
             ])
             ->add('message', TextareaType::class, [
+                'label' => false,
                 'required' => true,
                 'attr' => [
-                    'class' => 'ring-2 ring-red-300'
+                    'placeholder' => 'Message',
                 ]
+
             ]);
     }
 

@@ -1,5 +1,6 @@
 {% extends "base.html.twig" %}
 {% block body %}
+	<div class="section"></div>
 	<h1 class="text-center">Modifier l'article :
 		<span class="text-green">{{article.title}}</span>
 	</h1>
@@ -10,7 +11,7 @@
 			{{form_row(form.title)}}
 			{{form_row(form.content)}}
 			{{form_row(form.image)}}
-	
+
 
 			<button class="text-green  text-xl border-green border-2 p-3 rounded-lg focus:outline-none my-5" type="submit">Enregistrer</button>
 
@@ -22,7 +23,7 @@
 			{% for pictureArticle in article.pictureArticles %}
 				<div class="mx-2">
 					<img class="object-cover rounded-lg w-52" src="{{asset('/uploads/'~ pictureArticle.name)}}">
-				
+
 					<div class="  my-2 mx-2">
 						<form method="post" action="{{path('admin_article_picture_delete',{'id': pictureArticle.id})}}" onsubmit="return confirm('Etes vous sûr de vouloir supprimer ?')">
 							<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ pictureArticle.id) }}">

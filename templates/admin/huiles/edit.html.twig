@@ -4,6 +4,7 @@
 {% endblock %}
 
 {% block body %}
+	<div class="section"></div>
 	<h1 class="text-center">Modifier l'huile :
 		<span class="text-green">{{huile.name}}</span>
 	</h1>
@@ -22,7 +23,7 @@
 
 			{{form_end(form)}}</div>
 		<!---->
-	
+
 		{% for image in huile.images %}
 			<div>
 				<img src="{{ asset('/uploads/'~ image.name)}}" alt="Image" width="150">

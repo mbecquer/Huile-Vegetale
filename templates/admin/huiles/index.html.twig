@@ -3,7 +3,7 @@
 {% block title 'Administration'%}
 
 {% block body %}
-
+	<div class="section"></div>
 	<h1>Administration</h1>
 	<div class="mx-2">
 		{% for message in app.flashes('success')  %}
@@ -14,12 +14,12 @@
 		{% endfor %}
 		<div class="flex flex-wrap my-5">
 			<a href="{{path('admin_huiles_create')}}" class="mr-2">
-				<button class="text-green text-xl border-green border-2 p-3 rounded-lg outline-none">
+				<button class="button">
 					Ajouter Huile
 				</button>
 			</a>
 			<a href="{{path('admin_famille_create')}}" class="mr-2">
-				<button class="text-green text-xl border-green border-2 p-3 rounded-lg outline-none ">
+				<button class="button">
 					Ajouter Famille
 				</button>
 			</a>
