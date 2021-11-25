@@ -9,6 +9,7 @@
 		<link href="/css/tailwind.css" rel="stylesheet">
 		<link rel="stylesheet" href="/css/huiles.css">
 		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/login.css">
 		<link
 		rel="icon" type="image/png" href="/assets/logo-removebg-preview.png"/>
 		<!--font-->
@@ -24,7 +25,8 @@
 			{% endblock %}
 		</title>
 	</head>
-	<body>
+	<body id="home">
+
 		<header id="header">
 			<nav>
 				<a href="{{path('index')}}" title="Accueil"><img class="nav-logo" src="{{ asset('/assets/logo-removebg-preview.png') }}"></a>
@@ -49,7 +51,6 @@
 
 						{% endif %}
 					</ul>
-
 					<div class="nav-account-mobile">
 						{% if is_granted("ROLE_ADMIN") %}
 							<details>
@@ -58,7 +59,7 @@
 								</summary>
 								<div class="my-account">
 									{% if app.user %}
-										<span class="text-green">
+										<span>
 											<i class="fa fa-user" aria-hidden="true"></i>
 											{{ app.user.username }}</span>
 									{% endif %}
@@ -75,7 +76,7 @@
 							<summary>Mon compte</summary>
 							<div class="my-account">
 								{% if app.user %}
-									<span class="text-green">
+									<span>
 										<i class="fa fa-user" aria-hidden="true"></i>
 										{{ app.user.username }}</span>
 								{% endif %}
@@ -88,11 +89,8 @@
 				<div id="nav-toggle">
 					<span></span>
 				</div>
-
-
 			</nav>
 		</header>
-		<div id="home"></div>
 		{% block body %}{% endblock %}
 
 		<!-- footer -->

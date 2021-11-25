@@ -6,11 +6,10 @@
 {% block body %}
 
 
-	<main
-		id="home">
-		<!--TODO: a redefinir en style-->
+	<main id="home">
+
 		{% for message in app.flashes('success') %}
-			<div class="bg-green-200  text-center text-3xl p-2 mb-2 rounded-lg mx-20 z-50">
+			<div class="success-message">
 				{{message}}
 			</div>
 		{% endfor %}
@@ -29,6 +28,7 @@
 				</div>
 			</div>
 		</section>
+
 		<!--elixir de jouvence-->
 		<section class="section">
 			<div class="elixir-container container grid">
@@ -100,7 +100,6 @@
 							{{ form_row(form.email) }}</div>
 						<div class="contact-input">
 							{{ form_row(form.message) }}</div>
-
 						<button class="button submit" type="submit">Envoyer</button>
 						{{form_end(form)}}
 					</div>

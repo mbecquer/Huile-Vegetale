@@ -10,7 +10,7 @@
 
 	<!--message flash-->
 	{% for message in app.flashes('success')  %}
-		<div class="bg-green-200  text-center text-3xl p-2 mb-2 rounded-lg mx-20">
+		<div class="success-message">
 			{{message}}
 		</div>
 	{% endfor %}

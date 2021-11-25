@@ -89,7 +89,7 @@ h1, h2, h3{
 a{
   color:var(--lightblue);
   font-weight: 700;
-  text-decoration: none;
+  text-decoration: none !important;
   text-transform: uppercase;
   font-family:var(--hindVadodara);
   font-size:var(--fontSizeTextMobile);
@@ -211,8 +211,8 @@ nav{
   color:var(--green);
   font-size:var(--h3-font-size);
 }
-.nav-list  {
-  padding:0;
+.nav-list{
+  padding: 0 2rem;
 }
 .nav-list a:hover{
   color:var(--green);
@@ -235,7 +235,17 @@ summary{
   text-decoration: none;
   color:var(--dark);
 }
-
+.success-message{
+  background:var(--green);
+  color:var(--white);
+  border-radius: 20px;
+  padding:2rem 4rem;
+  z-index: 9999;
+  position: absolute;
+  top:20%;
+  left:50%;
+  transform:translate(-50%,-50%);
+}
 @media screen and (max-width: 767px) {
   /*section nav */
   .nav-menu {
@@ -350,7 +360,7 @@ main{
   top: 0;
   left: 0;
   width: 100%;
-  height: 100vh;
+  height: 106vh;
   object-fit: cover;
   object-position: 50%;
   opacity: 70%;
@@ -423,7 +433,7 @@ main{
 /*                                   contact                                  */
 /* -------------------------------------------------------------------------- */
 .contact-bg{
-  background:rgba(1, 78, 1, 0.70);
+  background:var(--green);
   padding: 2.5rem 1rem;
 }
 .contact-title, .contact-description{
@@ -461,8 +471,9 @@ main{
   right:2rem;
   padding: 0.5rem 1.5rem;
   font-size: 2rem;
-  background:darkgreen;
+  background:var(--green);
   color:white;
+  border:1px solid var(--white);
   border-radius: 0.5rem;
   transition: 1s linear;
 }
@@ -472,20 +483,19 @@ main{
 /* -------------------------------------------------------------------------- */
 /*                                   footer                                   */
 /* -------------------------------------------------------------------------- */
-/*TODO:rendre responsive footer petit format*/
-/* .footer-section{
-  display: flex;
-  flex-direction: column;     
+
+footer{
+  box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.3);
 }
-.footer-container{
+ .footer-container{
   padding:4em 0;
   row-gap: 5rem;
 }
-.footer-content{
+ .footer-content{
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   row-gap: 2rem;
 }
-.footer-title{
+ .footer-title{
   font-size: var(--h3-font-size);
   margin-bottom: 0.5rem;
 }
@@ -494,9 +504,9 @@ main{
 }
 .footer-item{
   margin-bottom: 0.75rem;
-  color:var(--dark);
+  color:var(--lightblue);
   text-decoration: none;
-} */
+}    
 
 /* -------------------------------------------------------------------------- */
 /*                                media queries                                */
