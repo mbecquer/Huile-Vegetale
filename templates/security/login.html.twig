@@ -5,37 +5,29 @@
 
 {% block body %}
 
-
 	<div class="section">
-
 		<form method="post" class="form-login">
 			<h1 class="section-title">Connexion</h1>
 			{% if error %}
 				<div class="form-error">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
 			{% endif %}
-
 			<div class="form-container">
-
-
-				<input class="contact-input" placeholder="Email" type="email" value="{{ last_username }}" name="email" id="inputEmail" required autofocus>
-				<input class="contact-input" placeholder="Mot de passe" type="password" name="password" id="inputPassword" required>
+				<input class="form-input" placeholder="Email" type="email" value="{{ last_username }}" name="email" id="inputEmail" required autofocus>
+				<input class="form-input" placeholder="Mot de passe" type="password" name="password" id="inputPassword" required>
 				<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-				<button class="button" type="submit">
+				<button class="button submit" type="submit">
 					Se connecter
 				</button>
 			</div>
 			{% if app.user %}
-				<div class="form-is-connected">
-					Vous êtes déjà connecté
-					<span>{{ app.user.username }}</span>,
+				<div class="form-question">
+					<p>Vous êtes déjà connecté :
+						{{ app.user.username }}</p>
 					<a href="{{ path('app_logout') }}">Déconnexion
 					</a>
 				</div>
 			{% endif %}
+			<!--<div class="form-question"><span>Pas encore inscrit ?<a href="{{path('app_register')}}">Cliquez ici !</a></span></div>-->
 		</form>
-		<!--<span >Pas encore inscrit ?<a href="{{path('app_register')}}">Cliquez ici !</a></span>-->
 	</div>
-	<!--login-->
-
-
 {% endblock %}

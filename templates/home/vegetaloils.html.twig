@@ -3,56 +3,66 @@
 	{{title}}
 {% endblock %}
 {% block body %}
-	<main>
 
-		<!--nouveautés-->
-		<section class="section">
+	<div class="section">
+		<div class="container grid">
 			<h1 class="section-title">Huiles vegetales de graines germees et des oléagineux activés</h1>
-			<h1 class="section-title">Nos produits</h1>
-		</section>
 
-		<!--nouveautés-->
-	
-
-
-		<!--familles botaniques-->
-		<div class="familles">
-			<h3>Familles botaniques</h3>
-			<div class="card">
-				<div class="card-body">
-					<div class="card-link">
-						<ul>
-							{% for family in families|sort((a, b) => a.name <=> b.name) %}
-								{% if family.active %}
-									<li>
-										<a href="{{path('family_huile',{id:family.id, slug:family.slug })}}">{{family.name}}
-										</a>
-									</li>
+			<!--familles botaniques-->
+			<div class="oil-container">
+				<div class="oil-family">
+					<h3>Familles botaniques</h3>
+					<ul>
+						{% for family in families|sort((a, b) => a.name <=> b.name) %}
+							{% if family.active %}
+								<li>
+									<a href="{{path('family_huile',{id:family.id, slug:family.slug })}}">{{family.name}}
+									</a>
+								</li>
+							{% endif %}
+						{% endfor %}
+					</ul>
+				</div>
+				<!--nouveautés-->
+				<div>
+					<h3 class="section-title">Nos nouveautés</h3>
+					<div class="oil-new">
+						{% for huile in huiles %}
+							{% if huile.active%}
+								{% if huile.createdAt < date("2months") %}
+									<div class="oil-item">
+										{% for image in huile.images %}
+											<img src="{{ asset('/uploads/'~ image.name)}}">
+										{% endfor %}
+										{% if huile.images.isempty %}
+											<span>Image non disponible</span>
+										{% endif %}
+										<p>{{huile.name}}</p>
+										<a href="{{path('huile_read', {id: huile.id, slug:huile.slug})}}">voir ce produit</a>
+									</div>
 								{% endif %}
-							{% endfor %}
-						</ul>
+							{% endif %}
+						{% endfor %}
 					</div>
 				</div>
 			</div>
-		</div>
 
-		<!--méthodes de production-->
-		<div class="methodeProduction">
-			<h3>Méthodes de production</h3>
-			<div class="card">
-				<div class="card-body">
-					<div class="card-title">
-						<h3>Parties utilisées: Graines et oléagineux
-						</h3>
-						<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempora cupiditate totam sequi reprehenderit blanditiis iusto praesentium eos laboriosam omnis sunt porro odit, assumenda perspiciatis placeat, ipsam accusantium fuga earum nisi.</p>
-						<h3>Pré-traitement: Germination des graines et activation des oléagineux</h3>
-						<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempora cupiditate totam sequi reprehenderit blanditiis iusto praesentium eos laboriosam omnis sunt porro odit, assumenda perspiciatis placeat, ipsam accusantium fuga earum nisi.</p>
 
-						<h3>Méthode d’extraction mécanique: Presse hydraulique</h3>
-						<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempora cupiditate totam sequi reprehenderit blanditiis iusto praesentium eos laboriosam omnis sunt porro odit, assumenda perspiciatis placeat, ipsam accusantium fuga earum nisi.</p>
-					</div>
-				</div>
+			<!--méthodes de production-->
+			<div class="oil-production">
+				<h3 class="section-title">Méthodes de production</h3>
+
+				<h3>Parties utilisées: Graines et oléagineux
+				</h3>
+				<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempora cupiditate totam sequi reprehenderit blanditiis iusto praesentium eos laboriosam omnis sunt porro odit, assumenda perspiciatis placeat, ipsam accusantium fuga earum nisi.</p>
+				<h3>Pré-traitement: Germination des graines et activation des oléagineux</h3>
+				<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempora cupiditate totam sequi reprehenderit blanditiis iusto praesentium eos laboriosam omnis sunt porro odit, assumenda perspiciatis placeat, ipsam accusantium fuga earum nisi.</p>
+
+				<h3>Méthode d’extraction mécanique: Presse hydraulique</h3>
+				<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempora cupiditate totam sequi reprehenderit blanditiis iusto praesentium eos laboriosam omnis sunt porro odit, assumenda perspiciatis placeat, ipsam accusantium fuga earum nisi.</p>
+
 			</div>
 		</div>
-	</main>
+	</div>
+
 {% endblock %}

@@ -2,25 +2,35 @@
 {% block title %}Inscription !
 {% endblock %}
 {% block body %}
-	<!--register-->
-	{% for message in app.flashes('success')  %}
-		<div class="bg-green-200  text-center text-3xl p-2 mb-2 rounded-lg mx-20">
-			{{message}}
+	<div class="section">
+
+		{% for message in app.flashes('success')  %}
+			<div class="success-message">
+				{{message}}
+			</div>
+		{% endfor %}
+		<div class="form-login">
+			<h1 class="section-title">Inscription</h1>
+			<div class="form-container">
+
+				{{form_start(registerForm)}}
+				<div class="form-input">
+					{{form_row(registerForm.email)}}</div>
+
+				<div class="form-input">
+					{{form_row(registerForm.plainPassword)}}</div>
+
+				<div class="form-input">
+					{{form_row(registerForm.agreeTerms)}}</div>
+
+
+				<button class="button submit" type="submit">S'inscrire</button>
+				{{form_end(registerForm)}}
+			</div>
+			<div class="form-question">
+				<p>Vous avez déjà un compte ?</p>
+				<a href="{{path('app_login')}}">C'est par ici !</a>
+			</div>
 		</div>
-	{% endfor %}
-	<div class="mx-10 sm:mx-auto sm:w-96 shadow-lg rounded-lg my-5">
-		<div class="mx-auto xl:w-96  p-5 ">
-			<h1 class="text-green text-center text-4xl">Inscription</h1>
-			{{form_start(registerForm)}}
-			{{form_row(registerForm.email)}}
-			{{form_row(registerForm.plainPassword)}}
-			{{form_row(registerForm.agreeTerms)}}
-			<button class="button" type="submit">S'inscrire</button>
-			{{form_end(registerForm)}}
-		</div>
-		<span class="mx-3 text-lg">
-			Vous avez déjà un compte ?
-			<a href="{{path('app_login')}}">C'est par ici !</a>
-		</span>
 	</div>
 {% endblock %}
