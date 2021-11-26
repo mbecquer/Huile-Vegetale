@@ -1,0 +1,20 @@
+.carousel{
+    border:2px solid black;
+    display:flex;
+    overflow-x:auto;
+    width:250px;
+}
+.carousel img{
+    animation:animate 10s infinite;
+}
+@keyframes animate{
+    0%{
+        transform:translateX(0%);
+    }
+    20%{
+        transform:translateX(-100%);
+    }
+    40%{
+        transform:translateX(-200%);
+    }
+}

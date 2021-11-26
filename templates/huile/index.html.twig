@@ -30,14 +30,11 @@
 							<div class="product">
 								{% for image in huile.images %}
 									<div class="product-img">
-										<img src="{{ asset('/assets/Marché.JPG')}}"/>
+										<img src="{{ asset('uploads/'~ image.name)}}">
 									</div>
 								{% endfor %}
 								{% if huile.images.isempty %}
-									<div class="product-img">
-										<img src="{{ asset('/assets/Marché.JPG')}}"/>
 										<span>Image non disponible</span>
-									</div>
 								{% endif %}
 								<div class="product-info">
 									<div class="product-description">
