@@ -28,17 +28,18 @@
 					<div class="product-content container grid">
 						<a href="{{path('huile_read', {id: huile.id, slug:huile.slug})}}">
 							<div class="product">
-								{% for image in huile.images %}
-									<div class="product-img">
-										<img src="{{ asset('uploads/'~ image.name)}}">
-									</div>
-								{% endfor %}
-								{% if huile.images.isempty %}
-										<span>Image non disponible</span>
-								{% endif %}
+								<div class="slideshow">
+									<ul>
+										{% for image in huile.images  %}
+											<li><img style="width:400px; height:100%; object-fit:cover;" src=" {{ asset('uploads/'~ image.name)}} "></li>
+										{% endfor %}
+									</ul>
+								</div>
+
+
 								<div class="product-info">
 									<div class="product-description">
-										<h3 class="product-title">{{huile.name}}</h3>
+										<h3>{{huile.name}}</h3>
 
 										<div class="container-price">
 											<p class="product-size">Black - L</p>

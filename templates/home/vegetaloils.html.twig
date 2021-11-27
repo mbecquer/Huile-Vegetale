@@ -31,12 +31,7 @@
 							{% if huile.active %}
 								{% if huile.createdAt < date("2months") %}
 									<div class="oil-item">
-										{% for image in huile.images %}
-											<img src="{{ asset('uploads/'~ image.name)}}">
-										{% endfor %}
-										{% if huile.images.isempty %}
-											<span>Image non disponible</span>
-										{% endif %}
+
 										<p>{{huile.name}}</p>
 										<a href="{{path('huile_read', {id: huile.id, slug:huile.slug})}}">voir ce produit</a>
 									</div>
@@ -64,19 +59,5 @@
 			</div>
 		</div>
 	</div>
-	<!--test-->
-	<div class="section">
 
-
-		<div class="carousel">
-
-			{% for huile in huiles %}
-				{% for image in huile.images  %}
-					<img height="100" width="250" src=" {{ asset('uploads/'~ image.name)}} ">
-				{% endfor %}
-			{% endfor %}
-
-		</div>
-	</div>
-	<!--test-->
 {% endblock %}

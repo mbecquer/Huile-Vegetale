@@ -5,6 +5,7 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 		<meta
 		name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+
 		<!--tailwindcss-->
 		<link href="/css/tailwind.css" rel="stylesheet">
 		<link rel="stylesheet" href="/css/huiles.css">
@@ -20,7 +21,10 @@
 		<link
 		href="https://fonts.googleapis.com/css2?family=Hind+Vadodara:wght@500&family=Nunito+Sans&family=Sacramento&display=swap" rel="stylesheet">
 		<!--icon-->
-		<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+		<link
+		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+		<!-- Required Core stylesheet -->
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
 
 		<title>
 			{% block title %}Welcome!
@@ -122,5 +126,8 @@
 	</body>
 </html>
 {% block javascripts %}
+
 	<script src="{{asset('js/main.js')}}"></script>
+	<script src="{{asset('js/carousel.js')}}"></script>
+
 {% endblock %}

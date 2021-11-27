@@ -5,64 +5,55 @@
 {% endblock %}
 
 {% block body %}
-	<div class="section"></div>
-	<div class="flex flex-wrap justify-evenly text-xl my-10 xl:mx-96 shadow-lg py-4 rounded-lg">
-
-		<div id="carouselExampleControls" class="carousel slide xl:w-96 " data-bs-ride="carousel">
-			<div class="carousel-inner">
-				{% for image in huile.images %}
-					<div class="carousel-item {% if loop.first %} active {% endif %}">
-						<img src="{{ asset('/uploads/'~ image.name)}}" alt="Image" style="height:600px; width:100%; object-fit:cover">
-					</div>
-				{% endfor %}
-
+	<div class="section">
+		<div class="container grid">
+			<div class="slideshow">
+				<ul>
+					{% for image in huile.images  %}
+						<li><img style="width:400px; height:100%; object-fit:cover;" src=" {{ asset('uploads/'~ image.name)}} "></li>
+					{% endfor %}
+				</ul>
 			</div>
-			<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-				<span class="carousel-control-prev-icon bg-green-500 rounded-full" aria-hidden="true"></span>
-				<span class="visually-hidden">Previous</span>
-			</button>
-			<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-				<span class="carousel-control-next-icon bg-green-500 rounded-full" aria-hidden="true"></span>
-				<span class="visually-hidden">Next</span>
-			</button>
+			<div class="carousel-mobile">
+				{% for image in huile.images  %}
+					<img style="height:200px; width:100%; object-fit:cover;" src=" {{ asset('uploads/'~ image.name)}} ">
+				{% endfor %}
+			</div>
 
 			{% if huile.images.isempty %}
-				<div class="flex flex-col  rounded-lg text-center text-black uppercase font-semibold text-xl py-3 bg-gray-100">
+				<div>
 					<span>Image non disponible</span>
-					<span class="text-5xl">X</span>
 				</div>
 			{% endif %}
-		</div>
-		<div class="card">
-			<div class="card-body">
-				<h3 class="card-title text-green title text-4xl">{{huile.name}}</h3>
-				<p class="card-text xl:w-96 ">
-					<span class="font-semibold text-green">Description:</span>
+			<div>
+				<h3>{{huile.name}}</h3>
+				<p>
+					<span>Description:</span>
 					{{huile.description}}
 				</p>
-			</div>
-			<ul class="list-group list-group-flush">
-				<li class="list-group-item">
-					<span class="font-semibold text-green">Prix:</span>
-					{{huile.price}}
-					€</li>
-				<li class="list-group-item">
-					<span class="font-semibold text-green">Capacité:</span>
-					{{huile.capacity}}
-					ml</li>
-				<li class="list-group-item">
-					<span class="font-semibold text-green">Utilisation:</span>
-					<p class="xl:w-96">Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi repudiandae</p>
-				</li>
-			</ul>
-			<div class="card-body">
-				<!--{% if is_granted("ROLE_USER")%}-->
-				<!--<a href="{{path('cart_add',{'id':huile.id})}}" ><button class="btn btn-success">Ajouter au panier</button></a>-->
-				<!--{% else %}-->
-				<!--<a href="{{path('app_login')}}" ><button class="btn btn-success">Ajouter au panier</button></a>-->
-				<!--{% endif %}-->
-				<!--lien ci-dessous factice-->
-					<a href="#" class=" no-underline text-green border-green border-2 rounded-lg p-2 my-2"> Ajouter au panier</a>
+				<ul>
+					<li>
+						<span>Prix:</span>
+						{{huile.price}}
+						€</li>
+					<li>
+						<span>Capacité:</span>
+						{{huile.capacity}}
+						ml</li>
+					<li>
+						<span>Utilisation:</span>
+						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi repudiandae</p>
+					</li>
+				</ul>
+				<div>
+					<!--{% if is_granted("ROLE_USER")%}-->
+					<!--<a href="{{path('cart_add',{'id':huile.id})}}" ><button class="button">Ajouter au panier</button></a>-->
+					<!--{% else %}-->
+					<!--<a href="{{path('app_login')}}" ><button class="button">Ajouter au panier</button></a>-->
+					<!--{% endif %}-->
+					<!--lien ci-dessous factice-->
+						<a href="#" class="button"> Ajouter au panier</a>
+				</div>
 
 			</div>
 		</div>
