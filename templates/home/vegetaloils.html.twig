@@ -10,8 +10,9 @@
 
 			<!--familles botaniques-->
 			<div class="oil-container">
+
 				<div class="oil-family">
-					<h3>Familles botaniques</h3>
+					<h3 class="section-title">Familles botaniques</h3>
 					<ul>
 						{% for family in families|sort((a, b) => a.name <=> b.name) %}
 							{% if family.active %}
@@ -31,9 +32,9 @@
 							{% if huile.active %}
 								{% if huile.createdAt < date("2months") %}
 									<div class="oil-item">
-
 										<p>{{huile.name}}</p>
 										<a href="{{path('huile_read', {id: huile.id, slug:huile.slug})}}">voir ce produit</a>
+										<hr>
 									</div>
 								{% endif %}
 							{% endif %}

@@ -30,10 +30,10 @@ class HuilesType extends AbstractType
             ->add('description', TextareaType::class, [
                 'required' => false,
                 "attr" => [
-                    'rows' => 15,
-                    'cols' => 20,
+                    'rows' => 5,
+                    'cols' => 25,
                     'placeholder' => 'Saisir description',
-
+                    'style' => "resize:none",
                 ]
             ])
             ->add('capacity', NumberType::class, [
@@ -67,8 +67,7 @@ class HuilesType extends AbstractType
                     'class' => 'text-uppercase'
                 ]
 
-                ]);
-           
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

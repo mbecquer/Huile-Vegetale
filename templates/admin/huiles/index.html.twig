@@ -3,82 +3,84 @@
 {% block title 'Administration'%}
 
 {% block body %}
-	<div class="section"></div>
-	<h1>Administration</h1>
-	<div class="mx-2">
-		{% for message in app.flashes('success')  %}
-			<div class="alert alert-dismissible fade show bg-green-200  text-center text-3xl p-2 mb-2 rounded-lg mx-20" role="alert">
-				{{message}}
-				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-			</div>
-		{% endfor %}
-		<div class="flex flex-wrap my-5">
-			<a href="{{path('admin_huiles_create')}}" class="mr-2">
-				<button class="button">
-					Ajouter Huile
-				</button>
-			</a>
-			<a href="{{path('admin_famille_create')}}" class="mr-2">
-				<button class="button">
-					Ajouter Famille
-				</button>
-			</a>
-			<button class="text-green text-xl border-green border-2 p-3 rounded-lg outline-none" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">Afficher les huiles des familles
-			</button>
-		</div>
+	<div class="section">
+		<div class="container grid">
+			<h1 class="section-title">Administration</h1>
 
-		<ul class="flex flex-wrap justify-between text-center text-xl uppercase font-semibold shadow-lg">
-			<li class="w-40 my-auto">Nom</li>
-			<li class="w-40 my-auto">Active</li>
-			<li class="w-40 my-auto">Actions</li>
-		</ul>
-		<div class=" xl:overflow-y-auto h-full xl:h-96">
-			{% for family in families|sort((a, b) => a.name <=> b.name) %}
-				<ul class="flex flex-wrap justify-between text-center text-xl uppercase font-semibold  rounded-lg bg-green-50 sticky top-0 z-10">
-					<li class="w-40 my-auto text-green ">{{family.name}}</li>
-					<li class="w-40 my-auto">
-						<label class="switch">
-							<input type="checkbox" {{(family.active) ? 'checked' : ''}} data-id="{{family.id}}">
-							<span class="slider"></span>
-						</label>
-					</li>
-					<li class=" my-auto flex">
-						<a href="{{path('admin_family_edit', { id: family.id })}}">
-							<button class="text-green text-xl border-green border-2 p-3 rounded-lg focus:outline-none mx-2 ">Modifier</button>
-						</a>
-						<form method="post" action="{{path('admin_family_delete',{id:family.id})}}" onsubmit="return confirm('Etes vous sûr de vouloir supprimer {{family.name }}?  Cela entrainera la suppression des huiles associées !')">
-							<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ family.id) }}">
-							<input type="hidden" name="_method" value="DELETE">
-							<button class="text-red-500 text-xl border-red-500 border-2 p-3 rounded-lg focus:outline-none ">Supprimer</button>
-						</form>
-					</li>
-				</ul>
-				{% for huile in family.huile|sort((a, b) => a.name <=> b.name) %}
-					<ul class="collapse flex flex-wrap justify-between  text-center  uppercase font-semibold  shadow-lg " id="collapseExample">
-						<li class="w-40 my-auto  text-md">{{huile.name}}</li>
+			{% for message in app.flashes('success')  %}
+				<div class="success-message" role="alert">
+					{{message}}
+					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+				</div>
+			{% endfor %}
+
+			<!--bouton ajout-->
+			<div>
+				<a href="{{path('admin_huiles_create')}}" class="button">
+					Ajouter huile
+				</a>
+				<a href="{{path('admin_famille_create')}}" class="button">
+					Ajouter famille
+				</a>
+			</div>
+			<!--bouton ajout-->
+
+			<ul class="flex flex-wrap justify-between text-center text-xl uppercase font-semibold shadow-lg">
+				<li class="w-40 my-auto">Nom</li>
+				<li class="w-40 my-auto">Active</li>
+				<li class="w-40 my-auto">Actions</li>
+			</ul>
+
+			<div class=" xl:overflow-y-auto h-full xl:h-96">
+				{% for family in families|sort((a, b) => a.name <=> b.name) %}
+					<ul class="flex flex-wrap justify-between text-center text-xl uppercase font-semibold  rounded-lg bg-green-50 sticky top-0 z-10">
+						<li class="w-40 my-auto text-green ">{{family.name}}</li>
 						<li class="w-40 my-auto">
 							<label class="switch">
-								<input type="checkbox" {{(huile.active) ? 'checked' : ''}} data-id="{{huile.id}}">
+								<input type="checkbox" {{(family.active) ? 'checked' : ''}} data-id="{{family.id}}">
 								<span class="slider"></span>
 							</label>
 						</li>
 						<li class=" my-auto flex">
-							<a href="{{path('admin_huiles_edit', { id: huile.id })}}">
-								<button class="text-green text-xl border-green border-2 p-2 rounded-lg focus:outline-none mx-2">Modifier</button>
+							<a href="{{path('admin_family_edit', { id: family.id })}}">
+								<button class="text-green text-xl border-green border-2 p-3 rounded-lg focus:outline-none mx-2 ">Modifier</button>
 							</a>
-							<form method="post" action="{{path('admin_huiles_delete',{id:huile.id})}}" onsubmit="return confirm('Etes vous sûr de vouloir supprimer {{huile.name }}?')">
-								<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ huile.id) }}">
+							<form method="post" action="{{path('admin_family_delete',{id:family.id})}}" onsubmit="return confirm('Etes vous sûr de vouloir supprimer {{family.name }}?  Cela entrainera la suppression des huiles associées !')">
+								<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ family.id) }}">
 								<input type="hidden" name="_method" value="DELETE">
-								<button class="text-red-500 text-xl border-red-500 border-2 p-2 rounded-lg focus:outline-none">Supprimer</button>
+								<button class="text-red-500 text-xl border-red-500 border-2 p-3 rounded-lg focus:outline-none ">Supprimer</button>
 							</form>
 						</li>
 					</ul>
+					{% for huile in family.huile|sort((a, b) => a.name <=> b.name) %}
+						<ul class="collapse flex flex-wrap justify-between  text-center  uppercase font-semibold  shadow-lg " id="collapseExample">
+							<li class="w-40 my-auto  text-md">{{huile.name}}</li>
+							<li class="w-40 my-auto">
+								<label class="switch">
+									<input type="checkbox" {{(huile.active) ? 'checked' : ''}} data-id="{{huile.id}}">
+									<span class="slider"></span>
+								</label>
+							</li>
+							<li class=" my-auto flex">
+								<a href="{{path('admin_huiles_edit', { id: huile.id })}}">
+									<button class="text-green text-xl border-green border-2 p-2 rounded-lg focus:outline-none mx-2">Modifier</button>
+								</a>
+								<form method="post" action="{{path('admin_huiles_delete',{id:huile.id})}}" onsubmit="return confirm('Etes vous sûr de vouloir supprimer {{huile.name }}?')">
+									<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ huile.id) }}">
+									<input type="hidden" name="_method" value="DELETE">
+									<button class="text-red-500 text-xl border-red-500 border-2 p-2 rounded-lg focus:outline-none">Supprimer</button>
+								</form>
+							</li>
+						</ul>
+					{% endfor %}
 				{% endfor %}
-			{% endfor %}
 
+			</div>
 		</div>
 
 	</div>
+
+
 {% endblock %}
 {% block javascripts %}
 	<script>

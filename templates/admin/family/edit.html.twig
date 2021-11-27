@@ -4,24 +4,23 @@
 {% endblock %}
 
 {% block body %}
-	<div class="section"></div>
-	<h1 class="text-center">Modifier la famille :
-		<span class="text-green">{{family.name}}</span>
-	</h1>
-	<div class="flex justify-center ">
+	<div class="section">
+		<div class="form-login">
+			<h1 class="section-title">Modifier la famille :
+				<span>{{family.name}}</span>
+			</h1>
+			<div class="form-container">
+				{{form_start(form) }}
+				<div class="form-input">
+					{{form_row(form.name)}}</div>
+				<div class="form-input">
+					{{form_row(form.story)}}</div>
+				<div class="form-input">
+					{{form_row(form.active)}}</div>
+				<button class="button submit" type="submit">Enregistrer</button>
 
-
-		<div class="p-5 shadow-lg rounded-lg">
-			{{form_start(form) }}
-			{{form_row(form.name)}}
-			{{form_row(form.story)}}
-			{{form_row(form.active)}}
-			<button class="text-green  text-xl border-green border-2 p-3 rounded-lg focus:outline-none my-5" type="submit">Enregistrer</button>
-
-			{{form_end(form)}}
+				{{form_end(form)}}
+			</div>
 		</div>
-
-
 	</div>
-
 {% endblock %}
