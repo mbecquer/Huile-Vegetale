@@ -1,149 +1,136 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-	<div class="section"></div>
-	<!--page-->
-	<div
-		class="xl:mx-52">
-		<!--message flash-->
-		<div class="xl:mx-28">
+	<div class="section">
+		<div class="container grid">
+			<h1 class="section-title">{{article.title}}</h1>
 			{% for message in app.flashes('message') %}
-				<div class="bg-green-200  text-center text-3xl p-2 mb-2 rounded-lg mx-20">
+				<div class="success-message">
 					{{message}}
 				</div>
 			{% endfor %}
-		</div>
-		<!--message flash-->
-		<!--##########################-->
-		<!--article-->
-		<div
-			class="flex flex-wrap my-5 rounded-lg shadow-lg p-5 w-full ">
-			<!--image-->
-			<div class="image-article ">
 
-				{% for pictureArticle in article.pictureArticles %}
-					<img class="object-cover rounded-lg w-52" src="{{asset('/uploads/'~ pictureArticle.name)}}">
-				{% endfor %}
-
-			</div>
-			<!--content-->
-			<div class="text-article xl:mx-20  ">
-				<h2>{{article.title}}</h2>
-				<p class="text-green">{{article.createdAt|date("d/m/Y")}}</p>
-				<p class="text-lg xl:w-96">{{article.content}}</p>
-			</div>
-
-		</div>
-		<!--article-->
-		<!--##########################-->
-
-		<h2>Liste des commentaires (
-			{{commentaires|length}}
-			)</h2>
-		<!--##########################-->
-		<!--bloc commentaire-->
-
-		{% for comment in article.comments %}
-
-			{% if comment.parent == null %}
-
-				<div
-					class="p-5 shadow-lg rounded-lg my-5 ">
-
-					<!--info user-->
-					<div class="flex justify-between">
-						<h2 class="text-green">{{comment.nickname}}</h2>
-						<span class="text-green">{{comment.createdAt|date("d/m/Y H:i","Europe/Paris")}}</span>
-					</div>
-					<!-- fin info user-->
-					<hr>
-					<!--comment user-->
-					<div class="my-5">
-						<p class="text-lg">{{comment.content}}</p>
-						{% if is_granted('ROLE_USER') %}
-							<a href="#ajout-commentaire" data-reply="data-reply" data-id="{{comment.id}}" data-bs-toggle="modal" data-bs-target="#exampleModal">
-								<button class="text-green text-xl border-green border-2 p-3 rounded-lg focus:outline-none float-right">Répondre</button>
-							</a>
-						{% endif %}
-					</div>
-					<!--fin comment user-->
-					<!--on affiche les réponses-->
-					{% for reply in comment.replies %}
-						<!--info user reply-->
-						<div class="flex justify-between mt-32">
-							<h2 class="text-green">{{reply.nickname}}</h2>
-							<span class="text-green mr-5">{{reply.createdAt|date("d/m/Y H:i","Europe/Paris")}}</span>
-						</div>
-						<!-- fin info user reply-->
-						<hr>
-						<!--comment user reply-->
-						<div class="shadow-lg rounded-lg xl:mx-20 p-2 px-5 my-3 border-l-4 border-gray-500 bg-gray-100">
-							<h2 class="my-2">Citation de
-								<span class="text-green">{{comment.nickname}}</span>
-							</h2>
-							<p>{{comment.content}}</p>
-						</div>
-						<div>
-							<p class="text-lg">{{reply.content}}</p>
-
-						</div>
+			<div class="blog-container">
+				<div class="blog-img">
+					{% for pictureArticle in article.pictureArticles %}
+						<img style="height:200px; width:100%; object-fit:cover;" src="{{asset('/uploads/'~ pictureArticle.name)}}">
 					{% endfor %}
-					<!--fin comment user reply-->
 				</div>
-			{% endif %}
-		{% else %}
-			<p class="text-lg">Il n'y a pas de commentaire, publiez le premier !</p>
-		{% endfor %}
 
-		<!--encart connexion pour commenter-->
-		<div
-			class=" p-5 w-full my-5 rounded-lg shadow-lg text-center flex flex-col items-center ">
-			<!--text-->
-			<p class=" text-lg">Vous voulez participer au forum ? Connectez-vous !</p>
-			<!--bouton connexion inscription-->
-			<div class="flex">
-				<a href="{{path('app_login')}}" class="mr-5">
-					<button class="text-green text-xl border-green border-2 p-3 rounded-lg focus:outline-none ">Connexion</button>
-				</a>
-				<!--<a href="{{path('app_register')}}" class="ml-5"><button class="text-green text-xl border-green border-2 p-3 rounded-lg focus:outline-none ">Inscription</button></a> -->
+				<div class="blog-info">
+
+					<h2>{{article.title}}</h2>
+					<p>{{article.createdAt|date("d/m/Y")}}</p>
+					<p>{{article.content}}</p>
+
+				</div>
 			</div>
-			<p>Vous êtes déjà inscrit ou connecté ?</p>
-			{% if is_granted('ROLE_USER') %}
-				<button type="button" class="text-green text-xl border-green border-2 p-3 rounded-lg focus:outline-none float-right" data-bs-toggle="modal" data-bs-target="#exampleModal">
-					Poster un commentaire
-				</button>
-				<!-- Modal -->
-				<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-					<div class="modal-dialog">
-						<div class="modal-content">
-							<div class="modal-header">
-								<h5 class="modal-title" id="exampleModalLabel">Bonjour
-									{% if app.user %}
-										<span class="text-green">{{app.user.username}}</span>
-									{% endif %}
-									écrivez votre message !</h5>
-								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		</div>
+
+
+	</div>
+	<div class="section">
+		<div class="container grid">
+			<h1 class="section-title">Liste des commentaires (
+				{{commentaires|length}}
+				)</h1>
+
+			{% for comment in article.comments %}
+				{% if comment.parent == null %}
+					<div class="blog-info">
+						<div class="blog-comment">
+							<div>
+								<h2>{{comment.nickname}}</h2>
+								<span>{{comment.createdAt|date("d/m/Y H:i","Europe/Paris")}}</span>
 							</div>
-							<div class="modal-body">
-								{{form_start(form)}}
-								{{form_row(form.nickname)}}
-								{{form_row(form.content)}}
-								{{form_row(form.rgpd)}}
-								<button class="text-green text-xl border-green border-2 p-3 rounded-lg focus:outline-none my-5 px-5" type="submit">Poster</button>
-								{{form_end(form)}}
+
+							<hr>
+							<div>
+								<p>{{comment.content}}</p>
 							</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+							<div>
+								{% if is_granted('ROLE_USER') %}
+									<a href="#ajout-commentaire" data-reply="data-reply" data-id="{{comment.id}}">
+										<button class="button">Répondre</button>
+									</a>
+
+
+								{% endif %}
 							</div>
 						</div>
+
+						{% for reply in comment.replies %}
+							<!--info user reply-->
+							<div class="blog-reply">
+								<div>
+									<h2>{{reply.nickname}}</h2>
+									<span>{{reply.createdAt|date("d/m/Y H:i","Europe/Paris")}}</span>
+								</div>
+								<div class="blog-citation">
+									<h2>citation de :
+										{{comment.nickname}}</h2>
+									<p>{{comment.content}}</p>
+								</div>
+								<p>{{reply.content}}</p>
+							</div>
+						{% endfor %}
 					</div>
+
+				{% endif %}
+			{% else %}
+				<p class="text-lg">Il n'y a pas de commentaire, publiez le premier !</p>
+			{% endfor %}
+		</div>
+	</div>
+	<div class="section">
+		<div class="container grid">
+			<div class="blog-various">
+				<div>
+					<p>Vous voulez participer au forum ? Connectez-vous !</p>
+					<a href="{{path('app_login')}}">
+						<button class="button">Connexion</button>
+					</a>
+					<!--<a href="{{path('app_register')}}" ><button class="button">Inscription</button></a> -->
 				</div>
-			{% endif %}
+
+				<div>
+					<p>Vous êtes déjà inscrit ou connecté ?</p>
+					{% if is_granted('ROLE_USER') %}
+						<a href="#ajout-commentaire">
+							<button class="button">Poster</button>
+						</a>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--modal-->
+
+	<div id="ajout-commentaire" class="modal-window">
+		<div class="section">
+			<div class="container grid">
+
+				<h1 class="section-title">Poster un commentaire</h1>
+				<div>
+					{{form_start(form)}}
+					<div class="form-input">
+						{{form_row(form.nickname)}}</div>
+					<div class="form-input">
+						{{form_row(form.content)}}</div>
+					<div class="form-input">
+						{{form_row(form.rgpd)}}</div>
+
+					<button class="button submit" type="submit">Poster</button>
+					{{form_end(form)}}
+					<a href="#modal-close" title="Close" class="modal-close">close &times;</a>
+
+				</div>
+			</div>
 
 		</div>
-		<!-- fin encart connexion pour commenter-->
 	</div>
-	<!--fin page-->
+
+
 {% endblock %}
 {% block javascripts %}
 	<script src="{{asset('js/main.js')}}"></script>
