@@ -9,16 +9,13 @@
 					{{message}}
 				</div>
 			{% endfor %}
-
 			<div class="blog-container">
 				<div class="blog-img">
 					{% for pictureArticle in article.pictureArticles %}
 						<img style="height:200px; width:100%; object-fit:cover;" src="{{asset('/uploads/'~ pictureArticle.name)}}">
 					{% endfor %}
 				</div>
-
 				<div class="blog-info">
-
 					<h2>{{article.title}}</h2>
 					<p>{{article.createdAt|date("d/m/Y")}}</p>
 					<p>{{article.content}}</p>
@@ -26,15 +23,12 @@
 				</div>
 			</div>
 		</div>
-
-
 	</div>
 	<div class="section">
 		<div class="container grid">
 			<h1 class="section-title">Liste des commentaires (
 				{{commentaires|length}}
 				)</h1>
-
 			{% for comment in article.comments %}
 				{% if comment.parent == null %}
 					<div class="blog-info">
@@ -43,7 +37,6 @@
 								<h2>{{comment.nickname}}</h2>
 								<span>{{comment.createdAt|date("d/m/Y H:i","Europe/Paris")}}</span>
 							</div>
-
 							<hr>
 							<div>
 								<p>{{comment.content}}</p>
@@ -53,12 +46,9 @@
 									<a href="#ajout-commentaire" data-reply="data-reply" data-id="{{comment.id}}">
 										<button class="button">Répondre</button>
 									</a>
-
-
 								{% endif %}
 							</div>
 						</div>
-
 						{% for reply in comment.replies %}
 							<!--info user reply-->
 							<div class="blog-reply">
@@ -105,7 +95,6 @@
 		</div>
 	</div>
 	<!--modal-->
-
 	<div id="ajout-commentaire" class="modal-window">
 		<div class="section">
 			<div class="container grid">
@@ -126,7 +115,6 @@
 
 				</div>
 			</div>
-
 		</div>
 	</div>
 

@@ -4,105 +4,93 @@
 	Mon panier
 {% endblock %}
 {% block body %}
-	<div class="section"></div>
-	<h1 class="text-center text-green text-4xl">Mon panier</h1>
-
-
-	<!--message flash-->
-	{% for message in app.flashes('success')  %}
-		<div class="success-message">
-			{{message}}
-		</div>
-	{% endfor %}
-
-	{% if panierWithData %}
-		<!--encart paypal-->
-		<div class=" flex xl:flex-col flex-wrap justify-end xl:w-60 xl:float-right xl:sticky xl:top-5 xl:right-5 border-green border-2 rounded-lg  p-3 bg-white shadow-lg text-2xl ">Total :
-
-			{{total}}
-			€
-			<hr>
-			<!--BOUTON PAYPAL-->
-			<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" class="">
-				<input type="hidden" name="cmd" value="_s-xclick"/>
-				<input type="hidden" name="hosted_button_id" value="UUZU4C87Z4R7A"/>
-				<input type="image" src="https://www.paypalobjects.com/fr_FR/FR/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal, le réflexe sécurité pour payer en ligne"/>
-				<img alt="" border="0" src="https://www.paypalobjects.com/fr_FR/i/scr/pixel.gif" width="1" height="1"/>
-			</form>
-			<hr>
-			<!--bouton vider le panier-->
-			<a href="{{path('delete_all')}}">
-				<button class="text-red-400 border-2 border-red-400 p-3 rounded-lg focus:outline-none">Vider le panier</button>
-			</a>
-
-
-		</div>
-		<!--fin encart paypal-->
-		<div class="text-xl flex flex-wrap xl:mx-60 xl:mr-20">
-			{% for item in panierWithData %}
-				<!--image du panier-->
-				<div class=" shadow-lg rounded-lg my-5">
-					<div class="flex flex-wrap p-5 xl:float-left">
-						{% for image in huile.images %}
-							<img src="{{ asset('/uploads/'~ image.name)}}" alt="Image" width="150">
-						{% endfor %}
-					</div>
-
-					<!--information des articles du panier-->
-					<div class="flex flex-col xl:float-right my-5 mx-5 ">
-						<p>Nom :
-							<span class="font-bold capitalize">{{item.huile.name}}</span>
-						</p>
-						<p>Capacité :
-							{{item.huile.capacity}}
-							ml</p>
-						<!--bouton + ou - d'un produit du panier-->
-						<div class="flex">
+	<div class="section">
+		<div class="container grid">
+			<h1 class="section-title">Mon panier</h1>
+			{% for message in app.flashes('success')  %}
+				<div class="success-message">
+					{{message}}
+				</div>
+			{% endfor %}
+			{% if panierWithData %}
+				<!--encart paypal-->
+				<div class="encart-total-paypal">
+					<p>total:
+						{{total}}
+						€</p>
+					<hr>
+					<!--BOUTON PAYPAL-->
+					<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" class="">
+						<input type="hidden" name="cmd" value="_s-xclick"/>
+						<input type="hidden" name="hosted_button_id" value="UUZU4C87Z4R7A"/>
+						<input type="image" src="https://www.paypalobjects.com/fr_FR/FR/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal, le réflexe sécurité pour payer en ligne"/>
+						<img alt="" border="0" src="https://www.paypalobjects.com/fr_FR/i/scr/pixel.gif" width="1" height="1"/>
+					</form>
+					<hr>
+					<!--bouton vider le panier-->
+					<a href="{{path('delete_all')}}">
+						<button class="button delete-button">Vider le panier</button>
+					</a>
+				</div>
+				<div>
+					{% for item in panierWithData %}
+						<!--image du panier-->
+						<div class="cart-img">
+							{% for image in huile.images %}
+								<img src="{{ asset('/uploads/'~ image.name)}}" alt="Image" width="150">
+							{% endfor %}
+						</div>
+						<!--information des articles du panier-->
+						<div>
+							<p>Nom :
+								<span>{{item.huile.name}}</span>
+							</p>
+							<p>Capacité :
+								{{item.huile.capacity}}
+								ml</p>
+						</div>
+						<div>
 							<p>Quantité :
 								{{item.quantity}}
 							</p>
 
-							<a href="{{path('cart_add',{'id':item.huile.id} )}}" class="no-underline mx-5 ">
+							<a class="button" href="{{path('cart_add',{'id':item.huile.id} )}}">
 								PLUS
 
 							</a>
-							<a href="{{path('cart_remove',{'id':item.huile.id} )}}" class="no-underline">
+							<a class="button" href="{{path('cart_remove',{'id':item.huile.id} )}}">
 								MOINS
 							</a>
 						</div>
-						<!--information part 2 des articles du panier-->
-						<hr>
-						<p>Prix unitaire :
-							{{item.huile.price}}
+						<div>
+							<!--information part 2 des articles du panier-->
+							<p>Prix unitaire :
+								{{item.huile.price}}
+								€</p>
+							<p>Sous-total :
+								{{item.huile.price * item.quantity}}
 
-							€</p>
-
-						<p>Sous-total :
-							{{item.huile.price * item.quantity}}
-
-							€</p>
-						<a href="{{path('cart_delete',{'id':item.huile.id})}}">
-							<button class="text-green  border-green border-2 p-3 rounded-lg focus:outline-none">Supprimer cette huile du panier</button>
-						</a>
-					</div>
-
+								€</p>
+							<a href="{{path('cart_delete',{'id':item.huile.id})}}">
+								<button class="button delete-button">Supprimer cette huile du panier</button>
+							</a>
+						</div>
+					{% endfor %}
 				</div>
-			{% endfor %}
+			{% else %}
+				<div class="section">
+					<div class="container grid">
+						<h1 class="section-title">Surprise votre panier est vide !</h1>
+						<p>Commencez vos achats dès maintenant en suivant ce lien :
+							<a class="button" href="huiles">
+								Boutique
+							</a>
+						</p>
+					</div>
+				</div>
+			{% endif %}
 		</div>
-	{% else %}
-
-		<div class="shadow-lg rounded-lg xl:mx-96 xl:text-center ">
-			<div class="my-36 p-20">
-				<h1 class="">Surprise votre panier est vide !</h1>
-				<p class="text-lg">Commencez vos achats dès maintenant en suivant ce lien :
-					<a class="text-green text-xl " href="huiles">
-						Boutique
-					</a>
-				</p>
-			</div>
-
-		</div>
-	{% endif %}
+	</div>
 
 
 {% endblock %}
