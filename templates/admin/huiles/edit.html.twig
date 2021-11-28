@@ -5,44 +5,43 @@
 
 {% block body %}
 	<div class="section">
-	
-			<div class="form-login">
-				<h1 class="section-title">Modifier l'huile :
-					<span>{{huile.name}}</span>
-				</h1>
-				<div class="form-container">
-					{{ form_start(form) }}
-					<div class="form-input">
-						{{form_row(form.name)}}</div>
-					<div class="form-input">
-						{{form_row(form.description)}}</div>
-					<div class="form-input">
-						{{form_row(form.capacity)}}</div>
-					<div class="form-input">{{form_row(form.price)}}</div>
-					<div class="form-input">
-						{{form_row(form.active)}}</div>
-					<div class="form-input">
-						{{form_row(form.family)}}</div>
-					<div class="form-input">
-						{{form_row(form.images)}}</div>
+
+		<div class="form-login">
+			<h1 class="section-title">Modifier l'huile :
+				<span>{{huile.name}}</span>
+			</h1>
+			<div class="form-container">
+				{{ form_start(form) }}
+				<div class="form-input">
+					{{form_row(form.name)}}</div>
+				<div class="form-input">
+					{{form_row(form.description)}}</div>
+				<div class="form-input">
+					{{form_row(form.capacity)}}</div>
+				<div class="form-input">{{form_row(form.price)}}</div>
+				<div class="form-input">
+					{{form_row(form.active)}}</div>
+				<div class="form-input">
+					{{form_row(form.family)}}</div>
+				<div class="form-input">
+					{{form_row(form.images)}}</div>
 
 
-					<button class="button submit" type="submit">Enregistrer</button>
+				<button class="button submit" type="submit">Enregistrer</button>
 
-					{{form_end(form)}}
-
-				</div>
-				<div class="form-content">
-					{% for image in huile.images %}
-						<div><img src="{{ asset('/uploads/'~ image.name)}}" alt="Image" style="width:100px">
-							<a href="{{ path('huile_delete_image', {'id': image.id}) }} " data-delete="data-delete" data-token="{{ csrf_token('delete' ~ image.id) }}">Supprimer</a>
-						</div>
-
-					{% endfor %}
-				</div>
+				{{form_end(form)}}
 
 			</div>
-		
+			<div class="form-content">
+				{% for image in huile.images %}
+					<div><img style="width:100%; height:100px; object-fit:cover;" src="{{ asset('/uploads/'~ image.name)}}" alt="Image">
+						<a class="button submit" href="{{ path('huile_delete_image', {'id': image.id}) }} " data-delete="data-delete" data-token="{{ csrf_token('delete' ~ image.id) }}">Supprimer</a>
+					</div>
+				{% endfor %}
+			</div>
+
+		</div>
+
 	</div>
 {% endblock %}
 {% block javascripts %}

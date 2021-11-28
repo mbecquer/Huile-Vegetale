@@ -23,61 +23,55 @@
 					Ajouter famille
 				</a>
 			</div>
-			<!--bouton ajout-->
+		
 
-			<ul class="flex flex-wrap justify-between text-center text-xl uppercase font-semibold shadow-lg">
-				<li class="w-40 my-auto">Nom</li>
-				<li class="w-40 my-auto">Active</li>
-				<li class="w-40 my-auto">Actions</li>
-			</ul>
 
-			<div class=" xl:overflow-y-auto h-full xl:h-96">
-				{% for family in families|sort((a, b) => a.name <=> b.name) %}
-					<ul class="flex flex-wrap justify-between text-center text-xl uppercase font-semibold  rounded-lg bg-green-50 sticky top-0 z-10">
-						<li class="w-40 my-auto text-green ">{{family.name}}</li>
-						<li class="w-40 my-auto">
+			{% for family in families|sort((a, b) => a.name <=> b.name) %}
+				<details class="admin-details">
+					<summary class="admin-summary">
+
+						<div class="admin-info">
+							{{family.name}}
 							<label class="switch">
 								<input type="checkbox" {{(family.active) ? 'checked' : ''}} data-id="{{family.id}}">
 								<span class="slider"></span>
 							</label>
-						</li>
-						<li class=" my-auto flex">
+						</div>
+						<div class="admin-buttons">
 							<a href="{{path('admin_family_edit', { id: family.id })}}">
-								<button class="text-green text-xl border-green border-2 p-3 rounded-lg focus:outline-none mx-2 ">Modifier</button>
+								<button class="button edit-button">Modifier</button>
 							</a>
 							<form method="post" action="{{path('admin_family_delete',{id:family.id})}}" onsubmit="return confirm('Etes vous sûr de vouloir supprimer {{family.name }}?  Cela entrainera la suppression des huiles associées !')">
 								<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ family.id) }}">
 								<input type="hidden" name="_method" value="DELETE">
-								<button class="text-red-500 text-xl border-red-500 border-2 p-3 rounded-lg focus:outline-none ">Supprimer</button>
+								<button class="button delete-button">Supprimer</button>
 							</form>
-						</li>
-					</ul>
+						</div>
+					</summary>
 					{% for huile in family.huile|sort((a, b) => a.name <=> b.name) %}
-						<ul class="collapse flex flex-wrap justify-between  text-center  uppercase font-semibold  shadow-lg " id="collapseExample">
-							<li class="w-40 my-auto  text-md">{{huile.name}}</li>
-							<li class="w-40 my-auto">
+						<div class="admin-summary-list">
+							<div class="admin-info">
+								{{huile.name}}
 								<label class="switch">
 									<input type="checkbox" {{(huile.active) ? 'checked' : ''}} data-id="{{huile.id}}">
 									<span class="slider"></span>
 								</label>
-							</li>
-							<li class=" my-auto flex">
+							</div>
+							<div class="admin-buttons">
 								<a href="{{path('admin_huiles_edit', { id: huile.id })}}">
-									<button class="text-green text-xl border-green border-2 p-2 rounded-lg focus:outline-none mx-2">Modifier</button>
+									<button class="button edit-button">Modifier</button>
 								</a>
 								<form method="post" action="{{path('admin_huiles_delete',{id:huile.id})}}" onsubmit="return confirm('Etes vous sûr de vouloir supprimer {{huile.name }}?')">
 									<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ huile.id) }}">
 									<input type="hidden" name="_method" value="DELETE">
-									<button class="text-red-500 text-xl border-red-500 border-2 p-2 rounded-lg focus:outline-none">Supprimer</button>
+									<button class="button delete-button">Supprimer</button>
 								</form>
-							</li>
-						</ul>
+							</div>
+						</div>
 					{% endfor %}
-				{% endfor %}
-
-			</div>
+				</details>
+			{% endfor %}
 		</div>
-
 	</div>
 
 

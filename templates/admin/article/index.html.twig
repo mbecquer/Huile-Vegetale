@@ -1,53 +1,49 @@
 {% extends "base.html.twig" %}
 {% block body %}
-	<div class="section"></div>
-	<h1 class="text-center">Administration article</h1>
-	<div class="mx-2">
-		{% for message in app.flashes('success')  %}
-			<div class="bg-green-200  text-center text-3xl p-2 mb-2 rounded-lg mx-20">
-				{{message}}
-			</div>
-		{% endfor %}
-		<a href="{{path('admin_article_create')}}">
-			<button class="text-green text-xl border-green border-2 p-3 rounded-lg focus:outline-none ">
-				Ajouter un article
-			</button>
-		</a>
+	<div class="section">
+		<div class="container grid">
+			<h1 class="section-title">Administration article</h1>
+			{% for message in app.flashes('success')  %}
+				<div class="success-message">
+					{{message}}
+				</div>
+			{% endfor %}
 
-		<div class="shadow-lg my-10">
-			<div class="">
-				<ul class="flex flex-wrap justify-evenly text-center text-xl uppercase font-semibold">
-					<li class="w-40">titre</li>
-					<li class="w-40">image</li>
-					<li class="w-40">creation</li>
-					<li class="w-40">actions</li>
-				</ul>
-			</div>
+			<!--bouton ajout-->
 			<div>
-				{% for article in articles %}
-					<ul class="flex flex-wrap justify-evenly text-center shadow-lg py-4">
-						<li class="-w-10 lg:w-40 font-semibold text-xl my-auto">{{article.title}}</li>
-						<li class="w-40 font-semibold text-xl my-auto">
-							{% for pictureArticle in article.pictureArticles %}
-								<img class="object-cover rounded-lg " src="{{asset('/uploads/'~ pictureArticle.name)}}">
-							{% endfor %}
-						</li>
-						<li class="w-40 font-semibold text-xl my-auto">{{article.createdAt|date("d/m/Y H:i","Europe/Paris")}}</li>
-						<li class="w-40 my-auto">
+				<a href="{{path('admin_article_create')}}">
+					<button class="button">
+						Ajouter un article
+					</button>
+				</a>
+			</div>
+			{% for article in articles %}
+				<details class="admin-details">
+					<summary class="admin-summary">
+						<div class="admin-info">
+							{{article.title}}
+							{{article.createdAt|date("d/m/Y H:i","Europe/Paris")}}
+						</div>
+						<div class="admin-buttons">
 							<a href="{{path('admin_article_edit',{'id': article.id})}}">
-								<button class="text-green text-xl border-green border-2 p-3 rounded-lg focus:outline-none mx-2">Modifier</button>
+								<button class="button edit-button">Modifier</button>
 							</a>
 							<form method="post" action="{{path('admin_article_delete',{id:article.id})}}" onsubmit="return confirm('Etes vous sûr de vouloir supprimer {{article.title}}?')">
 								<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ article.id) }}">
 								<input type="hidden" name="_method" value="DELETE">
-								<button class="text-red-500 text-xl border-red-500 border-2 p-3 rounded-lg focus:outline-none">Supprimer</button>
-
+								<button class="button delete-button">Supprimer</button>
 							</form>
-						</li>
-					</ul>
-
-				{% endfor %}
-			</div>
+						</div>
+					</summary>
+					<div class="admin-summary-list">
+						<div class="admin-info">
+							{% for pictureArticle in article.pictureArticles %}
+								<img style="height:200px; width:100%; object-fit:cover" src="{{asset('/uploads/'~ pictureArticle.name)}}">
+							{% endfor %}
+						</div>
+					</div>
+				</details>
+			{% endfor %}
 		</div>
 	</div>
 
