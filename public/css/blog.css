@@ -57,6 +57,7 @@ text-transform: capitalize;
     
     }
   
+      
 }
 /* modal */
 
@@ -82,12 +83,15 @@ text-transform: capitalize;
   }
   
   .modal-window>div {
-    width: 400px;
+    width: 300px;
     position: relative;
-    margin: 10% auto;
-    padding: 2rem;
+    margin: 5% auto;
     background: #fff;
     color: #444;
+
+  }
+  .modal-close{
+      text-align: center;
   }
   
 
