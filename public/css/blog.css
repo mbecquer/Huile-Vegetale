@@ -12,6 +12,12 @@
     margin:1rem 0;
     box-shadow:2px 2px 10px rgba(0,0,0,0.5);
 }
+.blog-container-reply{
+
+    margin:auto;
+ 
+
+    }
 .blog-reply{
     box-shadow:2px 2px 10px rgba(0,0,0,0.5);
     padding:1rem;
@@ -20,8 +26,8 @@
     font-size: 1rem;
 }
 .blog-reply span{
-font-weight: 600;
-text-transform: capitalize;
+    font-weight: 600;
+    text-transform: capitalize;
 }
 .blog-citation{
     margin:1rem 1rem;
@@ -41,9 +47,14 @@ text-transform: capitalize;
 @media screen and (min-width: 768px){
 
     .blog-container{
-
         display:grid;
         grid-template-columns: repeat(3,1fr);
+    }
+    .blog-container-reply{
+
+    margin:auto;
+   width:50%;
+
     }
     .blog-info{
         padding:0 1rem;

@@ -24,47 +24,52 @@
 			</div>
 		</div>
 	</div>
-	<div class="section">
-		<div class="container grid">
-			<h1 class="section-title">Liste des commentaires (
-				{{commentaires|length}}
-				)</h1>
+
+
+	<div class=" grid ">
+		<h1 class="section-title">Liste des commentaires (
+			{{commentaires|length}}
+			)</h1>
+
+		<div class="blog-container-reply">
+
+
 			{% for comment in article.comments %}
 				{% if comment.parent == null %}
-					<div class="blog-info">
-						<div class="blog-comment">
+
+					<div class="blog-comment">
+						<div>
+							<h2>{{comment.nickname}}</h2>
+							<span>{{comment.createdAt|date("d/m/Y H:i","Europe/Paris")}}</span>
+						</div>
+						<hr>
+						<div>
+							<p>{{comment.content}}</p>
+						</div>
+						<div>
+							{% if is_granted('ROLE_USER') %}
+								<a href="#ajout-commentaire" data-reply="data-reply" data-id="{{comment.id}}">
+									<button class="button">Répondre</button>
+								</a>
+							{% endif %}
+						</div>
+					</div>
+					{% for reply in comment.replies %}
+						<!--info user reply-->
+						<div class="blog-reply">
 							<div>
-								<h2>{{comment.nickname}}</h2>
-								<span>{{comment.createdAt|date("d/m/Y H:i","Europe/Paris")}}</span>
+								<h2>{{reply.nickname}}</h2>
+								<span>{{reply.createdAt|date("d/m/Y H:i","Europe/Paris")}}</span>
 							</div>
-							<hr>
-							<div>
+							<div class="blog-citation">
+								<h2>citation de :
+									{{comment.nickname}}</h2>
 								<p>{{comment.content}}</p>
 							</div>
-							<div>
-								{% if is_granted('ROLE_USER') %}
-									<a href="#ajout-commentaire" data-reply="data-reply" data-id="{{comment.id}}">
-										<button class="button">Répondre</button>
-									</a>
-								{% endif %}
-							</div>
+							<p>{{reply.content}}</p>
 						</div>
-						{% for reply in comment.replies %}
-							<!--info user reply-->
-							<div class="blog-reply">
-								<div>
-									<h2>{{reply.nickname}}</h2>
-									<span>{{reply.createdAt|date("d/m/Y H:i","Europe/Paris")}}</span>
-								</div>
-								<div class="blog-citation">
-									<h2>citation de :
-										{{comment.nickname}}</h2>
-									<p>{{comment.content}}</p>
-								</div>
-								<p>{{reply.content}}</p>
-							</div>
-						{% endfor %}
-					</div>
+					{% endfor %}
+
 
 				{% endif %}
 			{% else %}
@@ -72,6 +77,7 @@
 			{% endfor %}
 		</div>
 	</div>
+
 	<div class="section">
 		<div class="container grid">
 			<div class="blog-various">
