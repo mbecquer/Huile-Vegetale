@@ -219,6 +219,9 @@ nav{
 .nav-list{
   padding: 0 2rem;
 }
+.nav-list li{
+  padding:1rem 0;
+}
 .nav-list a:hover{
   color:var(--green);
 }
