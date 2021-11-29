@@ -18,48 +18,35 @@
 		{% endif %}
 	</section>
 
-	<div class="product-container">
-		{% for huile in huiles|sort((a, b) => a.name <=> b.name) %}
-			{% if huile.active %}
-				<section class="section-product">
 
-					<div class="product-content container grid">
-						<a href="{{path('huile_read', {id: huile.id, slug:huile.slug})}}">
-							<div class="product">
+	<div class="section">
+		<div class="product-container  grid">
+			{% for huile in huiles|sort((a, b) => a.name <=> b.name) %}
+				{% if huile.active %}
+					<a href="{{path('huile_read', {id: huile.id, slug:huile.slug})}}">
+						<div class="product">
+							<div class="product-img">
 								<div class="slideshow">
 									<ul>
 										{% for image in huile.images  %}
-											<li><img style="width:400px; height:100%; object-fit:cover;" src=" {{ asset('uploads/'~ image.name)}} "></li>
+											<li><img style="width:400px;height:100%; object-fit:cover;" src=" {{ asset('uploads/'~ image.name)}} "></li>
 										{% endfor %}
 									</ul>
 								</div>
-
-
-								<div class="product-info">
-									<div class="product-description">
-										<h3>{{huile.name}}</h3>
-
-										<div class="container-price">
-											<p class="product-size">Black - L</p>
-											<div class="product-icon-stars">
-												<i class="fa fa-star" aria-hidden="true"></i>
-												<i class="fa fa-star" aria-hidden="true"></i>
-												<i class="fa fa-star" aria-hidden="true"></i>
-												<i class="fa fa-star" aria-hidden="true"></i>
-												<i class="fa fa-star" aria-hidden="true"></i>
-											</div>
-										</div>
-									</div>
-								</div>
 							</div>
-						</a>
-					</div>
-
-				</section>
-			{% endif %}
-		{% endfor %}
+							<div class="product-info">
+								<p>{{huile.name}}</p>
+								<i class="fa fa-star" aria-hidden="true"></i>
+								<i class="fa fa-star" aria-hidden="true"></i>
+								<i class="fa fa-star" aria-hidden="true"></i>
+								<i class="fa fa-star" aria-hidden="true"></i>
+								<i class="fa fa-star" aria-hidden="true"></i>
+							</div>
+						</div>
+					</a>
+				{% endif %}
+			{% endfor %}
+		</div>
 	</div>
-
-
 
 {% endblock %}
