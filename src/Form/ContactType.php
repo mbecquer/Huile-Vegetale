@@ -54,8 +54,9 @@ class ContactType extends AbstractType
                 'attr' => [
                     'rows' => 5,
                     'cols' => 25,
-                    'placeholder' => 'Message',
-                    'style' => "resize:none",
+                    'placeholder' => 'Votre message',
+                    'style' => "resize:none; width:100%;border:none;outline:none;",
+
 
                 ]
 

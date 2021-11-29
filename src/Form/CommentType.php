@@ -17,9 +17,18 @@ class CommentType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nickname', TextType::class)
+            ->add('nickname', TextType::class, [
+                'label' => false,
+                'attr' => [
+                    'placeholder' => "Pseudo"
+                ]
+            ])
             ->add('content', TextareaType::class, [
-                'label' => "Votre commentaire"
+                'label' => false,
+                'attr' => [
+                    'placeholder' => 'Votre commentaire',
+                    'style' => "resize:none; width:100%;border:none;outline:none;",
+                ]
             ])
             ->add('rgpd', CheckboxType::class, [
                 'label' => "J'accepte la collecte de mes données personnelles dans le cadre de ce formulaire de commentaire",

@@ -18,23 +18,25 @@ class FamilyType extends AbstractType
     {
         $builder
             ->add('name', TextType::class, [
-
+                'label' => false,
                 'required' => true,
-                'help' => 'Saisir en majuscules',
+                'help' => '(Saisir en majuscules)',
                 "attr" => [
-                    'placeholder' => "Entrer la famille",
-                    'style' => 'width: 200px',
+                    'placeholder' => "Nom de la famille",
+
                 ]
             ])
             ->add('active', CheckboxType::class, [
                 'required' => false
             ])
             ->add('story', TextareaType::class, [
+                'label' => false,
                 'required' => false,
                 "attr" => [
                     'rows' => 15,
                     'cols' => 20,
                     'placeholder' => 'Saisir l\'histoire de la famille',
+                    'style' => "resize:none; width:100%;border:none;outline:none;",
 
                 ]
             ]);

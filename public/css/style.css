@@ -122,7 +122,12 @@ button{
 
 input{
   outline:none;
+
 }
+textarea::placeholder{
+  font-size: var(--font-size-normal);
+}
+
 /* -------------------------------------------------------------------------- */
 /*                                 paragraphe                                 */
 /* -------------------------------------------------------------------------- */
@@ -560,8 +565,6 @@ footer{
 
   }
  
-
-
   /* scroll-top */
   #scroll-top{
       font-size: 3rem;
@@ -575,6 +578,8 @@ footer{
       grid-template-columns: repeat(2,1fr);
       column-gap: 5rem;
   }
+  
+
 }
 
 

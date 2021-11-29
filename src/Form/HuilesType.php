@@ -20,34 +20,46 @@ class HuilesType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+
         $builder
             ->add('name', TextType::class, [
+                "label" => false,
                 "required" => true,
                 "attr" => [
-                    'placeholder' => "Enter the name of the oil"
+                    'placeholder' => "Nom de l'huile"
                 ]
             ])
             ->add('description', TextareaType::class, [
+                "label" => false,
                 'required' => false,
                 "attr" => [
                     'rows' => 5,
                     'cols' => 25,
-                    'placeholder' => 'Saisir description',
-                    'style' => "resize:none",
-                ]
+                    'placeholder' => 'Description',
+                    'style' => "resize:none; width:100%;border:none;outline:none;",
+               
+                    ]
             ])
             ->add('capacity', NumberType::class, [
-                'help' => 'Préciser la capacité en millilitre'
+                "label" => false,
+                "attr" => [
+                    'placeholder' => "Capacité"
+                ],
+                'help' => '(Préciser la capacité en millilitre)'
             ])
             ->add('price', NumberType::class, [
-                'help' => 'Préciser le prix en euros'
+                "label" => false,
+                "attr" => [
+                    'placeholder' => "Prix"
+                ],
+                'help' => '(Préciser le prix en euros)'
             ])
 
             ->add('images', FileType::class, [
                 'label' => 'Images',
                 'multiple' => true,
                 'mapped' => false,
-                'required' => false
+                'required' => false,
             ])
             ->add('active', CheckboxType::class, [
                 'required' => false,

@@ -17,16 +17,21 @@ class ArticleType extends AbstractType
     {
         $builder
             ->add('title', TextType::class, [
-                'required'=>true,
+                'label' => false,
+                'required' => true,
                 'attr' => [
-                    'style' => "width:200px"
+                    'style' => "width:200px",
+                    'placeholder' => "Titre de l'article"
                 ]
             ])
             ->add('content', TextareaType::class, [
+                "label" => false,
                 'attr' => [
                     'rows' => 15,
                     'cols' => 20,
-                    'style' => "width:200px"
+                    'placeholder' => 'Contenu',
+                    'style' => "resize:none; width:100%;border:none;outline:none;",
+
                 ]
             ])
             ->add('image', FileType::class, [
@@ -37,8 +42,7 @@ class ArticleType extends AbstractType
                 'attr' => [
                     'style' => "width:200px"
                 ]
-            ])
-         ;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)
